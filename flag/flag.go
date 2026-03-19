@@ -2,7 +2,7 @@
 package flag
 
 import (
-	"github.com/traefik/paerser/parser"
+	"github.com/hanzoai/ingress-parser/parser"
 )
 
 // Decode decodes the given flag arguments into the given element.

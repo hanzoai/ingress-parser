@@ -7,7 +7,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/traefik/paerser/parser"
+	"github.com/hanzoai/ingress-parser/parser"
 )
 
 func decodeRawToNode(data map[string]interface{}, filters ...string) (*parser.Node, error) {

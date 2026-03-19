@@ -5,7 +5,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
-	"github.com/traefik/paerser/parser"
+	"github.com/hanzoai/ingress-parser/parser"
 )
 
 func Test_getRootFieldNames(t *testing.T) {
@@ -89,7 +89,7 @@ func Test_decodeFileToNode_Toml(t *testing.T) {
 	require.NoError(t, err)
 
 	expected := &parser.Node{
-		Name: "traefik",
+		Name: "ingress",
 		Children: []*parser.Node{
 			{Name: "accessLog", Children: []*parser.Node{
 				{Name: "bufferingSize", Value: "42"},
@@ -369,7 +369,7 @@ func Test_decodeFileToNode_Yaml(t *testing.T) {
 	require.NoError(t, err)
 
 	expected := &parser.Node{
-		Name: "traefik",
+		Name: "ingress",
 		Children: []*parser.Node{
 			{Name: "accessLog", Children: []*parser.Node{
 				{Name: "bufferingSize", Value: "42"},
@@ -649,7 +649,7 @@ func Test_decodeFileToNode_Json(t *testing.T) {
 	require.NoError(t, err)
 
 	expected := &parser.Node{
-		Name: "traefik",
+		Name: "ingress",
 		Children: []*parser.Node{
 			{Name: "accessLog", Children: []*parser.Node{
 				{Name: "bufferingSize", Value: "42"},

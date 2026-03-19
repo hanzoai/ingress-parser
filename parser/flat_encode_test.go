@@ -7,7 +7,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
-	"github.com/traefik/paerser/types"
+	"github.com/hanzoai/ingress-parser/types"
 )
 
 func TestEncodeToFlat(t *testing.T) {
@@ -26,7 +26,7 @@ func TestEncodeToFlat(t *testing.T) {
 				Field: "test",
 			},
 			node: &Node{
-				Name:      "traefik",
+				Name:      "ingress",
 				FieldName: "",
 				Kind:      reflect.Pointer,
 				Children: []*Node{
@@ -54,7 +54,7 @@ func TestEncodeToFlat(t *testing.T) {
 				Field: 6,
 			},
 			node: &Node{
-				Name:      "traefik",
+				Name:      "ingress",
 				FieldName: "",
 				Kind:      reflect.Pointer,
 				Children: []*Node{
@@ -82,7 +82,7 @@ func TestEncodeToFlat(t *testing.T) {
 				Field: true,
 			},
 			node: &Node{
-				Name:      "traefik",
+				Name:      "ingress",
 				FieldName: "",
 				Kind:      reflect.Pointer,
 				Children: []*Node{
@@ -110,7 +110,7 @@ func TestEncodeToFlat(t *testing.T) {
 				Field: func(v string) *string { return &v }("test"),
 			},
 			node: &Node{
-				Name:      "traefik",
+				Name:      "ingress",
 				FieldName: "",
 				Kind:      reflect.Pointer,
 				Children: []*Node{
@@ -138,7 +138,7 @@ func TestEncodeToFlat(t *testing.T) {
 				Field: func(v string) *string { return &v }("test"),
 			},
 			node: &Node{
-				Name:      "traefik",
+				Name:      "ingress",
 				FieldName: "",
 				Kind:      reflect.Pointer,
 				Children: []*Node{
@@ -159,7 +159,7 @@ func TestEncodeToFlat(t *testing.T) {
 				TagName:   TagLabel,
 			},
 			expected: []Flat{{
-				Name:        "TRAEFIK_FIELD",
+				Name:        "INGRESS_FIELD",
 				Description: "field description",
 				Default:     "test",
 			}},
@@ -172,7 +172,7 @@ func TestEncodeToFlat(t *testing.T) {
 				Field: func(v int) *int { return &v }(6),
 			},
 			node: &Node{
-				Name:      "traefik",
+				Name:      "ingress",
 				FieldName: "",
 				Kind:      reflect.Pointer,
 				Children: []*Node{
@@ -200,7 +200,7 @@ func TestEncodeToFlat(t *testing.T) {
 				Field: func(v bool) *bool { return &v }(true),
 			},
 			node: &Node{
-				Name:      "traefik",
+				Name:      "ingress",
 				FieldName: "",
 				Kind:      reflect.Pointer,
 				Children: []*Node{
@@ -226,7 +226,7 @@ func TestEncodeToFlat(t *testing.T) {
 				Field []string `description:"field description"`
 			}{},
 			node: &Node{
-				Name:      "traefik",
+				Name:      "ingress",
 				FieldName: "",
 				Kind:      reflect.Pointer,
 				Children: []*Node{
@@ -253,7 +253,7 @@ func TestEncodeToFlat(t *testing.T) {
 				Field: []string{"foo", "bar"},
 			},
 			node: &Node{
-				Name:      "traefik",
+				Name:      "ingress",
 				FieldName: "",
 				Kind:      reflect.Pointer,
 				Children: []*Node{
@@ -279,7 +279,7 @@ func TestEncodeToFlat(t *testing.T) {
 				Field []int `description:"field description"`
 			}{},
 			node: &Node{
-				Name:      "traefik",
+				Name:      "ingress",
 				FieldName: "",
 				Kind:      reflect.Pointer,
 				Children: []*Node{
@@ -306,7 +306,7 @@ func TestEncodeToFlat(t *testing.T) {
 				Field: []int{6, 3},
 			},
 			node: &Node{
-				Name:      "traefik",
+				Name:      "ingress",
 				FieldName: "",
 				Kind:      reflect.Pointer,
 				Children: []*Node{
@@ -336,7 +336,7 @@ func TestEncodeToFlat(t *testing.T) {
 				},
 			},
 			node: &Node{
-				Name:      "traefik",
+				Name:      "ingress",
 				FieldName: "",
 				Kind:      reflect.Pointer,
 				Children: []*Node{
@@ -376,7 +376,7 @@ func TestEncodeToFlat(t *testing.T) {
 				},
 			},
 			node: &Node{
-				Name:      "traefik",
+				Name:      "ingress",
 				FieldName: "",
 				Kind:      reflect.Pointer,
 				Children: []*Node{
@@ -421,7 +421,7 @@ func TestEncodeToFlat(t *testing.T) {
 				},
 			},
 			node: &Node{
-				Name:      "traefik",
+				Name:      "ingress",
 				FieldName: "",
 				Kind:      reflect.Pointer,
 				Children: []*Node{
@@ -460,7 +460,7 @@ func TestEncodeToFlat(t *testing.T) {
 				},
 			},
 			node: &Node{
-				Name:      "traefik",
+				Name:      "ingress",
 				FieldName: "",
 				Kind:      reflect.Pointer,
 				Children: []*Node{
@@ -518,7 +518,7 @@ func TestEncodeToFlat(t *testing.T) {
 				},
 			},
 			node: &Node{
-				Name:      "traefik",
+				Name:      "ingress",
 				FieldName: "",
 				Kind:      reflect.Pointer,
 				Children: []*Node{
@@ -580,7 +580,7 @@ func TestEncodeToFlat(t *testing.T) {
 				},
 			},
 			node: &Node{
-				Name:      "traefik",
+				Name:      "ingress",
 				FieldName: "",
 				Kind:      reflect.Pointer,
 				Children: []*Node{
@@ -646,7 +646,7 @@ func TestEncodeToFlat(t *testing.T) {
 				},
 			},
 			node: &Node{
-				Name:      "traefik",
+				Name:      "ingress",
 				FieldName: "",
 				Kind:      reflect.Pointer,
 				Children: []*Node{
@@ -699,7 +699,7 @@ func TestEncodeToFlat(t *testing.T) {
 				},
 			},
 			node: &Node{
-				Name:      "traefik",
+				Name:      "ingress",
 				FieldName: "",
 				Kind:      reflect.Pointer,
 				Children: []*Node{
@@ -745,7 +745,7 @@ func TestEncodeToFlat(t *testing.T) {
 				} `description:"foo description"`
 			}{},
 			node: &Node{
-				Name:      "traefik",
+				Name:      "ingress",
 				FieldName: "",
 				Kind:      reflect.Pointer,
 				Children: []*Node{
@@ -809,7 +809,7 @@ func TestEncodeToFlat(t *testing.T) {
 				} `description:"foo description"`
 			}{},
 			node: &Node{
-				Name:      "traefik",
+				Name:      "ingress",
 				FieldName: "",
 				Kind:      reflect.Pointer,
 				Children: []*Node{
@@ -871,7 +871,7 @@ func TestEncodeToFlat(t *testing.T) {
 				Field: 1 * time.Second,
 			},
 			node: &Node{
-				Name:      "traefik",
+				Name:      "ingress",
 				FieldName: "",
 				Kind:      reflect.Pointer,
 				Children: []*Node{
@@ -907,7 +907,7 @@ func TestEncodeToFlat(t *testing.T) {
 				},
 			},
 			node: &Node{
-				Name:      "traefik",
+				Name:      "ingress",
 				FieldName: "",
 				Kind:      reflect.Pointer,
 				Children: []*Node{
@@ -974,7 +974,7 @@ func TestEncodeToFlat(t *testing.T) {
 				},
 			},
 			node: &Node{
-				Name:      "traefik",
+				Name:      "ingress",
 				FieldName: "",
 				Kind:      reflect.Pointer,
 				Children: []*Node{
@@ -1038,7 +1038,7 @@ func TestEncodeToFlat(t *testing.T) {
 				},
 			},
 			node: &Node{
-				Name:      "traefik",
+				Name:      "ingress",
 				FieldName: "",
 				Kind:      reflect.Pointer,
 				Children: []*Node{
@@ -1087,7 +1087,7 @@ func TestEncodeToFlat(t *testing.T) {
 				},
 			},
 			node: &Node{
-				Name:      "traefik",
+				Name:      "ingress",
 				FieldName: "",
 				Kind:      reflect.Pointer,
 				Children: []*Node{
@@ -1129,7 +1129,7 @@ func TestEncodeToFlat(t *testing.T) {
 				Field: types.Duration(180 * time.Second),
 			},
 			node: &Node{
-				Name:      "traefik",
+				Name:      "ingress",
 				FieldName: "",
 				Kind:      reflect.Struct,
 				Children: []*Node{
@@ -1177,7 +1177,7 @@ func TestEncodeToFlat(t *testing.T) {
 				},
 			},
 			node: &Node{
-				Name: "traefik",
+				Name: "ingress",
 				Kind: reflect.Struct,
 				Children: []*Node{
 					{Name: "Foo", Kind: reflect.Pointer, Description: "foo description", Children: []*Node{
@@ -1208,7 +1208,7 @@ func TestEncodeToFlat(t *testing.T) {
 				},
 			},
 		},
-		// Skipped: because realistically not needed in Traefik for now.
+		// Skipped: because realistically not needed in Ingress for now.
 		// {
 		// 	desc: "map of map field level 2",
 		// 	element: &struct {

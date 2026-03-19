@@ -7,9 +7,9 @@ import (
 	"text/template"
 
 	"github.com/Masterminds/sprig/v3"
-	"github.com/traefik/paerser/flag"
-	"github.com/traefik/paerser/generator"
-	"github.com/traefik/paerser/parser"
+	"github.com/hanzoai/ingress-parser/flag"
+	"github.com/hanzoai/ingress-parser/generator"
+	"github.com/hanzoai/ingress-parser/parser"
 )
 
 const tmplHelp = `{{ .Cmd.Name }}	{{ .Cmd.Description }}

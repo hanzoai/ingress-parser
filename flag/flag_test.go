@@ -6,9 +6,9 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
-	"github.com/traefik/paerser/generator"
-	"github.com/traefik/paerser/parser"
-	"github.com/traefik/paerser/types"
+	"github.com/hanzoai/ingress-parser/generator"
+	"github.com/hanzoai/ingress-parser/parser"
+	"github.com/hanzoai/ingress-parser/types"
 )
 
 func TestDecode(t *testing.T) {
@@ -946,7 +946,7 @@ func TestEncode(t *testing.T) {
 				},
 			},
 		},
-		// Skipped: because realistically not needed in Traefik for now.
+		// Skipped: because realistically not needed in Ingress for now.
 		// {
 		// 	desc: "map of map field level 2",
 		// 	element: &struct {

@@ -28,7 +28,7 @@ func TestDecodeToNode(t *testing.T) {
 		{
 			desc: "invalid label, ending by a dot",
 			in: map[string]string{
-				"traefik.http.": "bar",
+				"ingress.http.": "bar",
 			},
 			expected: expected{
 				error: true,
@@ -37,10 +37,10 @@ func TestDecodeToNode(t *testing.T) {
 		{
 			desc: "level 1",
 			in: map[string]string{
-				"traefik.foo": "bar",
+				"ingress.foo": "bar",
 			},
 			expected: expected{node: &Node{
-				Name: "traefik",
+				Name: "ingress",
 				Children: []*Node{
 					{Name: "foo", Value: "bar"},
 				},
@@ -49,10 +49,10 @@ func TestDecodeToNode(t *testing.T) {
 		{
 			desc: "level 1 empty value",
 			in: map[string]string{
-				"traefik.foo": "",
+				"ingress.foo": "",
 			},
 			expected: expected{node: &Node{
-				Name: "traefik",
+				Name: "ingress",
 				Children: []*Node{
 					{Name: "foo", Value: ""},
 				},
@@ -61,10 +61,10 @@ func TestDecodeToNode(t *testing.T) {
 		{
 			desc: "level 2",
 			in: map[string]string{
-				"traefik.foo.bar": "bar",
+				"ingress.foo.bar": "bar",
 			},
 			expected: expected{node: &Node{
-				Name: "traefik",
+				Name: "ingress",
 				Children: []*Node{{
 					Name: "foo",
 					Children: []*Node{
@@ -76,7 +76,7 @@ func TestDecodeToNode(t *testing.T) {
 		{
 			desc: "several entries, level 0",
 			in: map[string]string{
-				"traefik": "bar",
+				"ingress": "bar",
 				"traefic": "bur",
 			},
 			expected: expected{error: true},
@@ -84,12 +84,12 @@ func TestDecodeToNode(t *testing.T) {
 		{
 			desc: "several entries, prefix filter",
 			in: map[string]string{
-				"traefik.foo": "bar",
-				"traefik.fii": "bir",
+				"ingress.foo": "bar",
+				"ingress.fii": "bir",
 			},
-			filters: []string{"traefik.Foo"},
+			filters: []string{"ingress.Foo"},
 			expected: expected{node: &Node{
-				Name: "traefik",
+				Name: "ingress",
 				Children: []*Node{
 					{Name: "foo", Value: "bar"},
 				},
@@ -98,11 +98,11 @@ func TestDecodeToNode(t *testing.T) {
 		{
 			desc: "several entries, level 1",
 			in: map[string]string{
-				"traefik.foo": "bar",
-				"traefik.fii": "bur",
+				"ingress.foo": "bar",
+				"ingress.fii": "bur",
 			},
 			expected: expected{node: &Node{
-				Name: "traefik",
+				Name: "ingress",
 				Children: []*Node{
 					{Name: "fii", Value: "bur"},
 					{Name: "foo", Value: "bar"},
@@ -112,11 +112,11 @@ func TestDecodeToNode(t *testing.T) {
 		{
 			desc: "several entries, level 2",
 			in: map[string]string{
-				"traefik.foo.aaa": "bar",
-				"traefik.foo.bbb": "bur",
+				"ingress.foo.aaa": "bar",
+				"ingress.foo.bbb": "bur",
 			},
 			expected: expected{node: &Node{
-				Name: "traefik",
+				Name: "ingress",
 				Children: []*Node{
 					{Name: "foo", Children: []*Node{
 						{Name: "aaa", Value: "bar"},
@@ -128,11 +128,11 @@ func TestDecodeToNode(t *testing.T) {
 		{
 			desc: "several entries, level 2, case-insensitive",
 			in: map[string]string{
-				"traefik.foo.aaa": "bar",
-				"traefik.Foo.bbb": "bur",
+				"ingress.foo.aaa": "bar",
+				"ingress.Foo.bbb": "bur",
 			},
 			expected: expected{node: &Node{
-				Name: "traefik",
+				Name: "ingress",
 				Children: []*Node{
 					{Name: "Foo", Children: []*Node{
 						{Name: "bbb", Value: "bur"},
@@ -144,12 +144,12 @@ func TestDecodeToNode(t *testing.T) {
 		{
 			desc: "several entries, level 2, 3 children",
 			in: map[string]string{
-				"traefik.foo.aaa": "bar",
-				"traefik.foo.bbb": "bur",
-				"traefik.foo.ccc": "bir",
+				"ingress.foo.aaa": "bar",
+				"ingress.foo.bbb": "bur",
+				"ingress.foo.ccc": "bir",
 			},
 			expected: expected{node: &Node{
-				Name: "traefik",
+				Name: "ingress",
 				Children: []*Node{
 					{Name: "foo", Children: []*Node{
 						{Name: "aaa", Value: "bar"},
@@ -162,11 +162,11 @@ func TestDecodeToNode(t *testing.T) {
 		{
 			desc: "several entries, level 3",
 			in: map[string]string{
-				"traefik.foo.bar.aaa": "bar",
-				"traefik.foo.bar.bbb": "bur",
+				"ingress.foo.bar.aaa": "bar",
+				"ingress.foo.bar.bbb": "bur",
 			},
 			expected: expected{node: &Node{
-				Name: "traefik",
+				Name: "ingress",
 				Children: []*Node{
 					{Name: "foo", Children: []*Node{
 						{Name: "bar", Children: []*Node{
@@ -180,12 +180,12 @@ func TestDecodeToNode(t *testing.T) {
 		{
 			desc: "several entries, level 3, 2 children level 1",
 			in: map[string]string{
-				"traefik.foo.bar.aaa": "bar",
-				"traefik.foo.bar.bbb": "bur",
-				"traefik.bar.foo.bbb": "bir",
+				"ingress.foo.bar.aaa": "bar",
+				"ingress.foo.bar.bbb": "bur",
+				"ingress.bar.foo.bbb": "bir",
 			},
 			expected: expected{node: &Node{
-				Name: "traefik",
+				Name: "ingress",
 				Children: []*Node{
 					{Name: "bar", Children: []*Node{
 						{Name: "foo", Children: []*Node{
@@ -204,13 +204,13 @@ func TestDecodeToNode(t *testing.T) {
 		{
 			desc: "several entries, slice syntax",
 			in: map[string]string{
-				"traefik.foo[0].aaa": "bar0",
-				"traefik.foo[0].bbb": "bur0",
-				"traefik.foo[1].aaa": "bar1",
-				"traefik.foo[1].bbb": "bur1",
+				"ingress.foo[0].aaa": "bar0",
+				"ingress.foo[0].bbb": "bur0",
+				"ingress.foo[1].aaa": "bar1",
+				"ingress.foo[1].bbb": "bur1",
 			},
 			expected: expected{node: &Node{
-				Name: "traefik",
+				Name: "ingress",
 				Children: []*Node{
 					{Name: "foo", Children: []*Node{
 						{Name: "[0]", Children: []*Node{
@@ -228,10 +228,10 @@ func TestDecodeToNode(t *testing.T) {
 		{
 			desc: "several entries, invalid slice syntax",
 			in: map[string]string{
-				"traefik.foo.[0].aaa": "bar0",
-				"traefik.foo.[0].bbb": "bur0",
-				"traefik.foo.[1].aaa": "bar1",
-				"traefik.foo.[1].bbb": "bur1",
+				"ingress.foo.[0].aaa": "bar0",
+				"ingress.foo.[0].bbb": "bur0",
+				"ingress.foo.[1].aaa": "bar1",
+				"ingress.foo.[1].bbb": "bur1",
 			},
 			expected: expected{error: true},
 		},

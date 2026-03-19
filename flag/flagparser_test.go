@@ -26,7 +26,7 @@ func TestParse(t *testing.T) {
 				Foo bool
 			}{},
 			expected: map[string]string{
-				"traefik.foo": "true",
+				"ingress.foo": "true",
 			},
 		},
 		{
@@ -36,7 +36,7 @@ func TestParse(t *testing.T) {
 				Foo bool
 			}{},
 			expected: map[string]string{
-				"traefik.Foo": "true",
+				"ingress.Foo": "true",
 			},
 		},
 		{
@@ -46,7 +46,7 @@ func TestParse(t *testing.T) {
 				Foo string
 			}{},
 			expected: map[string]string{
-				"traefik.foo": "bar",
+				"ingress.foo": "bar",
 			},
 		},
 		{
@@ -56,7 +56,7 @@ func TestParse(t *testing.T) {
 				Foo string
 			}{},
 			expected: map[string]string{
-				"traefik.Foo": "Bar",
+				"ingress.Foo": "Bar",
 			},
 		},
 		{
@@ -66,7 +66,7 @@ func TestParse(t *testing.T) {
 				Foo string
 			}{},
 			expected: map[string]string{
-				"traefik.foo": "bar",
+				"ingress.foo": "bar",
 			},
 		},
 		{
@@ -76,7 +76,7 @@ func TestParse(t *testing.T) {
 				Foo string
 			}{},
 			expected: map[string]string{
-				"traefik.Foo": "Bar",
+				"ingress.Foo": "Bar",
 			},
 		},
 		{
@@ -86,7 +86,7 @@ func TestParse(t *testing.T) {
 				Foo string
 			}{},
 			expected: map[string]string{
-				"traefik.foo": "bir",
+				"ingress.foo": "bir",
 			},
 		},
 		{
@@ -97,8 +97,8 @@ func TestParse(t *testing.T) {
 				Bar bool
 			}{},
 			expected: map[string]string{
-				"traefik.foo": "true",
-				"traefik.bar": "true",
+				"ingress.foo": "true",
+				"ingress.bar": "true",
 			},
 		},
 		{
@@ -108,7 +108,7 @@ func TestParse(t *testing.T) {
 				Foo []string
 			}{},
 			expected: map[string]string{
-				"traefik.foo": "bar,baz",
+				"ingress.foo": "bar,baz",
 			},
 		},
 		{
@@ -118,7 +118,7 @@ func TestParse(t *testing.T) {
 				Foo map[string]string
 			}{},
 			expected: map[string]string{
-				"traefik.foo.name": "bar",
+				"ingress.foo.name": "bar",
 			},
 		},
 		{
@@ -128,7 +128,7 @@ func TestParse(t *testing.T) {
 				Foo map[string]string
 			}{},
 			expected: map[string]string{
-				"traefik.foo.Name": "Bar",
+				"ingress.foo.Name": "Bar",
 			},
 		},
 		{
@@ -138,7 +138,7 @@ func TestParse(t *testing.T) {
 				Foo map[string]string
 			}{},
 			expected: map[string]string{
-				"traefik.foo.name.value": "bar",
+				"ingress.foo.name.value": "bar",
 			},
 		},
 		{
@@ -148,8 +148,8 @@ func TestParse(t *testing.T) {
 				Foo map[string]string
 			}{},
 			expected: map[string]string{
-				"traefik.foo.name.value":   "bar",
-				"traefik.foo.name2.value2": "baz",
+				"ingress.foo.name.value":   "bar",
+				"ingress.foo.name2.value2": "baz",
 			},
 		},
 		{
@@ -159,9 +159,9 @@ func TestParse(t *testing.T) {
 				Foo map[string]string
 			}{},
 			expected: map[string]string{
-				"traefik.foo.name.value":   "bar",
-				"traefik.foo.name2.value2": "baz",
-				"traefik.foo.name3":        "bay",
+				"ingress.foo.name.value":   "bar",
+				"ingress.foo.name2.value2": "baz",
+				"ingress.foo.name3":        "bay",
 			},
 		},
 		{
@@ -171,7 +171,7 @@ func TestParse(t *testing.T) {
 				Foo map[string]struct{ Value string }
 			}{},
 			expected: map[string]string{
-				"traefik.foo.name.value": "bar",
+				"ingress.foo.name.value": "bar",
 			},
 		},
 		{
@@ -183,7 +183,7 @@ func TestParse(t *testing.T) {
 				}
 			}{},
 			expected: map[string]string{
-				"traefik.foo.name.bar.value": "bar",
+				"ingress.foo.name.bar.value": "bar",
 			},
 		},
 		{
@@ -195,7 +195,7 @@ func TestParse(t *testing.T) {
 				}
 			}{},
 			expected: map[string]string{
-				"traefik.foo.name1.bar.name2.value": "bar",
+				"ingress.foo.name1.bar.name2.value": "bar",
 			},
 		},
 		{
@@ -205,7 +205,7 @@ func TestParse(t *testing.T) {
 				Foo []string
 			}{},
 			expected: map[string]string{
-				"traefik.foo": "bar,baz",
+				"ingress.foo": "bar,baz",
 			},
 		},
 		{
@@ -216,8 +216,8 @@ func TestParse(t *testing.T) {
 				Baz bool
 			}{},
 			expected: map[string]string{
-				"traefik.foo": "bar,",
-				"traefik.baz": "true",
+				"ingress.foo": "bar,",
+				"ingress.baz": "true",
 			},
 		},
 		{
@@ -228,7 +228,7 @@ func TestParse(t *testing.T) {
 				Baz bool
 			}{},
 			expected: map[string]string{
-				"traefik.foo": "bar,--baz",
+				"ingress.foo": "bar,--baz",
 			},
 		},
 		{
@@ -238,7 +238,7 @@ func TestParse(t *testing.T) {
 			}{},
 			args: []string{"--foo=bar", "--foo=baz"},
 			expected: map[string]string{
-				"traefik.foo": "baz",
+				"ingress.foo": "baz",
 			},
 		},
 		{
@@ -248,7 +248,7 @@ func TestParse(t *testing.T) {
 			}{},
 			args: []string{"--foo", "bar", "--foo", "baz"},
 			expected: map[string]string{
-				"traefik.foo": "baz",
+				"ingress.foo": "baz",
 			},
 		},
 		{
@@ -259,7 +259,7 @@ func TestParse(t *testing.T) {
 			}{},
 			args: []string{"--foo", "--bar"},
 			expected: map[string]string{
-				"traefik.foo": "--bar",
+				"ingress.foo": "--bar",
 			},
 		},
 		{
@@ -269,7 +269,7 @@ func TestParse(t *testing.T) {
 				Foo *struct{ Field string }
 			}{},
 			expected: map[string]string{
-				"traefik.foo": "true",
+				"ingress.foo": "true",
 			},
 		},
 		{
@@ -279,7 +279,7 @@ func TestParse(t *testing.T) {
 				Foo map[string]string
 			}{},
 			expected: map[string]string{
-				"traefik.foo.caseSensitiveName": "barBoo",
+				"ingress.foo.caseSensitiveName": "barBoo",
 			},
 		},
 		{
@@ -291,7 +291,7 @@ func TestParse(t *testing.T) {
 				}
 			}{},
 			expected: map[string]string{
-				"traefik.foo.Name1.bar.name2.value": "secondValue",
+				"ingress.foo.Name1.bar.name2.value": "secondValue",
 			},
 		},
 		{
@@ -303,7 +303,7 @@ func TestParse(t *testing.T) {
 				}
 			}{},
 			expected: map[string]string{
-				"traefik.foo.Name1.bar.name2.value": "secondValue",
+				"ingress.foo.Name1.bar.name2.value": "secondValue",
 			},
 		},
 		{
@@ -317,7 +317,7 @@ func TestParse(t *testing.T) {
 				}
 			}{},
 			expected: map[string]string{
-				"traefik.foo.default.bar.fuu": "true",
+				"ingress.foo.default.bar.fuu": "true",
 			},
 		},
 		{
@@ -327,7 +327,7 @@ func TestParse(t *testing.T) {
 				Foo []string
 			}{},
 			expected: map[string]string{
-				"traefik.foo": "bar,baz",
+				"ingress.foo": "bar,baz",
 			},
 		},
 	}

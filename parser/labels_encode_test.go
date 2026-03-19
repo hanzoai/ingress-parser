@@ -15,46 +15,46 @@ func TestEncodeNode(t *testing.T) {
 		{
 			desc: "1 label",
 			node: &Node{
-				Name: "traefik",
+				Name: "ingress",
 				Children: []*Node{
 					{Name: "aaa", Value: "bar"},
 				},
 			},
 			expected: map[string]string{
-				"traefik.aaa": "bar",
+				"ingress.aaa": "bar",
 			},
 		},
 		{
 			desc: "2 labels",
 			node: &Node{
-				Name: "traefik",
+				Name: "ingress",
 				Children: []*Node{
 					{Name: "aaa", Value: "bar"},
 					{Name: "bbb", Value: "bur"},
 				},
 			},
 			expected: map[string]string{
-				"traefik.aaa": "bar",
-				"traefik.bbb": "bur",
+				"ingress.aaa": "bar",
+				"ingress.bbb": "bur",
 			},
 		},
 		{
 			desc: "2 labels, 1 disabled",
 			node: &Node{
-				Name: "traefik",
+				Name: "ingress",
 				Children: []*Node{
 					{Name: "aaa", Value: "bar"},
 					{Name: "bbb", Value: "bur", Disabled: true},
 				},
 			},
 			expected: map[string]string{
-				"traefik.aaa": "bar",
+				"ingress.aaa": "bar",
 			},
 		},
 		{
 			desc: "2 levels",
 			node: &Node{
-				Name: "traefik",
+				Name: "ingress",
 				Children: []*Node{
 					{Name: "foo", Children: []*Node{
 						{Name: "aaa", Value: "bar"},
@@ -62,13 +62,13 @@ func TestEncodeNode(t *testing.T) {
 				},
 			},
 			expected: map[string]string{
-				"traefik.foo.aaa": "bar",
+				"ingress.foo.aaa": "bar",
 			},
 		},
 		{
 			desc: "3 levels",
 			node: &Node{
-				Name: "traefik",
+				Name: "ingress",
 				Children: []*Node{
 					{Name: "foo", Children: []*Node{
 						{Name: "bar", Children: []*Node{
@@ -78,13 +78,13 @@ func TestEncodeNode(t *testing.T) {
 				},
 			},
 			expected: map[string]string{
-				"traefik.foo.bar.aaa": "bar",
+				"ingress.foo.bar.aaa": "bar",
 			},
 		},
 		{
 			desc: "2 levels, same root",
 			node: &Node{
-				Name: "traefik",
+				Name: "ingress",
 				Children: []*Node{
 					{Name: "foo", Children: []*Node{
 						{Name: "bar", Children: []*Node{
@@ -95,14 +95,14 @@ func TestEncodeNode(t *testing.T) {
 				},
 			},
 			expected: map[string]string{
-				"traefik.foo.bar.aaa": "bar",
-				"traefik.foo.bar.bbb": "bur",
+				"ingress.foo.bar.aaa": "bar",
+				"ingress.foo.bar.bbb": "bur",
 			},
 		},
 		{
 			desc: "several levels, different root",
 			node: &Node{
-				Name: "traefik",
+				Name: "ingress",
 				Children: []*Node{
 					{Name: "bar", Children: []*Node{
 						{Name: "ccc", Value: "bir"},
@@ -115,14 +115,14 @@ func TestEncodeNode(t *testing.T) {
 				},
 			},
 			expected: map[string]string{
-				"traefik.foo.bar.aaa": "bar",
-				"traefik.bar.ccc":     "bir",
+				"ingress.foo.bar.aaa": "bar",
+				"ingress.bar.ccc":     "bir",
 			},
 		},
 		{
 			desc: "multiple labels, multiple levels",
 			node: &Node{
-				Name: "traefik",
+				Name: "ingress",
 				Children: []*Node{
 					{Name: "bar", Children: []*Node{
 						{Name: "ccc", Value: "bir"},
@@ -136,15 +136,15 @@ func TestEncodeNode(t *testing.T) {
 				},
 			},
 			expected: map[string]string{
-				"traefik.foo.bar.aaa": "bar",
-				"traefik.foo.bar.bbb": "bur",
-				"traefik.bar.ccc":     "bir",
+				"ingress.foo.bar.aaa": "bar",
+				"ingress.foo.bar.bbb": "bur",
+				"ingress.bar.ccc":     "bir",
 			},
 		},
 		{
 			desc: "slice of struct syntax",
 			node: &Node{
-				Name: "traefik",
+				Name: "ingress",
 				Children: []*Node{
 					{Name: "foo", Children: []*Node{
 						{Name: "[0]", Children: []*Node{
@@ -159,16 +159,16 @@ func TestEncodeNode(t *testing.T) {
 				},
 			},
 			expected: map[string]string{
-				"traefik.foo[0].aaa": "bar0",
-				"traefik.foo[0].bbb": "bur0",
-				"traefik.foo[1].aaa": "bar1",
-				"traefik.foo[1].bbb": "bur1",
+				"ingress.foo[0].aaa": "bar0",
+				"ingress.foo[0].bbb": "bur0",
+				"ingress.foo[1].aaa": "bar1",
+				"ingress.foo[1].bbb": "bur1",
 			},
 		},
 		{
 			desc: "raw value, level 1",
 			node: &Node{
-				Name: "traefik",
+				Name: "ingress",
 				Children: []*Node{
 					{Name: "aaa", RawValue: map[string]interface{}{
 						"bbb": "test1",
@@ -177,14 +177,14 @@ func TestEncodeNode(t *testing.T) {
 				},
 			},
 			expected: map[string]string{
-				"traefik.aaa.bbb": "test1",
-				"traefik.aaa.ccc": "test2",
+				"ingress.aaa.bbb": "test1",
+				"ingress.aaa.ccc": "test2",
 			},
 		},
 		{
 			desc: "raw value, level 2",
 			node: &Node{
-				Name: "traefik",
+				Name: "ingress",
 				Children: []*Node{
 					{Name: "aaa", RawValue: map[string]interface{}{
 						"bbb": "test1",
@@ -195,14 +195,14 @@ func TestEncodeNode(t *testing.T) {
 				},
 			},
 			expected: map[string]string{
-				"traefik.aaa.bbb":     "test1",
-				"traefik.aaa.ccc.ddd": "test2",
+				"ingress.aaa.bbb":     "test1",
+				"ingress.aaa.ccc.ddd": "test2",
 			},
 		},
 		{
 			desc: "raw value, slice of struct",
 			node: &Node{
-				Name: "traefik",
+				Name: "ingress",
 				Children: []*Node{
 					{Name: "aaa", RawValue: map[string]interface{}{
 						"bbb": []interface{}{
@@ -215,8 +215,8 @@ func TestEncodeNode(t *testing.T) {
 				},
 			},
 			expected: map[string]string{
-				"traefik.aaa.bbb[0].ccc": "test1",
-				"traefik.aaa.bbb[0].ddd": "test2",
+				"ingress.aaa.bbb[0].ccc": "test1",
+				"ingress.aaa.bbb[0].ddd": "test2",
 			},
 		},
 	}

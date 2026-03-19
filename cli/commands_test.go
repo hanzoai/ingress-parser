@@ -794,7 +794,7 @@ func Test_execute_configuration_file(t *testing.T) {
 
 			fileLoader := &FileLoader{
 				ConfigFileFlag: "configFile",
-				BasePaths:      []string{"/etc/traefik/traefik", "$XDG_CONFIG_HOME/traefik", "$HOME/.config/traefik", "./traefik"},
+				BasePaths:      []string{"/etc/ingress/ingress", "$XDG_CONFIG_HOM./ingress", "$HOME/.config/ingress", "./ingress"},
 			}
 
 			sub1 := &Command{

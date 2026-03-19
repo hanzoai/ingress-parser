@@ -9,7 +9,7 @@ import (
 )
 
 func TestDecode_TOML(t *testing.T) {
-	f, err := os.CreateTemp(t.TempDir(), "traefik-config-*.toml")
+	f, err := os.CreateTemp(t.TempDir(), "ingress-config-*.toml")
 	require.NoError(t, err)
 
 	t.Cleanup(func() {
@@ -131,7 +131,7 @@ name = "test"
 }
 
 func TestDecode_YAML(t *testing.T) {
-	f, err := os.CreateTemp(t.TempDir(), "traefik-config-*.yaml")
+	f, err := os.CreateTemp(t.TempDir(), "ingress-config-*.yaml")
 	require.NoError(t, err)
 
 	t.Cleanup(func() {

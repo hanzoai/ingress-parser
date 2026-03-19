@@ -15,27 +15,27 @@ func TestFindPrefixedEnvVars(t *testing.T) {
 	}{
 		{
 			desc:     "exact name",
-			environ:  []string{"TRAEFIK_FOO"},
+			environ:  []string{"INGRESS_FOO"},
 			element:  &Yo{},
-			expected: []string{"TRAEFIK_FOO"},
+			expected: []string{"INGRESS_FOO"},
 		},
 		{
 			desc:     "prefixed name",
-			environ:  []string{"TRAEFIK_FII01"},
+			environ:  []string{"INGRESS_FII01"},
 			element:  &Yo{},
-			expected: []string{"TRAEFIK_FII01"},
+			expected: []string{"INGRESS_FII01"},
 		},
 		{
 			desc:     "excluded env vars",
-			environ:  []string{"TRAEFIK_NOPE", "TRAEFIK_NO"},
+			environ:  []string{"INGRESS_NOPE", "INGRESS_NO"},
 			element:  &Yo{},
 			expected: nil,
 		},
 		{
 			desc:     "filter",
-			environ:  []string{"TRAEFIK_NOPE", "TRAEFIK_NO", "TRAEFIK_FOO", "TRAEFIK_FII01"},
+			environ:  []string{"INGRESS_NOPE", "INGRESS_NO", "INGRESS_FOO", "INGRESS_FII01"},
 			element:  &Yo{},
-			expected: []string{"TRAEFIK_FOO", "TRAEFIK_FII01"},
+			expected: []string{"INGRESS_FOO", "INGRESS_FII01"},
 		},
 	}
 
@@ -59,17 +59,17 @@ func Test_getRootFieldNames(t *testing.T) {
 		{
 			desc:     "simple fields",
 			element:  &Yo{},
-			expected: []string{"TRAEFIK_FOO", "TRAEFIK_FII", "TRAEFIK_FUU", "TRAEFIK_YI", "TRAEFIK_YU"},
+			expected: []string{"INGRESS_FOO", "INGRESS_FII", "INGRESS_FUU", "INGRESS_YI", "INGRESS_YU"},
 		},
 		{
 			desc:     "embedded struct",
 			element:  &Yu{},
-			expected: []string{"TRAEFIK_FOO", "TRAEFIK_FII", "TRAEFIK_FUU"},
+			expected: []string{"INGRESS_FOO", "INGRESS_FII", "INGRESS_FUU"},
 		},
 		{
 			desc:     "embedded struct pointer",
 			element:  &Ye{},
-			expected: []string{"TRAEFIK_FOO", "TRAEFIK_FII", "TRAEFIK_FUU"},
+			expected: []string{"INGRESS_FOO", "INGRESS_FII", "INGRESS_FUU"},
 		},
 	}
 

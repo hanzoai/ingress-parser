@@ -5,7 +5,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
-	"github.com/traefik/paerser/parser"
+	"github.com/hanzoai/ingress-parser/parser"
 )
 
 func Test_decodeRawToNode(t *testing.T) {
@@ -18,7 +18,7 @@ func Test_decodeRawToNode(t *testing.T) {
 			desc: "empty",
 			data: map[string]interface{}{},
 			expected: &parser.Node{
-				Name: "traefik",
+				Name: "ingress",
 			},
 		},
 		{
@@ -27,7 +27,7 @@ func Test_decodeRawToNode(t *testing.T) {
 				"foo": "bar",
 			},
 			expected: &parser.Node{
-				Name: "traefik",
+				Name: "ingress",
 				Children: []*parser.Node{
 					{Name: "foo", Value: "bar"},
 				},
@@ -39,7 +39,7 @@ func Test_decodeRawToNode(t *testing.T) {
 				"foo": bar("bar"),
 			},
 			expected: &parser.Node{
-				Name: "traefik",
+				Name: "ingress",
 				Children: []*parser.Node{
 					{Name: "foo", Value: "bar"},
 				},
@@ -51,7 +51,7 @@ func Test_decodeRawToNode(t *testing.T) {
 				"foo": true,
 			},
 			expected: &parser.Node{
-				Name: "traefik",
+				Name: "ingress",
 				Children: []*parser.Node{
 					{Name: "foo", Value: "true"},
 				},
@@ -63,7 +63,7 @@ func Test_decodeRawToNode(t *testing.T) {
 				"foo": 1,
 			},
 			expected: &parser.Node{
-				Name: "traefik",
+				Name: "ingress",
 				Children: []*parser.Node{
 					{Name: "foo", Value: "1"},
 				},
@@ -75,7 +75,7 @@ func Test_decodeRawToNode(t *testing.T) {
 				"foo": int8(1),
 			},
 			expected: &parser.Node{
-				Name: "traefik",
+				Name: "ingress",
 				Children: []*parser.Node{
 					{Name: "foo", Value: "1"},
 				},
@@ -87,7 +87,7 @@ func Test_decodeRawToNode(t *testing.T) {
 				"foo": int16(1),
 			},
 			expected: &parser.Node{
-				Name: "traefik",
+				Name: "ingress",
 				Children: []*parser.Node{
 					{Name: "foo", Value: "1"},
 				},
@@ -99,7 +99,7 @@ func Test_decodeRawToNode(t *testing.T) {
 				"foo": int32(1),
 			},
 			expected: &parser.Node{
-				Name: "traefik",
+				Name: "ingress",
 				Children: []*parser.Node{
 					{Name: "foo", Value: "1"},
 				},
@@ -111,7 +111,7 @@ func Test_decodeRawToNode(t *testing.T) {
 				"foo": int64(1),
 			},
 			expected: &parser.Node{
-				Name: "traefik",
+				Name: "ingress",
 				Children: []*parser.Node{
 					{Name: "foo", Value: "1"},
 				},
@@ -123,7 +123,7 @@ func Test_decodeRawToNode(t *testing.T) {
 				"foo": uint(1),
 			},
 			expected: &parser.Node{
-				Name: "traefik",
+				Name: "ingress",
 				Children: []*parser.Node{
 					{Name: "foo", Value: "1"},
 				},
@@ -135,7 +135,7 @@ func Test_decodeRawToNode(t *testing.T) {
 				"foo": uint8(1),
 			},
 			expected: &parser.Node{
-				Name: "traefik",
+				Name: "ingress",
 				Children: []*parser.Node{
 					{Name: "foo", Value: "1"},
 				},
@@ -147,7 +147,7 @@ func Test_decodeRawToNode(t *testing.T) {
 				"foo": uint16(1),
 			},
 			expected: &parser.Node{
-				Name: "traefik",
+				Name: "ingress",
 				Children: []*parser.Node{
 					{Name: "foo", Value: "1"},
 				},
@@ -159,7 +159,7 @@ func Test_decodeRawToNode(t *testing.T) {
 				"foo": uint32(1),
 			},
 			expected: &parser.Node{
-				Name: "traefik",
+				Name: "ingress",
 				Children: []*parser.Node{
 					{Name: "foo", Value: "1"},
 				},
@@ -171,7 +171,7 @@ func Test_decodeRawToNode(t *testing.T) {
 				"foo": uint64(1),
 			},
 			expected: &parser.Node{
-				Name: "traefik",
+				Name: "ingress",
 				Children: []*parser.Node{
 					{Name: "foo", Value: "1"},
 				},
@@ -183,7 +183,7 @@ func Test_decodeRawToNode(t *testing.T) {
 				"foo": float32(1),
 			},
 			expected: &parser.Node{
-				Name: "traefik",
+				Name: "ingress",
 				Children: []*parser.Node{
 					{Name: "foo", Value: "1"},
 				},
@@ -195,7 +195,7 @@ func Test_decodeRawToNode(t *testing.T) {
 				"foo": float64(1),
 			},
 			expected: &parser.Node{
-				Name: "traefik",
+				Name: "ingress",
 				Children: []*parser.Node{
 					{Name: "foo", Value: "1"},
 				},
@@ -207,7 +207,7 @@ func Test_decodeRawToNode(t *testing.T) {
 				"foo": []string{"A", "B"},
 			},
 			expected: &parser.Node{
-				Name: "traefik",
+				Name: "ingress",
 				Children: []*parser.Node{
 					{Name: "foo", Value: "║24║A║B"},
 				},
@@ -219,7 +219,7 @@ func Test_decodeRawToNode(t *testing.T) {
 				"foo": []int{1, 2},
 			},
 			expected: &parser.Node{
-				Name: "traefik",
+				Name: "ingress",
 				Children: []*parser.Node{
 					{Name: "foo", Value: "║2║1║2"},
 				},
@@ -231,7 +231,7 @@ func Test_decodeRawToNode(t *testing.T) {
 				"foo": []int8{1, 2},
 			},
 			expected: &parser.Node{
-				Name: "traefik",
+				Name: "ingress",
 				Children: []*parser.Node{
 					{Name: "foo", Value: "║3║1║2"},
 				},
@@ -243,7 +243,7 @@ func Test_decodeRawToNode(t *testing.T) {
 				"foo": []int16{1, 2},
 			},
 			expected: &parser.Node{
-				Name: "traefik",
+				Name: "ingress",
 				Children: []*parser.Node{
 					{Name: "foo", Value: "║4║1║2"},
 				},
@@ -255,7 +255,7 @@ func Test_decodeRawToNode(t *testing.T) {
 				"foo": []int32{1, 2},
 			},
 			expected: &parser.Node{
-				Name: "traefik",
+				Name: "ingress",
 				Children: []*parser.Node{
 					{Name: "foo", Value: "║5║1║2"},
 				},
@@ -267,7 +267,7 @@ func Test_decodeRawToNode(t *testing.T) {
 				"foo": []int64{1, 2},
 			},
 			expected: &parser.Node{
-				Name: "traefik",
+				Name: "ingress",
 				Children: []*parser.Node{
 					{Name: "foo", Value: "║6║1║2"},
 				},
@@ -279,7 +279,7 @@ func Test_decodeRawToNode(t *testing.T) {
 				"foo": []bool{true, false},
 			},
 			expected: &parser.Node{
-				Name: "traefik",
+				Name: "ingress",
 				Children: []*parser.Node{
 					{Name: "foo", Value: "║1║true║false"},
 				},
@@ -291,7 +291,7 @@ func Test_decodeRawToNode(t *testing.T) {
 				"foo": []interface{}{"A", "B"},
 			},
 			expected: &parser.Node{
-				Name: "traefik",
+				Name: "ingress",
 				Children: []*parser.Node{
 					{Name: "foo", Value: "║24║A║B"},
 				},
@@ -303,7 +303,7 @@ func Test_decodeRawToNode(t *testing.T) {
 				"foo": []interface{}{1, 2},
 			},
 			expected: &parser.Node{
-				Name: "traefik",
+				Name: "ingress",
 				Children: []*parser.Node{
 					{Name: "foo", Value: "║2║1║2"},
 				},
@@ -316,7 +316,7 @@ func Test_decodeRawToNode(t *testing.T) {
 				"fii": "bir",
 			},
 			expected: &parser.Node{
-				Name: "traefik",
+				Name: "ingress",
 				Children: []*parser.Node{
 					{Name: "fii", Value: "bir"},
 					{Name: "foo", Value: "bar"},
@@ -331,7 +331,7 @@ func Test_decodeRawToNode(t *testing.T) {
 				},
 			},
 			expected: &parser.Node{
-				Name: "traefik",
+				Name: "ingress",
 				Children: []*parser.Node{
 					{Name: "fii", Children: []*parser.Node{{Name: "fuu", Value: "bur"}}},
 				},
@@ -345,7 +345,7 @@ func Test_decodeRawToNode(t *testing.T) {
 				},
 			},
 			expected: &parser.Node{
-				Name: "traefik",
+				Name: "ingress",
 				Children: []*parser.Node{
 					{Name: "fii", Children: []*parser.Node{{Name: "fuu", Value: "1"}}},
 				},
@@ -359,7 +359,7 @@ func Test_decodeRawToNode(t *testing.T) {
 				},
 			},
 			expected: &parser.Node{
-				Name: "traefik",
+				Name: "ingress",
 				Children: []*parser.Node{
 					{Name: "fii", Children: []*parser.Node{{Name: "fuu", Value: "1"}}},
 				},
@@ -373,7 +373,7 @@ func Test_decodeRawToNode(t *testing.T) {
 				},
 			},
 			expected: &parser.Node{
-				Name: "traefik",
+				Name: "ingress",
 				Children: []*parser.Node{
 					{Name: "fii", Children: []*parser.Node{{Name: "fuu", Value: "true"}}},
 				},
@@ -389,7 +389,7 @@ func Test_decodeRawToNode(t *testing.T) {
 				},
 			},
 			expected: &parser.Node{
-				Name: "traefik",
+				Name: "ingress",
 				Children: []*parser.Node{
 					{Name: "foo", Children: []*parser.Node{
 						{Name: "fii", Children: []*parser.Node{{Name: "fuu", Value: "bur"}}},
@@ -405,7 +405,7 @@ func Test_decodeRawToNode(t *testing.T) {
 				},
 			},
 			expected: &parser.Node{
-				Name: "traefik",
+				Name: "ingress",
 				Children: []*parser.Node{
 					{Name: "fii", Children: []*parser.Node{{Name: "fuu", Value: "1"}}},
 				},
@@ -419,7 +419,7 @@ func Test_decodeRawToNode(t *testing.T) {
 				},
 			},
 			expected: &parser.Node{
-				Name: "traefik",
+				Name: "ingress",
 				Children: []*parser.Node{
 					{Name: "fii", Children: []*parser.Node{{Name: "fuu", Value: "1"}}},
 				},
@@ -433,7 +433,7 @@ func Test_decodeRawToNode(t *testing.T) {
 				},
 			},
 			expected: &parser.Node{
-				Name: "traefik",
+				Name: "ingress",
 				Children: []*parser.Node{
 					{Name: "fii", Children: []*parser.Node{{Name: "fuu", Value: "true"}}},
 				},
@@ -448,7 +448,7 @@ func Test_decodeRawToNode(t *testing.T) {
 				},
 			},
 			expected: &parser.Node{
-				Name: "traefik",
+				Name: "ingress",
 				Children: []*parser.Node{
 					{Name: "foo", Children: []*parser.Node{
 						{Name: "field1", Value: "C"},
@@ -467,7 +467,7 @@ func Test_decodeRawToNode(t *testing.T) {
 				},
 			},
 			expected: &parser.Node{
-				Name: "traefik",
+				Name: "ingress",
 				Children: []*parser.Node{
 					{Name: "foo", Children: []*parser.Node{
 						{Name: "[0]", Children: []*parser.Node{
@@ -505,7 +505,7 @@ func Test_decodeRawToNode(t *testing.T) {
 				},
 			},
 			expected: &parser.Node{
-				Name: "traefik",
+				Name: "ingress",
 				Children: []*parser.Node{
 					{Name: "foo", Children: []*parser.Node{
 						{Name: "[0]", Children: []*parser.Node{
@@ -532,7 +532,7 @@ func Test_decodeRawToNode(t *testing.T) {
 				},
 			},
 			expected: &parser.Node{
-				Name: "traefik",
+				Name: "ingress",
 				Children: []*parser.Node{
 					{Name: "fii"},
 				},

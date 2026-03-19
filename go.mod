@@ -1,4 +1,4 @@
-module github.com/traefik/paerser
+module github.com/hanzoai/ingress-parser
 
 go 1.22.0
 

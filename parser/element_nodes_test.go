@@ -24,7 +24,7 @@ func TestEncodeToNode(t *testing.T) {
 				Foo string `description:"text"`
 			}{Foo: "bar"},
 			expected: expected{
-				node: &Node{Name: "traefik", Children: []*Node{
+				node: &Node{Name: "ingress", Children: []*Node{
 					{Name: "Foo", FieldName: "Foo", Value: "bar", Description: "text"},
 				}},
 			},
@@ -35,7 +35,7 @@ func TestEncodeToNode(t *testing.T) {
 				Foo string
 			}{Foo: "bar"},
 			expected: expected{
-				node: &Node{Name: "traefik", Children: []*Node{
+				node: &Node{Name: "ingress", Children: []*Node{
 					{Name: "Foo", FieldName: "Foo", Value: "bar"},
 				}},
 			},
@@ -47,7 +47,7 @@ func TestEncodeToNode(t *testing.T) {
 				Fii string
 			}{Foo: "bar", Fii: "hii"},
 			expected: expected{
-				node: &Node{Name: "traefik", Children: []*Node{
+				node: &Node{Name: "ingress", Children: []*Node{
 					{Name: "Foo", FieldName: "Foo", Value: "bar"},
 					{Name: "Fii", FieldName: "Fii", Value: "hii"},
 				}},
@@ -59,7 +59,7 @@ func TestEncodeToNode(t *testing.T) {
 				Foo int
 			}{Foo: 1},
 			expected: expected{
-				node: &Node{Name: "traefik", Children: []*Node{
+				node: &Node{Name: "ingress", Children: []*Node{
 					{Name: "Foo", FieldName: "Foo", Value: "1"},
 				}},
 			},
@@ -70,7 +70,7 @@ func TestEncodeToNode(t *testing.T) {
 				Foo int8
 			}{Foo: 2},
 			expected: expected{
-				node: &Node{Name: "traefik", Children: []*Node{
+				node: &Node{Name: "ingress", Children: []*Node{
 					{Name: "Foo", FieldName: "Foo", Value: "2"},
 				}},
 			},
@@ -81,7 +81,7 @@ func TestEncodeToNode(t *testing.T) {
 				Foo int16
 			}{Foo: 2},
 			expected: expected{
-				node: &Node{Name: "traefik", Children: []*Node{
+				node: &Node{Name: "ingress", Children: []*Node{
 					{Name: "Foo", FieldName: "Foo", Value: "2"},
 				}},
 			},
@@ -92,7 +92,7 @@ func TestEncodeToNode(t *testing.T) {
 				Foo int32
 			}{Foo: 2},
 			expected: expected{
-				node: &Node{Name: "traefik", Children: []*Node{
+				node: &Node{Name: "ingress", Children: []*Node{
 					{Name: "Foo", FieldName: "Foo", Value: "2"},
 				}},
 			},
@@ -103,7 +103,7 @@ func TestEncodeToNode(t *testing.T) {
 				Foo int64
 			}{Foo: 2},
 			expected: expected{
-				node: &Node{Name: "traefik", Children: []*Node{
+				node: &Node{Name: "ingress", Children: []*Node{
 					{Name: "Foo", FieldName: "Foo", Value: "2"},
 				}},
 			},
@@ -114,7 +114,7 @@ func TestEncodeToNode(t *testing.T) {
 				Foo uint
 			}{Foo: 1},
 			expected: expected{
-				node: &Node{Name: "traefik", Children: []*Node{
+				node: &Node{Name: "ingress", Children: []*Node{
 					{Name: "Foo", FieldName: "Foo", Value: "1"},
 				}},
 			},
@@ -125,7 +125,7 @@ func TestEncodeToNode(t *testing.T) {
 				Foo uint8
 			}{Foo: 2},
 			expected: expected{
-				node: &Node{Name: "traefik", Children: []*Node{
+				node: &Node{Name: "ingress", Children: []*Node{
 					{Name: "Foo", FieldName: "Foo", Value: "2"},
 				}},
 			},
@@ -136,7 +136,7 @@ func TestEncodeToNode(t *testing.T) {
 				Foo uint16
 			}{Foo: 2},
 			expected: expected{
-				node: &Node{Name: "traefik", Children: []*Node{
+				node: &Node{Name: "ingress", Children: []*Node{
 					{Name: "Foo", FieldName: "Foo", Value: "2"},
 				}},
 			},
@@ -147,7 +147,7 @@ func TestEncodeToNode(t *testing.T) {
 				Foo uint32
 			}{Foo: 2},
 			expected: expected{
-				node: &Node{Name: "traefik", Children: []*Node{
+				node: &Node{Name: "ingress", Children: []*Node{
 					{Name: "Foo", FieldName: "Foo", Value: "2"},
 				}},
 			},
@@ -158,7 +158,7 @@ func TestEncodeToNode(t *testing.T) {
 				Foo uint64
 			}{Foo: 2},
 			expected: expected{
-				node: &Node{Name: "traefik", Children: []*Node{
+				node: &Node{Name: "ingress", Children: []*Node{
 					{Name: "Foo", FieldName: "Foo", Value: "2"},
 				}},
 			},
@@ -169,7 +169,7 @@ func TestEncodeToNode(t *testing.T) {
 				Foo float32
 			}{Foo: 1.12},
 			expected: expected{
-				node: &Node{Name: "traefik", Children: []*Node{
+				node: &Node{Name: "ingress", Children: []*Node{
 					{Name: "Foo", FieldName: "Foo", Value: "1.120000"},
 				}},
 			},
@@ -180,7 +180,7 @@ func TestEncodeToNode(t *testing.T) {
 				Foo float64
 			}{Foo: 1.12},
 			expected: expected{
-				node: &Node{Name: "traefik", Children: []*Node{
+				node: &Node{Name: "ingress", Children: []*Node{
 					{Name: "Foo", FieldName: "Foo", Value: "1.120000"},
 				}},
 			},
@@ -191,7 +191,7 @@ func TestEncodeToNode(t *testing.T) {
 				Foo bool
 			}{Foo: true},
 			expected: expected{
-				node: &Node{Name: "traefik", Children: []*Node{
+				node: &Node{Name: "ingress", Children: []*Node{
 					{Name: "Foo", FieldName: "Foo", Value: "true"},
 				}},
 			},
@@ -213,7 +213,7 @@ func TestEncodeToNode(t *testing.T) {
 				},
 			},
 			expected: expected{
-				node: &Node{Name: "traefik", Children: []*Node{
+				node: &Node{Name: "ingress", Children: []*Node{
 					{Name: "Foo", FieldName: "Foo", Children: []*Node{
 						{Name: "Fii", FieldName: "Fii", Value: "hii"},
 						{Name: "Fuu", FieldName: "Fuu", Value: "huu"},
@@ -238,7 +238,7 @@ func TestEncodeToNode(t *testing.T) {
 				},
 			},
 			expected: expected{
-				node: &Node{Name: "traefik", Children: []*Node{
+				node: &Node{Name: "ingress", Children: []*Node{
 					{Name: "Foo", FieldName: "Foo", Children: []*Node{
 						{Name: "Fii", FieldName: "Fii", Value: "hii"},
 					}},
@@ -262,7 +262,7 @@ func TestEncodeToNode(t *testing.T) {
 				},
 			},
 			expected: expected{
-				node: &Node{Name: "traefik", Children: []*Node{
+				node: &Node{Name: "ingress", Children: []*Node{
 					{Name: "Foo", FieldName: "Foo", Children: []*Node{
 						{Name: "Fii", FieldName: "Fii", Value: "hii"},
 						{Name: "Fuu", FieldName: "Fuu", Value: "huu"},
@@ -287,7 +287,7 @@ func TestEncodeToNode(t *testing.T) {
 				},
 			},
 			expected: expected{
-				node: &Node{Name: "traefik", Children: []*Node{
+				node: &Node{Name: "ingress", Children: []*Node{
 					{Name: "Foo", FieldName: "Foo", Children: []*Node{
 						{Name: "Fii", FieldName: "Fii", Value: "hii"},
 						{Name: "Fuu", FieldName: "Fuu", Value: "huu"},
@@ -312,7 +312,7 @@ func TestEncodeToNode(t *testing.T) {
 				},
 			},
 			expected: expected{
-				node: &Node{Name: "traefik", Children: []*Node{
+				node: &Node{Name: "ingress", Children: []*Node{
 					{Name: "Foo", FieldName: "Foo", Children: []*Node{
 						{Name: "Fuu", FieldName: "Fuu", Value: "huu"},
 					}},
@@ -336,7 +336,7 @@ func TestEncodeToNode(t *testing.T) {
 				},
 			},
 			expected: expected{
-				node: &Node{Name: "traefik", Children: []*Node{
+				node: &Node{Name: "ingress", Children: []*Node{
 					{Name: "Foo", FieldName: "Foo", Children: []*Node{
 						{Name: "Fii", FieldName: "Fii", Value: "6"},
 						{Name: "Fuu", FieldName: "Fuu", Value: "4"},
@@ -361,7 +361,7 @@ func TestEncodeToNode(t *testing.T) {
 				},
 			},
 			expected: expected{
-				node: &Node{Name: "traefik", Children: []*Node{
+				node: &Node{Name: "ingress", Children: []*Node{
 					{Name: "Foo", FieldName: "Foo", Children: []*Node{
 						{Name: "Fii", FieldName: "Fii", Value: "true"},
 						{Name: "Fuu", FieldName: "Fuu", Value: "true"},
@@ -379,7 +379,7 @@ func TestEncodeToNode(t *testing.T) {
 			}{
 				Foo: nil,
 			},
-			expected: expected{node: &Node{Name: "traefik"}},
+			expected: expected{node: &Node{Name: "ingress"}},
 		},
 		{
 			desc: "struct pointer, not allowEmpty",
@@ -394,7 +394,7 @@ func TestEncodeToNode(t *testing.T) {
 					Fuu string
 				}{},
 			},
-			expected: expected{node: &Node{Name: "traefik"}},
+			expected: expected{node: &Node{Name: "ingress"}},
 		},
 		{
 			desc: "struct pointer, allowEmpty",
@@ -410,7 +410,7 @@ func TestEncodeToNode(t *testing.T) {
 				}{},
 			},
 			expected: expected{
-				node: &Node{Name: "traefik", Children: []*Node{
+				node: &Node{Name: "ingress", Children: []*Node{
 					{Name: "Foo", FieldName: "Foo", Value: "true"},
 				}},
 			},
@@ -430,7 +430,7 @@ func TestEncodeToNode(t *testing.T) {
 					},
 				},
 			},
-			expected: expected{node: &Node{Name: "traefik", Children: []*Node{
+			expected: expected{node: &Node{Name: "ingress", Children: []*Node{
 				{Name: "Foo", FieldName: "Foo", Children: []*Node{
 					{Name: "Bar", FieldName: "Bar", Children: []*Node{
 						{Name: "name1", FieldName: "name1", Value: "huu"},
@@ -445,7 +445,7 @@ func TestEncodeToNode(t *testing.T) {
 			}{
 				Bar: map[string]string{},
 			},
-			expected: expected{node: &Node{Name: "traefik"}},
+			expected: expected{node: &Node{Name: "ingress"}},
 		},
 		{
 			desc: "map nil",
@@ -454,7 +454,7 @@ func TestEncodeToNode(t *testing.T) {
 			}{
 				Bar: nil,
 			},
-			expected: expected{node: &Node{Name: "traefik"}},
+			expected: expected{node: &Node{Name: "ingress"}},
 		},
 		{
 			desc: "ignore map",
@@ -463,7 +463,7 @@ func TestEncodeToNode(t *testing.T) {
 			}{
 				Bar: map[string]string{"huu": "hii"},
 			},
-			expected: expected{node: &Node{Name: "traefik"}},
+			expected: expected{node: &Node{Name: "ingress"}},
 		},
 		{
 			desc: "map with non string key",
@@ -486,7 +486,7 @@ func TestEncodeToNode(t *testing.T) {
 			desc:    "slice of string",
 			element: struct{ Bar []string }{Bar: []string{"huu", "hii"}},
 			expected: expected{
-				node: &Node{Name: "traefik", Children: []*Node{
+				node: &Node{Name: "ingress", Children: []*Node{
 					{Name: "Bar", FieldName: "Bar", Value: "huu, hii"},
 				}},
 			},
@@ -495,7 +495,7 @@ func TestEncodeToNode(t *testing.T) {
 			desc:    "slice of int",
 			element: struct{ Bar []int }{Bar: []int{4, 2, 3}},
 			expected: expected{
-				node: &Node{Name: "traefik", Children: []*Node{
+				node: &Node{Name: "ingress", Children: []*Node{
 					{Name: "Bar", FieldName: "Bar", Value: "4, 2, 3"},
 				}},
 			},
@@ -504,7 +504,7 @@ func TestEncodeToNode(t *testing.T) {
 			desc:    "slice of int8",
 			element: struct{ Bar []int8 }{Bar: []int8{4, 2, 3}},
 			expected: expected{
-				node: &Node{Name: "traefik", Children: []*Node{
+				node: &Node{Name: "ingress", Children: []*Node{
 					{Name: "Bar", FieldName: "Bar", Value: "4, 2, 3"},
 				}},
 			},
@@ -513,7 +513,7 @@ func TestEncodeToNode(t *testing.T) {
 			desc:    "slice of int16",
 			element: struct{ Bar []int16 }{Bar: []int16{4, 2, 3}},
 			expected: expected{
-				node: &Node{Name: "traefik", Children: []*Node{
+				node: &Node{Name: "ingress", Children: []*Node{
 					{Name: "Bar", FieldName: "Bar", Value: "4, 2, 3"},
 				}},
 			},
@@ -522,7 +522,7 @@ func TestEncodeToNode(t *testing.T) {
 			desc:    "slice of int32",
 			element: struct{ Bar []int32 }{Bar: []int32{4, 2, 3}},
 			expected: expected{
-				node: &Node{Name: "traefik", Children: []*Node{
+				node: &Node{Name: "ingress", Children: []*Node{
 					{Name: "Bar", FieldName: "Bar", Value: "4, 2, 3"},
 				}},
 			},
@@ -531,7 +531,7 @@ func TestEncodeToNode(t *testing.T) {
 			desc:    "slice of int64",
 			element: struct{ Bar []int64 }{Bar: []int64{4, 2, 3}},
 			expected: expected{
-				node: &Node{Name: "traefik", Children: []*Node{
+				node: &Node{Name: "ingress", Children: []*Node{
 					{Name: "Bar", FieldName: "Bar", Value: "4, 2, 3"},
 				}},
 			},
@@ -540,7 +540,7 @@ func TestEncodeToNode(t *testing.T) {
 			desc:    "slice of uint",
 			element: struct{ Bar []uint }{Bar: []uint{4, 2, 3}},
 			expected: expected{
-				node: &Node{Name: "traefik", Children: []*Node{
+				node: &Node{Name: "ingress", Children: []*Node{
 					{Name: "Bar", FieldName: "Bar", Value: "4, 2, 3"},
 				}},
 			},
@@ -549,7 +549,7 @@ func TestEncodeToNode(t *testing.T) {
 			desc:    "slice of uint8",
 			element: struct{ Bar []uint8 }{Bar: []uint8{4, 2, 3}},
 			expected: expected{
-				node: &Node{Name: "traefik", Children: []*Node{
+				node: &Node{Name: "ingress", Children: []*Node{
 					{Name: "Bar", FieldName: "Bar", Value: "4, 2, 3"},
 				}},
 			},
@@ -558,7 +558,7 @@ func TestEncodeToNode(t *testing.T) {
 			desc:    "slice of uint16",
 			element: struct{ Bar []uint16 }{Bar: []uint16{4, 2, 3}},
 			expected: expected{
-				node: &Node{Name: "traefik", Children: []*Node{
+				node: &Node{Name: "ingress", Children: []*Node{
 					{Name: "Bar", FieldName: "Bar", Value: "4, 2, 3"},
 				}},
 			},
@@ -567,7 +567,7 @@ func TestEncodeToNode(t *testing.T) {
 			desc:    "slice of uint32",
 			element: struct{ Bar []uint32 }{Bar: []uint32{4, 2, 3}},
 			expected: expected{
-				node: &Node{Name: "traefik", Children: []*Node{
+				node: &Node{Name: "ingress", Children: []*Node{
 					{Name: "Bar", FieldName: "Bar", Value: "4, 2, 3"},
 				}},
 			},
@@ -576,7 +576,7 @@ func TestEncodeToNode(t *testing.T) {
 			desc:    "slice of uint64",
 			element: struct{ Bar []uint64 }{Bar: []uint64{4, 2, 3}},
 			expected: expected{
-				node: &Node{Name: "traefik", Children: []*Node{
+				node: &Node{Name: "ingress", Children: []*Node{
 					{Name: "Bar", FieldName: "Bar", Value: "4, 2, 3"},
 				}},
 			},
@@ -585,7 +585,7 @@ func TestEncodeToNode(t *testing.T) {
 			desc:    "slice of float32",
 			element: struct{ Bar []float32 }{Bar: []float32{4.1, 2, 3.2}},
 			expected: expected{
-				node: &Node{Name: "traefik", Children: []*Node{
+				node: &Node{Name: "ingress", Children: []*Node{
 					{Name: "Bar", FieldName: "Bar", Value: "4.100000, 2.000000, 3.200000"},
 				}},
 			},
@@ -594,7 +594,7 @@ func TestEncodeToNode(t *testing.T) {
 			desc:    "slice of float64",
 			element: struct{ Bar []float64 }{Bar: []float64{4.1, 2, 3.2}},
 			expected: expected{
-				node: &Node{Name: "traefik", Children: []*Node{
+				node: &Node{Name: "ingress", Children: []*Node{
 					{Name: "Bar", FieldName: "Bar", Value: "4.100000, 2.000000, 3.200000"},
 				}},
 			},
@@ -603,7 +603,7 @@ func TestEncodeToNode(t *testing.T) {
 			desc:    "slice of bool",
 			element: struct{ Bar []bool }{Bar: []bool{true, false, true}},
 			expected: expected{
-				node: &Node{Name: "traefik", Children: []*Node{
+				node: &Node{Name: "ingress", Children: []*Node{
 					{Name: "Bar", FieldName: "Bar", Value: "true, false, true"},
 				}},
 			},
@@ -627,7 +627,7 @@ func TestEncodeToNode(t *testing.T) {
 				},
 			},
 			expected: expected{node: &Node{
-				Name: "traefik",
+				Name: "ingress",
 				Children: []*Node{{
 					Name:      "Fii",
 					FieldName: "Foo",
@@ -680,7 +680,7 @@ func TestEncodeToNode(t *testing.T) {
 					},
 				},
 			},
-			expected: expected{node: &Node{Name: "traefik", Children: []*Node{
+			expected: expected{node: &Node{Name: "ingress", Children: []*Node{
 				{Name: "Foo", FieldName: "Foo", Children: []*Node{
 					{Name: "[0]", Children: []*Node{
 						{Name: "Field", FieldName: "Field", Value: "bar"},
@@ -705,7 +705,7 @@ func TestEncodeToNode(t *testing.T) {
 					{Field: "bir"},
 				},
 			},
-			expected: expected{node: &Node{Name: "traefik", Children: []*Node{
+			expected: expected{node: &Node{Name: "ingress", Children: []*Node{
 				{Name: "Foo", FieldName: "Foo", Children: []*Node{
 					{Name: "[0]", Children: []*Node{
 						{Name: "Field", FieldName: "Field", Value: "bar"},
@@ -723,7 +723,7 @@ func TestEncodeToNode(t *testing.T) {
 			}{
 				Bar: []string{},
 			},
-			expected: expected{node: &Node{Name: "traefik"}},
+			expected: expected{node: &Node{Name: "ingress"}},
 		},
 		{
 			desc: "nil slice",
@@ -732,7 +732,7 @@ func TestEncodeToNode(t *testing.T) {
 			}{
 				Bar: nil,
 			},
-			expected: expected{node: &Node{Name: "traefik"}},
+			expected: expected{node: &Node{Name: "ingress"}},
 		},
 		{
 			desc: "ignore slice",
@@ -741,7 +741,7 @@ func TestEncodeToNode(t *testing.T) {
 			}{
 				Bar: []string{"huu", "hii"},
 			},
-			expected: expected{node: &Node{Name: "traefik"}},
+			expected: expected{node: &Node{Name: "ingress"}},
 		},
 		{
 			desc: "embedded",
@@ -756,7 +756,7 @@ func TestEncodeToNode(t *testing.T) {
 				},
 			},
 			expected: expected{
-				node: &Node{Name: "traefik", Children: []*Node{
+				node: &Node{Name: "ingress", Children: []*Node{
 					{Name: "Foo", FieldName: "Foo", Children: []*Node{
 						{Name: "Fii", FieldName: "Fii", Value: "hii"},
 						{Name: "Fuu", FieldName: "Fuu", Value: "huu"},
@@ -785,7 +785,7 @@ func TestEncodeToNode(t *testing.T) {
 				},
 			},
 			expected: expected{node: &Node{
-				Name: "traefik",
+				Name: "ingress",
 				Children: []*Node{
 					{Name: "Foo", FieldName: "Foo", Children: []*Node{
 						{Name: "Bar", FieldName: "Bar", RawValue: map[string]interface{}{

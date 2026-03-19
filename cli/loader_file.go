@@ -5,9 +5,9 @@ import (
 	"os"
 	"strings"
 
-	"github.com/traefik/paerser/file"
-	"github.com/traefik/paerser/flag"
-	"github.com/traefik/paerser/parser"
+	"github.com/hanzoai/ingress-parser/file"
+	"github.com/hanzoai/ingress-parser/flag"
+	"github.com/hanzoai/ingress-parser/parser"
 )
 
 // FileLoader loads a configuration from a file.

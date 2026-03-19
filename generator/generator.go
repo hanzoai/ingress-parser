@@ -4,7 +4,7 @@ package generator
 import (
 	"reflect"
 
-	"github.com/traefik/paerser/parser"
+	"github.com/hanzoai/ingress-parser/parser"
 )
 
 type initializer interface {
