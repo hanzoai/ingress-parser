@@ -10,14 +10,14 @@ import (
 )
 
 func TestFinder_Find(t *testing.T) {
-	configFile, err := os.CreateTemp("", "traefik-file-finder-test-*.toml")
+	configFile, err := os.CreateTemp("", "ingress-file-finder-test-*.toml")
 	require.NoError(t, err)
 
 	defer func() {
 		_ = os.Remove(configFile.Name())
 	}()
 
-	dir, err := os.MkdirTemp("", "traefik-file-finder-test")
+	dir, err := os.MkdirTemp("", "ingress-file-finder-test")
 	require.NoError(t, err)
 
 	defer func() {
@@ -49,7 +49,7 @@ func TestFinder_Find(t *testing.T) {
 		{
 			desc:       "not found: no config file, no other paths available",
 			configFile: "",
-			basePaths:  []string{"/my/path/traefik", "$HOME/my/path/traefik", "./my-traefik"},
+			basePaths:  []string{"/my/pat./ingress", "$HOME/my/pat./ingress", "./my-ingress"},
 			expected:   expected{path: ""},
 		},
 		{
@@ -71,7 +71,7 @@ func TestFinder_Find(t *testing.T) {
 		{
 			desc:       "found: no config file, base path",
 			configFile: "",
-			basePaths:  []string{"/my/path/traefik", "$HOME/my/path/traefik", filepath.Join(dir, "foo")},
+			basePaths:  []string{"/my/pat./ingress", "$HOME/my/pat./ingress", filepath.Join(dir, "foo")},
 			expected:   expected{path: fooFile.Name()},
 		},
 		{
@@ -110,35 +110,35 @@ func TestFinder_getPaths(t *testing.T) {
 	}{
 		{
 			desc:       "no config file",
-			basePaths:  []string{"/etc/traefik/traefik", "$HOME/.config/traefik", "./traefik"},
+			basePaths:  []string{"/etc/ingress/ingress", "$HOME/.config/ingress", "./ingress"},
 			configFile: "",
 			expected: []string{
-				"/etc/traefik/traefik.toml",
-				"/etc/traefik/traefik.yaml",
-				"/etc/traefik/traefik.yml",
-				"$HOME/.config/traefik.toml",
-				"$HOME/.config/traefik.yaml",
-				"$HOME/.config/traefik.yml",
-				"./traefik.toml",
-				"./traefik.yaml",
-				"./traefik.yml",
+				"/etc/ingress/ingress.toml",
+				"/etc/ingress/ingress.yaml",
+				"/etc/ingress/ingress.yml",
+				"$HOME/.config/ingress.toml",
+				"$HOME/.config/ingress.yaml",
+				"$HOME/.config/ingress.yml",
+				"./ingress.toml",
+				"./ingress.yaml",
+				"./ingress.yml",
 			},
 		},
 		{
 			desc:       "with config file",
-			basePaths:  []string{"/etc/traefik/traefik", "$HOME/.config/traefik", "./traefik"},
+			basePaths:  []string{"/etc/ingress/ingress", "$HOME/.config/ingress", "./ingress"},
 			configFile: "/my/path/config.toml",
 			expected: []string{
 				"/my/path/config.toml",
-				"/etc/traefik/traefik.toml",
-				"/etc/traefik/traefik.yaml",
-				"/etc/traefik/traefik.yml",
-				"$HOME/.config/traefik.toml",
-				"$HOME/.config/traefik.yaml",
-				"$HOME/.config/traefik.yml",
-				"./traefik.toml",
-				"./traefik.yaml",
-				"./traefik.yml",
+				"/etc/ingress/ingress.toml",
+				"/etc/ingress/ingress.yaml",
+				"/etc/ingress/ingress.yml",
+				"$HOME/.config/ingress.toml",
+				"$HOME/.config/ingress.yaml",
+				"$HOME/.config/ingress.yml",
+				"./ingress.toml",
+				"./ingress.yaml",
+				"./ingress.yml",
 			},
 		},
 	}

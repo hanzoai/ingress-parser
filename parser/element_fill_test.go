@@ -7,7 +7,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
-	"github.com/traefik/paerser/types"
+	"github.com/hanzoai/ingress-parser/types"
 )
 
 func TestFill(t *testing.T) {
@@ -31,13 +31,13 @@ func TestFill(t *testing.T) {
 		},
 		{
 			desc:     "empty element",
-			node:     &Node{Name: "traefik", Kind: reflect.Struct},
+			node:     &Node{Name: "ingress", Kind: reflect.Struct},
 			element:  &struct{}{},
 			expected: expected{element: &struct{}{}},
 		},
 		{
 			desc:     "type struct as root",
-			node:     &Node{Name: "traefik", Kind: reflect.Struct},
+			node:     &Node{Name: "ingress", Kind: reflect.Struct},
 			element:  struct{}{},
 			expected: expected{error: true},
 		},
@@ -49,14 +49,14 @@ func TestFill(t *testing.T) {
 		},
 		{
 			desc:     "nil element",
-			node:     &Node{Name: "traefik", Kind: reflect.Struct},
+			node:     &Node{Name: "ingress", Kind: reflect.Struct},
 			element:  nil,
 			expected: expected{element: nil},
 		},
 		{
 			desc: "string",
 			node: &Node{
-				Name: "traefik",
+				Name: "ingress",
 				Kind: reflect.Struct,
 				Children: []*Node{
 					{Name: "Foo", FieldName: "Foo", Value: "bar", Kind: reflect.String},
@@ -68,7 +68,7 @@ func TestFill(t *testing.T) {
 		{
 			desc: "field not found",
 			node: &Node{
-				Name: "traefik",
+				Name: "ingress",
 				Kind: reflect.Struct,
 				Children: []*Node{
 					{Name: "Foo", FieldName: "Fii", Value: "bar", Kind: reflect.String},
@@ -80,7 +80,7 @@ func TestFill(t *testing.T) {
 		{
 			desc: "2 children",
 			node: &Node{
-				Name: "traefik",
+				Name: "ingress",
 				Kind: reflect.Struct,
 				Children: []*Node{
 					{Name: "Fii", FieldName: "Fii", Value: "bir", Kind: reflect.String},
@@ -99,7 +99,7 @@ func TestFill(t *testing.T) {
 		{
 			desc: "case insensitive",
 			node: &Node{
-				Name: "traefik",
+				Name: "ingress",
 				Kind: reflect.Struct,
 				Children: []*Node{
 					{Name: "foo", FieldName: "Foo", Value: "bir", Kind: reflect.String},
@@ -117,7 +117,7 @@ func TestFill(t *testing.T) {
 		{
 			desc: "func",
 			node: &Node{
-				Name: "traefik",
+				Name: "ingress",
 				Kind: reflect.Struct,
 				Children: []*Node{
 					{Name: "Foo", FieldName: "Foo", Kind: reflect.Func},
@@ -129,7 +129,7 @@ func TestFill(t *testing.T) {
 		{
 			desc: "int",
 			node: &Node{
-				Name: "traefik",
+				Name: "ingress",
 				Kind: reflect.Struct,
 				Children: []*Node{
 					{Name: "Foo", FieldName: "Foo", Value: "4", Kind: reflect.Int},
@@ -141,7 +141,7 @@ func TestFill(t *testing.T) {
 		{
 			desc: "invalid int",
 			node: &Node{
-				Name: "traefik",
+				Name: "ingress",
 				Kind: reflect.Struct,
 				Children: []*Node{
 					{Name: "Foo", FieldName: "Foo", Value: "four", Kind: reflect.Int},
@@ -153,7 +153,7 @@ func TestFill(t *testing.T) {
 		{
 			desc: "int8",
 			node: &Node{
-				Name: "traefik",
+				Name: "ingress",
 				Kind: reflect.Struct,
 				Children: []*Node{
 					{Name: "Foo", FieldName: "Foo", Value: "4", Kind: reflect.Int8},
@@ -165,7 +165,7 @@ func TestFill(t *testing.T) {
 		{
 			desc: "invalid int8",
 			node: &Node{
-				Name: "traefik",
+				Name: "ingress",
 				Kind: reflect.Struct,
 				Children: []*Node{
 					{Name: "Foo", FieldName: "Foo", Value: "four", Kind: reflect.Int8},
@@ -177,7 +177,7 @@ func TestFill(t *testing.T) {
 		{
 			desc: "int16",
 			node: &Node{
-				Name: "traefik",
+				Name: "ingress",
 				Kind: reflect.Struct,
 				Children: []*Node{
 					{Name: "Foo", FieldName: "Foo", Value: "4", Kind: reflect.Int16},
@@ -189,7 +189,7 @@ func TestFill(t *testing.T) {
 		{
 			desc: "invalid int16",
 			node: &Node{
-				Name: "traefik",
+				Name: "ingress",
 				Kind: reflect.Struct,
 				Children: []*Node{
 					{Name: "Foo", FieldName: "Foo", Value: "four", Kind: reflect.Int16},
@@ -201,7 +201,7 @@ func TestFill(t *testing.T) {
 		{
 			desc: "int32",
 			node: &Node{
-				Name: "traefik",
+				Name: "ingress",
 				Kind: reflect.Struct,
 				Children: []*Node{
 					{Name: "Foo", FieldName: "Foo", Value: "4", Kind: reflect.Int32},
@@ -213,7 +213,7 @@ func TestFill(t *testing.T) {
 		{
 			desc: "invalid int32",
 			node: &Node{
-				Name: "traefik",
+				Name: "ingress",
 				Kind: reflect.Struct,
 				Children: []*Node{
 					{Name: "Foo", FieldName: "Foo", Value: "four", Kind: reflect.Int32},
@@ -225,7 +225,7 @@ func TestFill(t *testing.T) {
 		{
 			desc: "int64",
 			node: &Node{
-				Name: "traefik",
+				Name: "ingress",
 				Kind: reflect.Struct,
 				Children: []*Node{
 					{Name: "Foo", FieldName: "Foo", Value: "4", Kind: reflect.Int64},
@@ -237,7 +237,7 @@ func TestFill(t *testing.T) {
 		{
 			desc: "invalid int64",
 			node: &Node{
-				Name: "traefik",
+				Name: "ingress",
 				Kind: reflect.Struct,
 				Children: []*Node{
 					{Name: "Foo", FieldName: "Foo", Value: "four", Kind: reflect.Int64},
@@ -249,7 +249,7 @@ func TestFill(t *testing.T) {
 		{
 			desc: "uint",
 			node: &Node{
-				Name: "traefik",
+				Name: "ingress",
 				Kind: reflect.Struct,
 				Children: []*Node{
 					{Name: "Foo", FieldName: "Foo", Value: "4", Kind: reflect.Uint},
@@ -261,7 +261,7 @@ func TestFill(t *testing.T) {
 		{
 			desc: "invalid uint",
 			node: &Node{
-				Name: "traefik",
+				Name: "ingress",
 				Kind: reflect.Struct,
 				Children: []*Node{
 					{Name: "Foo", FieldName: "Foo", Value: "four", Kind: reflect.Uint},
@@ -273,7 +273,7 @@ func TestFill(t *testing.T) {
 		{
 			desc: "uint8",
 			node: &Node{
-				Name: "traefik",
+				Name: "ingress",
 				Kind: reflect.Struct,
 				Children: []*Node{
 					{Name: "Foo", FieldName: "Foo", Value: "4", Kind: reflect.Uint8},
@@ -285,7 +285,7 @@ func TestFill(t *testing.T) {
 		{
 			desc: "invalid uint8",
 			node: &Node{
-				Name: "traefik",
+				Name: "ingress",
 				Kind: reflect.Struct,
 				Children: []*Node{
 					{Name: "Foo", FieldName: "Foo", Value: "four", Kind: reflect.Uint8},
@@ -297,7 +297,7 @@ func TestFill(t *testing.T) {
 		{
 			desc: "uint16",
 			node: &Node{
-				Name: "traefik",
+				Name: "ingress",
 				Kind: reflect.Struct,
 				Children: []*Node{
 					{Name: "Foo", FieldName: "Foo", Value: "4", Kind: reflect.Uint16},
@@ -309,7 +309,7 @@ func TestFill(t *testing.T) {
 		{
 			desc: "invalid uint16",
 			node: &Node{
-				Name: "traefik",
+				Name: "ingress",
 				Kind: reflect.Struct,
 				Children: []*Node{
 					{Name: "Foo", FieldName: "Foo", Value: "four", Kind: reflect.Uint16},
@@ -321,7 +321,7 @@ func TestFill(t *testing.T) {
 		{
 			desc: "uint32",
 			node: &Node{
-				Name: "traefik",
+				Name: "ingress",
 				Kind: reflect.Struct,
 				Children: []*Node{
 					{Name: "Foo", FieldName: "Foo", Value: "4", Kind: reflect.Uint32},
@@ -333,7 +333,7 @@ func TestFill(t *testing.T) {
 		{
 			desc: "invalid uint32",
 			node: &Node{
-				Name: "traefik",
+				Name: "ingress",
 				Kind: reflect.Struct,
 				Children: []*Node{
 					{Name: "Foo", FieldName: "Foo", Value: "four", Kind: reflect.Uint32},
@@ -345,7 +345,7 @@ func TestFill(t *testing.T) {
 		{
 			desc: "uint64",
 			node: &Node{
-				Name: "traefik",
+				Name: "ingress",
 				Kind: reflect.Struct,
 				Children: []*Node{
 					{Name: "Foo", FieldName: "Foo", Value: "4", Kind: reflect.Uint64},
@@ -357,7 +357,7 @@ func TestFill(t *testing.T) {
 		{
 			desc: "invalid uint64",
 			node: &Node{
-				Name: "traefik",
+				Name: "ingress",
 				Kind: reflect.Struct,
 				Children: []*Node{
 					{Name: "Foo", FieldName: "Foo", Value: "four", Kind: reflect.Uint64},
@@ -369,7 +369,7 @@ func TestFill(t *testing.T) {
 		{
 			desc: "time.Duration with unit",
 			node: &Node{
-				Name: "traefik",
+				Name: "ingress",
 				Kind: reflect.Struct,
 				Children: []*Node{
 					{Name: "Foo", FieldName: "Foo", Value: "4s", Kind: reflect.Int64},
@@ -381,7 +381,7 @@ func TestFill(t *testing.T) {
 		{
 			desc: "time.Duration without unit",
 			node: &Node{
-				Name: "traefik",
+				Name: "ingress",
 				Kind: reflect.Struct,
 				Children: []*Node{
 					{Name: "Foo", FieldName: "Foo", Value: "4", Kind: reflect.Int64},
@@ -393,7 +393,7 @@ func TestFill(t *testing.T) {
 		{
 			desc: "types.Duration with unit",
 			node: &Node{
-				Name: "traefik",
+				Name: "ingress",
 				Kind: reflect.Struct,
 				Children: []*Node{
 					{Name: "Foo", FieldName: "Foo", Value: "4s", Kind: reflect.Int64},
@@ -405,7 +405,7 @@ func TestFill(t *testing.T) {
 		{
 			desc: "types.Duration without unit",
 			node: &Node{
-				Name: "traefik",
+				Name: "ingress",
 				Kind: reflect.Struct,
 				Children: []*Node{
 					{Name: "Foo", FieldName: "Foo", Value: "4", Kind: reflect.Int64},
@@ -417,7 +417,7 @@ func TestFill(t *testing.T) {
 		{
 			desc: "bool",
 			node: &Node{
-				Name: "traefik",
+				Name: "ingress",
 				Kind: reflect.Struct,
 				Children: []*Node{
 					{Name: "Foo", FieldName: "Foo", Value: "true", Kind: reflect.Bool},
@@ -429,7 +429,7 @@ func TestFill(t *testing.T) {
 		{
 			desc: "invalid bool",
 			node: &Node{
-				Name: "traefik",
+				Name: "ingress",
 				Kind: reflect.Struct,
 				Children: []*Node{
 					{Name: "Foo", FieldName: "Foo", Value: "bool", Kind: reflect.Bool},
@@ -441,7 +441,7 @@ func TestFill(t *testing.T) {
 		{
 			desc: "float32",
 			node: &Node{
-				Name: "traefik",
+				Name: "ingress",
 				Kind: reflect.Struct,
 				Children: []*Node{
 					{Name: "Foo", FieldName: "Foo", Value: "2.1", Kind: reflect.Float32},
@@ -453,7 +453,7 @@ func TestFill(t *testing.T) {
 		{
 			desc: "invalid float32",
 			node: &Node{
-				Name: "traefik",
+				Name: "ingress",
 				Kind: reflect.Struct,
 				Children: []*Node{
 					{Name: "Foo", FieldName: "Foo", Value: "two dot one", Kind: reflect.Float32},
@@ -465,7 +465,7 @@ func TestFill(t *testing.T) {
 		{
 			desc: "float64",
 			node: &Node{
-				Name: "traefik",
+				Name: "ingress",
 				Kind: reflect.Struct,
 				Children: []*Node{
 					{Name: "Foo", FieldName: "Foo", Value: "2.1", Kind: reflect.Float64},
@@ -477,7 +477,7 @@ func TestFill(t *testing.T) {
 		{
 			desc: "invalid float64",
 			node: &Node{
-				Name: "traefik",
+				Name: "ingress",
 				Kind: reflect.Struct,
 				Children: []*Node{
 					{Name: "Foo", FieldName: "Foo", Value: "two dot one", Kind: reflect.Float64},
@@ -489,7 +489,7 @@ func TestFill(t *testing.T) {
 		{
 			desc: "struct",
 			node: &Node{
-				Name: "traefik",
+				Name: "ingress",
 				Kind: reflect.Struct,
 				Children: []*Node{
 					{
@@ -529,7 +529,7 @@ func TestFill(t *testing.T) {
 		{
 			desc: "pointer",
 			node: &Node{
-				Name: "traefik",
+				Name: "ingress",
 				Kind: reflect.Struct,
 				Children: []*Node{
 					{
@@ -569,7 +569,7 @@ func TestFill(t *testing.T) {
 		{
 			desc: "pointer disabled false without children",
 			node: &Node{
-				Name: "traefik",
+				Name: "ingress",
 				Kind: reflect.Struct,
 				Children: []*Node{
 					{
@@ -602,7 +602,7 @@ func TestFill(t *testing.T) {
 		{
 			desc: "pointer disabled true without children",
 			node: &Node{
-				Name: "traefik",
+				Name: "ingress",
 				Kind: reflect.Struct,
 				Children: []*Node{
 					{
@@ -631,7 +631,7 @@ func TestFill(t *testing.T) {
 		{
 			desc: "pointer disabled true with children",
 			node: &Node{
-				Name: "traefik",
+				Name: "ingress",
 				Kind: reflect.Struct,
 				Children: []*Node{
 					{
@@ -664,7 +664,7 @@ func TestFill(t *testing.T) {
 		{
 			desc: "map string",
 			node: &Node{
-				Name: "traefik",
+				Name: "ingress",
 				Kind: reflect.Struct,
 				Children: []*Node{
 					{
@@ -695,7 +695,7 @@ func TestFill(t *testing.T) {
 		{
 			desc: "map string with key containing '.'",
 			node: &Node{
-				Name: "traefik",
+				Name: "ingress",
 				Kind: reflect.Struct,
 				Children: []*Node{
 					{
@@ -724,7 +724,7 @@ func TestFill(t *testing.T) {
 		{
 			desc: "map string with keys containing '.' and multiple entries",
 			node: &Node{
-				Name: "traefik",
+				Name: "ingress",
 				Kind: reflect.Struct,
 				Children: []*Node{
 					{
@@ -754,7 +754,7 @@ func TestFill(t *testing.T) {
 		{
 			desc: "map string with keys containing '.' and multiple mixed entries",
 			node: &Node{
-				Name: "traefik",
+				Name: "ingress",
 				Kind: reflect.Struct,
 				Children: []*Node{
 					{
@@ -786,7 +786,7 @@ func TestFill(t *testing.T) {
 		{
 			desc: "map struct",
 			node: &Node{
-				Name: "traefik",
+				Name: "ingress",
 				Kind: reflect.Struct,
 				Children: []*Node{
 					{
@@ -829,7 +829,7 @@ func TestFill(t *testing.T) {
 		{
 			desc: "empty map",
 			node: &Node{
-				Name: "traefik",
+				Name: "ingress",
 				Kind: reflect.Struct,
 				Children: []*Node{
 					{
@@ -854,7 +854,7 @@ func TestFill(t *testing.T) {
 		{
 			desc: "slice string",
 			node: &Node{
-				Name: "traefik",
+				Name: "ingress",
 				Kind: reflect.Struct,
 				Children: []*Node{
 					{Name: "Foo", FieldName: "Foo", Value: "huu,hii,hoo", Kind: reflect.Slice},
@@ -866,7 +866,7 @@ func TestFill(t *testing.T) {
 		{
 			desc: "slice named type",
 			node: &Node{
-				Name: "traefik",
+				Name: "ingress",
 				Kind: reflect.Struct,
 				Children: []*Node{
 					{Name: "Foo", FieldName: "Foo", Value: "huu,hii,hoo", Kind: reflect.Slice},
@@ -878,7 +878,7 @@ func TestFill(t *testing.T) {
 		{
 			desc: "slice named type int",
 			node: &Node{
-				Name: "traefik",
+				Name: "ingress",
 				Kind: reflect.Struct,
 				Children: []*Node{
 					{Name: "Foo", FieldName: "Foo", Value: "1,2,3", Kind: reflect.Slice},
@@ -890,7 +890,7 @@ func TestFill(t *testing.T) {
 		{
 			desc: "empty slice",
 			node: &Node{
-				Name: "traefik",
+				Name: "ingress",
 				Kind: reflect.Struct,
 				Children: []*Node{
 					{Name: "Foo", FieldName: "Foo", Value: "", Kind: reflect.Slice},
@@ -902,7 +902,7 @@ func TestFill(t *testing.T) {
 		{
 			desc: "slice int",
 			node: &Node{
-				Name: "traefik",
+				Name: "ingress",
 				Kind: reflect.Struct,
 				Children: []*Node{
 					{Name: "Foo", FieldName: "Foo", Value: "4,3,6", Kind: reflect.Slice},
@@ -914,7 +914,7 @@ func TestFill(t *testing.T) {
 		{
 			desc: "slice invalid int",
 			node: &Node{
-				Name: "traefik",
+				Name: "ingress",
 				Kind: reflect.Struct,
 				Children: []*Node{
 					{Name: "Foo", FieldName: "Foo", Value: "four,three,six", Kind: reflect.Slice},
@@ -926,7 +926,7 @@ func TestFill(t *testing.T) {
 		{
 			desc: "slice int8",
 			node: &Node{
-				Name: "traefik",
+				Name: "ingress",
 				Kind: reflect.Slice,
 				Children: []*Node{
 					{Name: "Foo", FieldName: "Foo", Value: "4,3,6", Kind: reflect.Slice},
@@ -938,7 +938,7 @@ func TestFill(t *testing.T) {
 		{
 			desc: "slice invalid int8",
 			node: &Node{
-				Name: "traefik",
+				Name: "ingress",
 				Kind: reflect.Struct,
 				Children: []*Node{
 					{Name: "Foo", FieldName: "Foo", Value: "four,three,six", Kind: reflect.Slice},
@@ -950,7 +950,7 @@ func TestFill(t *testing.T) {
 		{
 			desc: "slice int16",
 			node: &Node{
-				Name: "traefik",
+				Name: "ingress",
 				Kind: reflect.Struct,
 				Children: []*Node{
 					{Name: "Foo", FieldName: "Foo", Value: "4,3,6", Kind: reflect.Slice},
@@ -962,7 +962,7 @@ func TestFill(t *testing.T) {
 		{
 			desc: "slice invalid int16",
 			node: &Node{
-				Name: "traefik",
+				Name: "ingress",
 				Kind: reflect.Struct,
 				Children: []*Node{
 					{Name: "Foo", FieldName: "Foo", Value: "four,three,six", Kind: reflect.Slice},
@@ -974,7 +974,7 @@ func TestFill(t *testing.T) {
 		{
 			desc: "slice int32",
 			node: &Node{
-				Name: "traefik",
+				Name: "ingress",
 				Kind: reflect.Struct,
 				Children: []*Node{
 					{Name: "Foo", FieldName: "Foo", Value: "4,3,6", Kind: reflect.Slice},
@@ -986,7 +986,7 @@ func TestFill(t *testing.T) {
 		{
 			desc: "slice invalid int32",
 			node: &Node{
-				Name: "traefik",
+				Name: "ingress",
 				Kind: reflect.Struct,
 				Children: []*Node{
 					{Name: "Foo", FieldName: "Foo", Value: "four,three,six", Kind: reflect.Slice},
@@ -998,7 +998,7 @@ func TestFill(t *testing.T) {
 		{
 			desc: "slice int64",
 			node: &Node{
-				Name: "traefik",
+				Name: "ingress",
 				Kind: reflect.Struct,
 				Children: []*Node{
 					{Name: "Foo", FieldName: "Foo", Value: "4,3,6", Kind: reflect.Slice},
@@ -1010,7 +1010,7 @@ func TestFill(t *testing.T) {
 		{
 			desc: "slice invalid int64",
 			node: &Node{
-				Name: "traefik",
+				Name: "ingress",
 				Kind: reflect.Struct,
 				Children: []*Node{
 					{Name: "Foo", FieldName: "Foo", Value: "four,three,six", Kind: reflect.Slice},
@@ -1022,7 +1022,7 @@ func TestFill(t *testing.T) {
 		{
 			desc: "slice uint",
 			node: &Node{
-				Name: "traefik",
+				Name: "ingress",
 				Kind: reflect.Struct,
 				Children: []*Node{
 					{Name: "Foo", FieldName: "Foo", Value: "4,3,6", Kind: reflect.Slice},
@@ -1034,7 +1034,7 @@ func TestFill(t *testing.T) {
 		{
 			desc: "slice invalid uint",
 			node: &Node{
-				Name: "traefik",
+				Name: "ingress",
 				Kind: reflect.Struct,
 				Children: []*Node{
 					{Name: "Foo", FieldName: "Foo", Value: "four,three,six", Kind: reflect.Slice},
@@ -1046,7 +1046,7 @@ func TestFill(t *testing.T) {
 		{
 			desc: "slice uint8",
 			node: &Node{
-				Name: "traefik",
+				Name: "ingress",
 				Kind: reflect.Struct,
 				Children: []*Node{
 					{Name: "Foo", FieldName: "Foo", Value: "4,3,6", Kind: reflect.Slice},
@@ -1058,7 +1058,7 @@ func TestFill(t *testing.T) {
 		{
 			desc: "slice invalid uint8",
 			node: &Node{
-				Name: "traefik",
+				Name: "ingress",
 				Kind: reflect.Struct,
 				Children: []*Node{
 					{Name: "Foo", FieldName: "Foo", Value: "four,three,six", Kind: reflect.Slice},
@@ -1070,7 +1070,7 @@ func TestFill(t *testing.T) {
 		{
 			desc: "slice uint16",
 			node: &Node{
-				Name: "traefik",
+				Name: "ingress",
 				Kind: reflect.Struct,
 				Children: []*Node{
 					{Name: "Foo", FieldName: "Foo", Value: "4,3,6", Kind: reflect.Slice},
@@ -1082,7 +1082,7 @@ func TestFill(t *testing.T) {
 		{
 			desc: "slice invalid uint16",
 			node: &Node{
-				Name: "traefik",
+				Name: "ingress",
 				Kind: reflect.Struct,
 				Children: []*Node{
 					{Name: "Foo", FieldName: "Foo", Value: "four,three,six", Kind: reflect.Slice},
@@ -1094,7 +1094,7 @@ func TestFill(t *testing.T) {
 		{
 			desc: "slice uint32",
 			node: &Node{
-				Name: "traefik",
+				Name: "ingress",
 				Kind: reflect.Struct,
 				Children: []*Node{
 					{Name: "Foo", FieldName: "Foo", Value: "4,3,6", Kind: reflect.Slice},
@@ -1106,7 +1106,7 @@ func TestFill(t *testing.T) {
 		{
 			desc: "slice invalid uint32",
 			node: &Node{
-				Name: "traefik",
+				Name: "ingress",
 				Kind: reflect.Struct,
 				Children: []*Node{
 					{Name: "Foo", FieldName: "Foo", Value: "four,three,six", Kind: reflect.Slice},
@@ -1118,7 +1118,7 @@ func TestFill(t *testing.T) {
 		{
 			desc: "slice uint64",
 			node: &Node{
-				Name: "traefik",
+				Name: "ingress",
 				Kind: reflect.Struct,
 				Children: []*Node{
 					{Name: "Foo", FieldName: "Foo", Value: "4,3,6", Kind: reflect.Slice},
@@ -1130,7 +1130,7 @@ func TestFill(t *testing.T) {
 		{
 			desc: "slice invalid uint64",
 			node: &Node{
-				Name: "traefik",
+				Name: "ingress",
 				Kind: reflect.Struct,
 				Children: []*Node{
 					{Name: "Foo", FieldName: "Foo", Value: "four,three,six", Kind: reflect.Slice},
@@ -1142,7 +1142,7 @@ func TestFill(t *testing.T) {
 		{
 			desc: "slice float32",
 			node: &Node{
-				Name: "traefik",
+				Name: "ingress",
 				Kind: reflect.Struct,
 				Children: []*Node{
 					{Name: "Foo", FieldName: "Foo", Value: "4,3,6", Kind: reflect.Slice},
@@ -1154,7 +1154,7 @@ func TestFill(t *testing.T) {
 		{
 			desc: "slice invalid float32",
 			node: &Node{
-				Name: "traefik",
+				Name: "ingress",
 				Kind: reflect.Struct,
 				Children: []*Node{
 					{Name: "Foo", FieldName: "Foo", Value: "four,three,six", Kind: reflect.Slice},
@@ -1166,7 +1166,7 @@ func TestFill(t *testing.T) {
 		{
 			desc: "slice float64",
 			node: &Node{
-				Name: "traefik",
+				Name: "ingress",
 				Kind: reflect.Struct,
 				Children: []*Node{
 					{Name: "Foo", FieldName: "Foo", Value: "4,3,6", Kind: reflect.Slice},
@@ -1178,7 +1178,7 @@ func TestFill(t *testing.T) {
 		{
 			desc: "slice invalid float64",
 			node: &Node{
-				Name: "traefik",
+				Name: "ingress",
 				Kind: reflect.Struct,
 				Children: []*Node{
 					{Name: "Foo", FieldName: "Foo", Value: "four,three,six", Kind: reflect.Slice},
@@ -1190,7 +1190,7 @@ func TestFill(t *testing.T) {
 		{
 			desc: "slice bool",
 			node: &Node{
-				Name: "traefik",
+				Name: "ingress",
 				Kind: reflect.Struct,
 				Children: []*Node{
 					{Name: "Foo", FieldName: "Foo", Value: "true, false, true", Kind: reflect.Slice},
@@ -1202,7 +1202,7 @@ func TestFill(t *testing.T) {
 		{
 			desc: "slice invalid bool",
 			node: &Node{
-				Name: "traefik",
+				Name: "ingress",
 				Kind: reflect.Struct,
 				Children: []*Node{
 					{Name: "Foo", FieldName: "Foo", Value: "bool, false, true", Kind: reflect.Slice},
@@ -1214,7 +1214,7 @@ func TestFill(t *testing.T) {
 		{
 			desc: "slice slice-as-struct",
 			node: &Node{
-				Name: "traefik",
+				Name: "ingress",
 				Kind: reflect.Struct,
 				Children: []*Node{
 					{
@@ -1255,7 +1255,7 @@ func TestFill(t *testing.T) {
 		{
 			desc: "slice slice-as-struct pointer",
 			node: &Node{
-				Name: "traefik",
+				Name: "ingress",
 				Kind: reflect.Struct,
 				Children: []*Node{
 					{
@@ -1296,7 +1296,7 @@ func TestFill(t *testing.T) {
 		{
 			desc: "slice slice-as-struct without children",
 			node: &Node{
-				Name: "traefik",
+				Name: "ingress",
 				Kind: reflect.Struct,
 				Children: []*Node{
 					{
@@ -1318,7 +1318,7 @@ func TestFill(t *testing.T) {
 		{
 			desc: "pointer SetDefaults method",
 			node: &Node{
-				Name: "traefik",
+				Name: "ingress",
 				Kind: reflect.Struct,
 				Children: []*Node{
 					{
@@ -1346,7 +1346,7 @@ func TestFill(t *testing.T) {
 		{
 			desc: "pointer wrong SetDefaults method",
 			node: &Node{
-				Name: "traefik",
+				Name: "ingress",
 				Kind: reflect.Struct,
 				Children: []*Node{
 					{
@@ -1373,7 +1373,7 @@ func TestFill(t *testing.T) {
 		{
 			desc: "int pointer",
 			node: &Node{
-				Name: "traefik",
+				Name: "ingress",
 				Kind: reflect.Struct,
 				Children: []*Node{
 					{Name: "Foo", FieldName: "Foo", Value: "4", Kind: reflect.Pointer},
@@ -1385,7 +1385,7 @@ func TestFill(t *testing.T) {
 		{
 			desc: "bool pointer",
 			node: &Node{
-				Name: "traefik",
+				Name: "ingress",
 				Kind: reflect.Struct,
 				Children: []*Node{
 					{Name: "Foo", FieldName: "Foo", Value: "true", Kind: reflect.Pointer},
@@ -1397,7 +1397,7 @@ func TestFill(t *testing.T) {
 		{
 			desc: "string pointer",
 			node: &Node{
-				Name: "traefik",
+				Name: "ingress",
 				Kind: reflect.Struct,
 				Children: []*Node{
 					{Name: "Foo", FieldName: "Foo", Value: "bar", Kind: reflect.Pointer},
@@ -1409,7 +1409,7 @@ func TestFill(t *testing.T) {
 		{
 			desc: "embedded",
 			node: &Node{
-				Name: "traefik",
+				Name: "ingress",
 				Kind: reflect.Struct,
 				Children: []*Node{
 					{
@@ -1445,7 +1445,7 @@ func TestFill(t *testing.T) {
 		{
 			desc: "slice struct",
 			node: &Node{
-				Name: "traefik",
+				Name: "ingress",
 				Kind: reflect.Struct,
 				Children: []*Node{
 					{Name: "Foo", FieldName: "Foo", Kind: reflect.Slice, Children: []*Node{
@@ -1490,7 +1490,7 @@ func TestFill(t *testing.T) {
 			desc:              "slice struct with slice",
 			rawSliceSeparator: "║",
 			node: &Node{
-				Name: "traefik",
+				Name: "ingress",
 				Kind: reflect.Pointer,
 				Children: []*Node{
 					{Name: "Foo", FieldName: "Foo", Kind: reflect.Map, Children: []*Node{
@@ -1520,7 +1520,7 @@ func TestFill(t *testing.T) {
 		{
 			desc: "slice pointer struct",
 			node: &Node{
-				Name: "traefik",
+				Name: "ingress",
 				Kind: reflect.Struct,
 				Children: []*Node{
 					{Name: "Foo", FieldName: "Foo", Kind: reflect.Slice, Children: []*Node{
@@ -1564,7 +1564,7 @@ func TestFill(t *testing.T) {
 		{
 			desc: "raw value",
 			node: &Node{
-				Name: "traefik",
+				Name: "ingress",
 				Kind: reflect.Pointer,
 				Children: []*Node{
 					{Name: "meta", FieldName: "Meta", Kind: reflect.Map, RawValue: map[string]interface{}{
@@ -1602,7 +1602,7 @@ func TestFill(t *testing.T) {
 		{
 			desc: "explicit map of map, raw value",
 			node: &Node{
-				Name: "traefik",
+				Name: "ingress",
 				Kind: reflect.Pointer,
 				Children: []*Node{
 					{Name: "meta", FieldName: "Meta", Kind: reflect.Map, Children: []*Node{
@@ -1643,7 +1643,7 @@ func TestFill(t *testing.T) {
 			desc:              "raw value of slice of map",
 			rawSliceSeparator: ".",
 			node: &Node{
-				Name: "traefik",
+				Name: "ingress",
 				Kind: reflect.Pointer,
 				Children: []*Node{{
 					Name:      "meta",
@@ -1682,7 +1682,7 @@ func TestFill(t *testing.T) {
 			desc:              "recursive slices",
 			rawSliceSeparator: "║",
 			node: &Node{
-				Name: "traefik",
+				Name: "ingress",
 				Kind: reflect.Pointer,
 				Children: []*Node{
 					{

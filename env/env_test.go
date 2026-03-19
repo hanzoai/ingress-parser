@@ -5,8 +5,8 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
-	"github.com/traefik/paerser/generator"
-	"github.com/traefik/paerser/parser"
+	"github.com/hanzoai/ingress-parser/generator"
+	"github.com/hanzoai/ingress-parser/parser"
 )
 
 func TestDecode(t *testing.T) {
@@ -23,7 +23,7 @@ func TestDecode(t *testing.T) {
 		},
 		{
 			desc:    "bool value",
-			environ: []string{"TRAEFIK_FOO=true"},
+			environ: []string{"INGRESS_FOO=true"},
 			element: &struct {
 				Foo bool
 			}{},
@@ -35,7 +35,7 @@ func TestDecode(t *testing.T) {
 		},
 		{
 			desc:    "equal",
-			environ: []string{"TRAEFIK_FOO=bar"},
+			environ: []string{"INGRESS_FOO=bar"},
 			element: &struct {
 				Foo string
 			}{},
@@ -47,7 +47,7 @@ func TestDecode(t *testing.T) {
 		},
 		{
 			desc:    "multiple bool flags without value",
-			environ: []string{"TRAEFIK_FOO=true", "TRAEFIK_BAR=true"},
+			environ: []string{"INGRESS_FOO=true", "INGRESS_BAR=true"},
 			element: &struct {
 				Foo bool
 				Bar bool
@@ -62,7 +62,7 @@ func TestDecode(t *testing.T) {
 		},
 		{
 			desc:    "map string",
-			environ: []string{"TRAEFIK_FOO_NAME=bar"},
+			environ: []string{"INGRESS_FOO_NAME=bar"},
 			element: &struct {
 				Foo map[string]string
 			}{},
@@ -76,7 +76,7 @@ func TestDecode(t *testing.T) {
 		},
 		{
 			desc:    "map struct",
-			environ: []string{"TRAEFIK_FOO_NAME_VALUE=bar"},
+			environ: []string{"INGRESS_FOO_NAME_VALUE=bar"},
 			element: &struct {
 				Foo map[string]struct{ Value string }
 			}{},
@@ -92,7 +92,7 @@ func TestDecode(t *testing.T) {
 		},
 		{
 			desc:    "map struct with sub-struct",
-			environ: []string{"TRAEFIK_FOO_NAME_BAR_VALUE=bar"},
+			environ: []string{"INGRESS_FOO_NAME_BAR_VALUE=bar"},
 			element: &struct {
 				Foo map[string]struct {
 					Bar *struct{ Value string }
@@ -118,7 +118,7 @@ func TestDecode(t *testing.T) {
 		},
 		{
 			desc:    "map struct with sub-map",
-			environ: []string{"TRAEFIK_FOO_NAME1_BAR_NAME2_VALUE=bar"},
+			environ: []string{"INGRESS_FOO_NAME1_BAR_NAME2_VALUE=bar"},
 			element: &struct {
 				Foo map[string]struct {
 					Bar map[string]struct{ Value string }
@@ -144,7 +144,7 @@ func TestDecode(t *testing.T) {
 		},
 		{
 			desc:    "slice",
-			environ: []string{"TRAEFIK_FOO=bar,baz"},
+			environ: []string{"INGRESS_FOO=bar,baz"},
 			element: &struct {
 				Foo []string
 			}{},
@@ -156,7 +156,7 @@ func TestDecode(t *testing.T) {
 		},
 		{
 			desc:    "struct pointer value",
-			environ: []string{"TRAEFIK_FOO=true"},
+			environ: []string{"INGRESS_FOO=true"},
 			element: &struct {
 				Foo *struct{ Field string } `label:"allowEmpty"`
 			}{},
@@ -261,197 +261,197 @@ func TestEncode(t *testing.T) {
 
 	expected := []parser.Flat{
 		{
-			Name:        "TRAEFIK_FIELD1",
+			Name:        "INGRESS_FIELD1",
 			Description: "",
 			Default:     "bir",
 		},
 		{
-			Name:        "TRAEFIK_FIELD10",
+			Name:        "INGRESS_FIELD10",
 			Description: "",
 			Default:     "",
 		},
 		{
-			Name:        "TRAEFIK_FIELD10_FIELD",
+			Name:        "INGRESS_FIELD10_FIELD",
 			Description: "",
 			Default:     "",
 		},
 		{
-			Name:        "TRAEFIK_FIELD11_FIELD",
+			Name:        "INGRESS_FIELD11_FIELD",
 			Description: "",
 			Default:     "",
 		},
 		{
-			Name:        "TRAEFIK_FIELD12",
+			Name:        "INGRESS_FIELD12",
 			Description: "",
 			Default:     "",
 		},
 		{
-			Name:        "TRAEFIK_FIELD13",
+			Name:        "INGRESS_FIELD13",
 			Description: "",
 			Default:     "false",
 		},
 		{
-			Name:        "TRAEFIK_FIELD14",
+			Name:        "INGRESS_FIELD14",
 			Description: "",
 			Default:     "0",
 		},
 		{
-			Name:        "TRAEFIK_FIELD15",
+			Name:        "INGRESS_FIELD15",
 			Description: "",
 			Default:     "7",
 		},
 		{
-			Name:        "TRAEFIK_FIELD2",
+			Name:        "INGRESS_FIELD2",
 			Description: "",
 			Default:     "true",
 		},
 		{
-			Name:        "TRAEFIK_FIELD3",
+			Name:        "INGRESS_FIELD3",
 			Description: "",
 			Default:     "0",
 		},
 		{
-			Name:        "TRAEFIK_FIELD4_\u003cNAME\u003e",
+			Name:        "INGRESS_FIELD4_\u003cNAME\u003e",
 			Description: "",
 			Default:     "",
 		},
 		{
-			Name:        "TRAEFIK_FIELD5_\u003cNAME\u003e",
+			Name:        "INGRESS_FIELD5_\u003cNAME\u003e",
 			Description: "",
 			Default:     "0",
 		},
 		{
-			Name:        "TRAEFIK_FIELD6_\u003cNAME\u003e",
+			Name:        "INGRESS_FIELD6_\u003cNAME\u003e",
 			Description: "",
 			Default:     "false",
 		},
 		{
-			Name:        "TRAEFIK_FIELD6_\u003cNAME\u003e_FIELD",
+			Name:        "INGRESS_FIELD6_\u003cNAME\u003e_FIELD",
 			Description: "",
 			Default:     "",
 		},
 		{
-			Name:        "TRAEFIK_FIELD7_\u003cNAME\u003e",
+			Name:        "INGRESS_FIELD7_\u003cNAME\u003e",
 			Description: "",
 			Default:     "false",
 		},
 		{
-			Name:        "TRAEFIK_FIELD7_\u003cNAME\u003e_FIELD_\u003cNAME\u003e",
+			Name:        "INGRESS_FIELD7_\u003cNAME\u003e_FIELD_\u003cNAME\u003e",
 			Description: "",
 			Default:     "",
 		},
 		{
-			Name:        "TRAEFIK_FIELD8_\u003cNAME\u003e",
+			Name:        "INGRESS_FIELD8_\u003cNAME\u003e",
 			Description: "",
 			Default:     "false",
 		},
 		{
-			Name:        "TRAEFIK_FIELD8_\u003cNAME\u003e_FIELD",
+			Name:        "INGRESS_FIELD8_\u003cNAME\u003e_FIELD",
 			Description: "",
 			Default:     "",
 		},
 		{
-			Name:        "TRAEFIK_FIELD9_\u003cNAME\u003e",
+			Name:        "INGRESS_FIELD9_\u003cNAME\u003e",
 			Description: "",
 			Default:     "false",
 		},
 		{
-			Name:        "TRAEFIK_FIELD9_\u003cNAME\u003e_FIELD_\u003cNAME\u003e",
+			Name:        "INGRESS_FIELD9_\u003cNAME\u003e_FIELD_\u003cNAME\u003e",
 			Description: "",
 			Default:     "",
 		},
 		{
-			Name:        "TRAEFIK_FOO_FIELDIN1",
+			Name:        "INGRESS_FOO_FIELDIN1",
 			Description: "",
 			Default:     "bar",
 		},
 		{
-			Name:        "TRAEFIK_FOO_FIELDIN10",
+			Name:        "INGRESS_FOO_FIELDIN10",
 			Description: "",
 			Default:     "",
 		},
 		{
-			Name:        "TRAEFIK_FOO_FIELDIN10_FIELD",
+			Name:        "INGRESS_FOO_FIELDIN10_FIELD",
 			Description: "",
 			Default:     "",
 		},
 		{
-			Name:        "TRAEFIK_FOO_FIELDIN11_FIELD",
+			Name:        "INGRESS_FOO_FIELDIN11_FIELD",
 			Description: "",
 			Default:     "",
 		},
 		{
-			Name:        "TRAEFIK_FOO_FIELDIN12",
+			Name:        "INGRESS_FOO_FIELDIN12",
 			Description: "",
 			Default:     "",
 		},
 		{
-			Name:        "TRAEFIK_FOO_FIELDIN13",
+			Name:        "INGRESS_FOO_FIELDIN13",
 			Description: "",
 			Default:     "false",
 		},
 		{
-			Name:        "TRAEFIK_FOO_FIELDIN14",
+			Name:        "INGRESS_FOO_FIELDIN14",
 			Description: "",
 			Default:     "0",
 		},
 		{
-			Name:        "TRAEFIK_FOO_FIELDIN2",
+			Name:        "INGRESS_FOO_FIELDIN2",
 			Description: "",
 			Default:     "false",
 		},
 		{
-			Name:        "TRAEFIK_FOO_FIELDIN3",
+			Name:        "INGRESS_FOO_FIELDIN3",
 			Description: "",
 			Default:     "1",
 		},
 		{
-			Name:        "TRAEFIK_FOO_FIELDIN4_\u003cNAME\u003e",
+			Name:        "INGRESS_FOO_FIELDIN4_\u003cNAME\u003e",
 			Description: "",
 			Default:     "",
 		},
 		{
-			Name:        "TRAEFIK_FOO_FIELDIN5_\u003cNAME\u003e",
+			Name:        "INGRESS_FOO_FIELDIN5_\u003cNAME\u003e",
 			Description: "",
 			Default:     "0",
 		},
 		{
-			Name:        "TRAEFIK_FOO_FIELDIN6_\u003cNAME\u003e",
+			Name:        "INGRESS_FOO_FIELDIN6_\u003cNAME\u003e",
 			Description: "",
 			Default:     "false",
 		},
 		{
-			Name:        "TRAEFIK_FOO_FIELDIN6_\u003cNAME\u003e_FIELD",
+			Name:        "INGRESS_FOO_FIELDIN6_\u003cNAME\u003e_FIELD",
 			Description: "",
 			Default:     "",
 		},
 		{
-			Name:        "TRAEFIK_FOO_FIELDIN7_\u003cNAME\u003e",
+			Name:        "INGRESS_FOO_FIELDIN7_\u003cNAME\u003e",
 			Description: "",
 			Default:     "false",
 		},
 		{
-			Name:        "TRAEFIK_FOO_FIELDIN7_\u003cNAME\u003e_FIELD_\u003cNAME\u003e",
+			Name:        "INGRESS_FOO_FIELDIN7_\u003cNAME\u003e_FIELD_\u003cNAME\u003e",
 			Description: "",
 			Default:     "",
 		},
 		{
-			Name:        "TRAEFIK_FOO_FIELDIN8_\u003cNAME\u003e",
+			Name:        "INGRESS_FOO_FIELDIN8_\u003cNAME\u003e",
 			Description: "",
 			Default:     "false",
 		},
 		{
-			Name:        "TRAEFIK_FOO_FIELDIN8_\u003cNAME\u003e_FIELD",
+			Name:        "INGRESS_FOO_FIELDIN8_\u003cNAME\u003e_FIELD",
 			Description: "",
 			Default:     "",
 		},
 		{
-			Name:        "TRAEFIK_FOO_FIELDIN9_\u003cNAME\u003e",
+			Name:        "INGRESS_FOO_FIELDIN9_\u003cNAME\u003e",
 			Description: "",
 			Default:     "false",
 		},
 		{
-			Name:        "TRAEFIK_FOO_FIELDIN9_\u003cNAME\u003e_FIELD_\u003cNAME\u003e",
+			Name:        "INGRESS_FOO_FIELDIN9_\u003cNAME\u003e_FIELD_\u003cNAME\u003e",
 			Description: "",
 			Default:     "",
 		},

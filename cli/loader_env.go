@@ -4,10 +4,10 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/traefik/paerser/env"
+	"github.com/hanzoai/ingress-parser/env"
 )
 
-// EnvLoader loads a configuration from all the environment variables prefixed with Prefix (default: "TRAEFIK_").
+// EnvLoader loads a configuration from all the environment variables prefixed with Prefix (default: "INGRESS_").
 type EnvLoader struct {
 	Prefix string
 }

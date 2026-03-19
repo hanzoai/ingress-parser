@@ -40,7 +40,7 @@ func TestAddMetadata(t *testing.T) {
 		{
 			desc: "Nil structure",
 			tree: &Node{
-				Name: "traefik",
+				Name: "ingress",
 				Children: []*Node{
 					{Name: "Foo", Value: "bar"},
 				},
@@ -50,13 +50,13 @@ func TestAddMetadata(t *testing.T) {
 		},
 		{
 			desc:     "level 0",
-			tree:     &Node{Name: "traefik", Value: "bar"},
+			tree:     &Node{Name: "ingress", Value: "bar"},
 			expected: expected{error: true},
 		},
 		{
 			desc: "level 1",
 			tree: &Node{
-				Name: "traefik",
+				Name: "ingress",
 				Children: []*Node{
 					{Name: "Foo", FieldName: "Foo", Value: "bar"},
 				},
@@ -64,7 +64,7 @@ func TestAddMetadata(t *testing.T) {
 			structure: struct{ Foo string }{},
 			expected: expected{
 				node: &Node{
-					Name: "traefik",
+					Name: "ingress",
 					Kind: reflect.Struct,
 					Children: []*Node{
 						{Name: "Foo", FieldName: "Foo", Value: "bar", Kind: reflect.String},
@@ -75,7 +75,7 @@ func TestAddMetadata(t *testing.T) {
 		{
 			desc: "level 1, pointer",
 			tree: &Node{
-				Name: "traefik",
+				Name: "ingress",
 				Children: []*Node{
 					{Name: "Foo", Value: "bar"},
 				},
@@ -83,7 +83,7 @@ func TestAddMetadata(t *testing.T) {
 			structure: &struct{ Foo string }{},
 			expected: expected{
 				node: &Node{
-					Name: "traefik",
+					Name: "ingress",
 					Kind: reflect.Pointer,
 					Children: []*Node{
 						{Name: "Foo", FieldName: "Foo", Value: "bar", Kind: reflect.String},
@@ -94,7 +94,7 @@ func TestAddMetadata(t *testing.T) {
 		{
 			desc: "level 1, slice",
 			tree: &Node{
-				Name: "traefik",
+				Name: "ingress",
 				Children: []*Node{
 					{Name: "Foo", Value: "bar,bur"},
 				},
@@ -102,7 +102,7 @@ func TestAddMetadata(t *testing.T) {
 			structure: struct{ Foo []string }{},
 			expected: expected{
 				node: &Node{
-					Name: "traefik",
+					Name: "ingress",
 					Kind: reflect.Struct,
 					Children: []*Node{
 						{Name: "Foo", FieldName: "Foo", Value: "bar,bur", Kind: reflect.Slice},
@@ -113,7 +113,7 @@ func TestAddMetadata(t *testing.T) {
 		{
 			desc: "level 1, interface",
 			tree: &Node{
-				Name: "traefik",
+				Name: "ingress",
 				Children: []*Node{
 					{Name: "Foo", Value: "", Children: []*Node{
 						{Name: "Fii", Value: "hii"},
@@ -126,7 +126,7 @@ func TestAddMetadata(t *testing.T) {
 		{
 			desc: "level 1, map string",
 			tree: &Node{
-				Name: "traefik",
+				Name: "ingress",
 				Children: []*Node{
 					{Name: "Foo", Children: []*Node{
 						{Name: "name1", Value: "bar"},
@@ -137,7 +137,7 @@ func TestAddMetadata(t *testing.T) {
 			structure: struct{ Foo map[string]string }{},
 			expected: expected{
 				node: &Node{
-					Name: "traefik",
+					Name: "ingress",
 					Kind: reflect.Struct,
 					Children: []*Node{
 						{Name: "Foo", FieldName: "Foo", Kind: reflect.Map, Children: []*Node{
@@ -151,7 +151,7 @@ func TestAddMetadata(t *testing.T) {
 		{
 			desc: "level 1, map struct",
 			tree: &Node{
-				Name: "traefik",
+				Name: "ingress",
 				Children: []*Node{
 					{Name: "Foo", Children: []*Node{
 						{Name: "name1", Children: []*Node{
@@ -165,7 +165,7 @@ func TestAddMetadata(t *testing.T) {
 			}{},
 			expected: expected{
 				node: &Node{
-					Name: "traefik",
+					Name: "ingress",
 					Kind: reflect.Struct,
 					Children: []*Node{
 						{Name: "Foo", FieldName: "Foo", Kind: reflect.Map, Children: []*Node{
@@ -180,7 +180,7 @@ func TestAddMetadata(t *testing.T) {
 		{
 			desc: "level 1, map int as key",
 			tree: &Node{
-				Name: "traefik",
+				Name: "ingress",
 				Children: []*Node{
 					{Name: "Foo", Children: []*Node{
 						{Name: "name1", Children: []*Node{
@@ -197,7 +197,7 @@ func TestAddMetadata(t *testing.T) {
 		{
 			desc: "level 1, int pointer",
 			tree: &Node{
-				Name: "traefik",
+				Name: "ingress",
 				Children: []*Node{
 					{Name: "Foo", Value: "0"},
 				},
@@ -207,7 +207,7 @@ func TestAddMetadata(t *testing.T) {
 			}{},
 			expected: expected{
 				node: &Node{
-					Name: "traefik",
+					Name: "ingress",
 					Kind: reflect.Struct,
 					Children: []*Node{
 						{Name: "Foo", FieldName: "Foo", Value: "0", Kind: reflect.Pointer},
@@ -218,7 +218,7 @@ func TestAddMetadata(t *testing.T) {
 		{
 			desc: "level 1, bool pointer",
 			tree: &Node{
-				Name: "traefik",
+				Name: "ingress",
 				Children: []*Node{
 					{Name: "Foo", Value: "0"},
 				},
@@ -228,7 +228,7 @@ func TestAddMetadata(t *testing.T) {
 			}{},
 			expected: expected{
 				node: &Node{
-					Name: "traefik",
+					Name: "ingress",
 					Kind: reflect.Struct,
 					Children: []*Node{
 						{Name: "Foo", FieldName: "Foo", Value: "0", Kind: reflect.Pointer},
@@ -239,7 +239,7 @@ func TestAddMetadata(t *testing.T) {
 		{
 			desc: "level 1, string pointer",
 			tree: &Node{
-				Name: "traefik",
+				Name: "ingress",
 				Children: []*Node{
 					{Name: "Foo", Value: "0"},
 				},
@@ -249,7 +249,7 @@ func TestAddMetadata(t *testing.T) {
 			}{},
 			expected: expected{
 				node: &Node{
-					Name: "traefik",
+					Name: "ingress",
 					Kind: reflect.Struct,
 					Children: []*Node{
 						{Name: "Foo", FieldName: "Foo", Value: "0", Kind: reflect.Pointer},
@@ -260,7 +260,7 @@ func TestAddMetadata(t *testing.T) {
 		{
 			desc: "level 1, 2 children with different types",
 			tree: &Node{
-				Name: "traefik",
+				Name: "ingress",
 				Children: []*Node{
 					{Name: "Foo", Value: "bar"},
 					{Name: "Fii", Value: "1"},
@@ -272,7 +272,7 @@ func TestAddMetadata(t *testing.T) {
 			}{},
 			expected: expected{
 				node: &Node{
-					Name: "traefik",
+					Name: "ingress",
 					Kind: reflect.Struct,
 					Children: []*Node{
 						{Name: "Foo", FieldName: "Foo", Value: "bar", Kind: reflect.String},
@@ -284,7 +284,7 @@ func TestAddMetadata(t *testing.T) {
 		{
 			desc: "level 1, use exported instead of unexported",
 			tree: &Node{
-				Name: "traefik",
+				Name: "ingress",
 				Children: []*Node{
 					{Name: "foo", Value: "bar"},
 				},
@@ -295,7 +295,7 @@ func TestAddMetadata(t *testing.T) {
 			}{},
 			expected: expected{
 				node: &Node{
-					Name: "traefik",
+					Name: "ingress",
 					Kind: reflect.Struct,
 					Children: []*Node{
 						{Name: "foo", Value: "bar", FieldName: "Foo", Kind: reflect.String},
@@ -306,7 +306,7 @@ func TestAddMetadata(t *testing.T) {
 		{
 			desc: "level 1, unexported",
 			tree: &Node{
-				Name: "traefik",
+				Name: "ingress",
 				Children: []*Node{
 					{Name: "foo", Value: "bar"},
 				},
@@ -319,7 +319,7 @@ func TestAddMetadata(t *testing.T) {
 		{
 			desc: "level 1, 3 children with different types",
 			tree: &Node{
-				Name: "traefik",
+				Name: "ingress",
 				Children: []*Node{
 					{Name: "Foo", Value: "bar"},
 					{Name: "Fii", Value: "1"},
@@ -333,7 +333,7 @@ func TestAddMetadata(t *testing.T) {
 			}{},
 			expected: expected{
 				node: &Node{
-					Name: "traefik",
+					Name: "ingress",
 					Kind: reflect.Struct,
 					Children: []*Node{
 						{Name: "Foo", FieldName: "Foo", Value: "bar", Kind: reflect.String},
@@ -346,7 +346,7 @@ func TestAddMetadata(t *testing.T) {
 		{
 			desc: "level 2",
 			tree: &Node{
-				Name: "traefik",
+				Name: "ingress",
 				Children: []*Node{
 					{Name: "Foo", Children: []*Node{
 						{Name: "Bar", Value: "bir"},
@@ -364,7 +364,7 @@ func TestAddMetadata(t *testing.T) {
 			},
 			expected: expected{
 				node: &Node{
-					Name: "traefik",
+					Name: "ingress",
 					Kind: reflect.Struct,
 					Children: []*Node{
 						{Name: "Foo", FieldName: "Foo", Kind: reflect.Struct, Children: []*Node{
@@ -377,7 +377,7 @@ func TestAddMetadata(t *testing.T) {
 		{
 			desc: "level 2, struct without children",
 			tree: &Node{
-				Name: "traefik",
+				Name: "ingress",
 				Children: []*Node{
 					{Name: "Foo"},
 				},
@@ -396,7 +396,7 @@ func TestAddMetadata(t *testing.T) {
 		{
 			desc: "level 2, slice-as-struct",
 			tree: &Node{
-				Name: "traefik",
+				Name: "ingress",
 				Children: []*Node{
 					{Name: "Fii", Children: []*Node{
 						{Name: "bar", Value: "haa"},
@@ -416,7 +416,7 @@ func TestAddMetadata(t *testing.T) {
 				}{},
 			},
 			expected: expected{node: &Node{
-				Name: "traefik",
+				Name: "ingress",
 				Kind: reflect.Struct,
 				Children: []*Node{
 					{
@@ -435,7 +435,7 @@ func TestAddMetadata(t *testing.T) {
 		{
 			desc: "level 2, slice-as-struct without children",
 			tree: &Node{
-				Name: "traefik",
+				Name: "ingress",
 				Children: []*Node{
 					{Name: "Fii"},
 				},
@@ -452,7 +452,7 @@ func TestAddMetadata(t *testing.T) {
 				}{},
 			},
 			expected: expected{node: &Node{
-				Name: "traefik",
+				Name: "ingress",
 				Kind: reflect.Struct,
 				Children: []*Node{
 					{
@@ -467,7 +467,7 @@ func TestAddMetadata(t *testing.T) {
 		{
 			desc: "level 2, struct with allowEmpty, value true",
 			tree: &Node{
-				Name: "traefik",
+				Name: "ingress",
 				Children: []*Node{
 					{Name: "Foo", Value: "true"},
 				},
@@ -483,7 +483,7 @@ func TestAddMetadata(t *testing.T) {
 			},
 			expected: expected{
 				node: &Node{
-					Name: "traefik",
+					Name: "ingress",
 					Kind: reflect.Struct,
 					Children: []*Node{
 						{Name: "Foo", FieldName: "Foo", Value: "true", Kind: reflect.Struct, Tag: reflect.StructTag(`label:"allowEmpty"`)},
@@ -494,7 +494,7 @@ func TestAddMetadata(t *testing.T) {
 		{
 			desc: "level 2, struct with allowEmpty, value true with case variation",
 			tree: &Node{
-				Name: "traefik",
+				Name: "ingress",
 				Children: []*Node{
 					{Name: "Foo", Value: "TruE"},
 				},
@@ -510,7 +510,7 @@ func TestAddMetadata(t *testing.T) {
 			},
 			expected: expected{
 				node: &Node{
-					Name: "traefik",
+					Name: "ingress",
 					Kind: reflect.Struct,
 					Children: []*Node{
 						{Name: "Foo", FieldName: "Foo", Value: "TruE", Kind: reflect.Struct, Tag: reflect.StructTag(`label:"allowEmpty"`)},
@@ -521,7 +521,7 @@ func TestAddMetadata(t *testing.T) {
 		{
 			desc: "level 2, struct with allowEmpty, value false",
 			tree: &Node{
-				Name: "traefik",
+				Name: "ingress",
 				Children: []*Node{
 					{Name: "Foo", Value: "false"},
 				},
@@ -537,7 +537,7 @@ func TestAddMetadata(t *testing.T) {
 			},
 			expected: expected{
 				node: &Node{
-					Name: "traefik",
+					Name: "ingress",
 					Kind: reflect.Struct,
 					Children: []*Node{
 						{Name: "Foo", FieldName: "Foo", Value: "false", Disabled: true, Kind: reflect.Struct, Tag: reflect.StructTag(`label:"allowEmpty"`)},
@@ -548,7 +548,7 @@ func TestAddMetadata(t *testing.T) {
 		{
 			desc: "level 2, struct with allowEmpty with children, value false",
 			tree: &Node{
-				Name: "traefik",
+				Name: "ingress",
 				Children: []*Node{
 					{Name: "Foo", Value: "false", Children: []*Node{
 						{Name: "Bar", Value: "hii"},
@@ -566,7 +566,7 @@ func TestAddMetadata(t *testing.T) {
 			},
 			expected: expected{
 				node: &Node{
-					Name: "traefik",
+					Name: "ingress",
 					Kind: reflect.Struct,
 					Children: []*Node{
 						{
@@ -587,7 +587,7 @@ func TestAddMetadata(t *testing.T) {
 		{
 			desc: "level 2, struct pointer without children",
 			tree: &Node{
-				Name: "traefik",
+				Name: "ingress",
 				Children: []*Node{
 					{Name: "Foo"},
 				},
@@ -606,7 +606,7 @@ func TestAddMetadata(t *testing.T) {
 		{
 			desc: "level 2, map without children",
 			tree: &Node{
-				Name: "traefik",
+				Name: "ingress",
 				Children: []*Node{
 					{Name: "Foo"},
 				},
@@ -621,7 +621,7 @@ func TestAddMetadata(t *testing.T) {
 		{
 			desc: "level 2, pointer",
 			tree: &Node{
-				Name: "traefik",
+				Name: "ingress",
 				Children: []*Node{
 					{Name: "Foo", Children: []*Node{
 						{Name: "Bar", Value: "bir"},
@@ -639,7 +639,7 @@ func TestAddMetadata(t *testing.T) {
 			},
 			expected: expected{
 				node: &Node{
-					Name: "traefik",
+					Name: "ingress",
 					Kind: reflect.Struct,
 					Children: []*Node{
 						{Name: "Foo", FieldName: "Foo", Kind: reflect.Pointer, Children: []*Node{
@@ -652,7 +652,7 @@ func TestAddMetadata(t *testing.T) {
 		{
 			desc: "level 2, 2 children",
 			tree: &Node{
-				Name: "traefik",
+				Name: "ingress",
 				Children: []*Node{
 					{Name: "Foo", Children: []*Node{
 						{Name: "Bar", Value: "bir"},
@@ -673,7 +673,7 @@ func TestAddMetadata(t *testing.T) {
 			},
 			expected: expected{
 				node: &Node{
-					Name: "traefik",
+					Name: "ingress",
 					Kind: reflect.Struct,
 					Children: []*Node{
 						{
@@ -692,7 +692,7 @@ func TestAddMetadata(t *testing.T) {
 		{
 			desc: "level 3",
 			tree: &Node{
-				Name: "traefik",
+				Name: "ingress",
 				Children: []*Node{
 					{Name: "Foo", Children: []*Node{
 						{Name: "Bar", Children: []*Node{
@@ -716,7 +716,7 @@ func TestAddMetadata(t *testing.T) {
 			},
 			expected: expected{
 				node: &Node{
-					Name: "traefik",
+					Name: "ingress",
 					Kind: reflect.Struct,
 					Children: []*Node{
 						{
@@ -741,7 +741,7 @@ func TestAddMetadata(t *testing.T) {
 		{
 			desc: "level 3, 2 children level 1, 2 children level 2, 2 children level 3",
 			tree: &Node{
-				Name: "traefik",
+				Name: "ingress",
 				Children: []*Node{
 					{Name: "Foo", Children: []*Node{
 						{Name: "Bar", Children: []*Node{
@@ -786,7 +786,7 @@ func TestAddMetadata(t *testing.T) {
 			},
 			expected: expected{
 				node: &Node{
-					Name: "traefik",
+					Name: "ingress",
 					Kind: reflect.Struct,
 					Children: []*Node{
 						{
@@ -828,7 +828,7 @@ func TestAddMetadata(t *testing.T) {
 		{
 			desc: "Slice struct",
 			tree: &Node{
-				Name: "traefik",
+				Name: "ingress",
 				Children: []*Node{
 					{Name: "Foo", Children: []*Node{
 						{Name: "[0]", Children: []*Node{
@@ -853,7 +853,7 @@ func TestAddMetadata(t *testing.T) {
 				}
 			}{},
 			expected: expected{node: &Node{
-				Name: "traefik",
+				Name: "ingress",
 				Kind: reflect.Struct,
 				Children: []*Node{
 					{Name: "Foo", FieldName: "Foo", Kind: reflect.Slice, Children: []*Node{
@@ -876,7 +876,7 @@ func TestAddMetadata(t *testing.T) {
 		{
 			desc: "Slice pointer struct",
 			tree: &Node{
-				Name: "traefik",
+				Name: "ingress",
 				Children: []*Node{
 					{Name: "Foo", Children: []*Node{
 						{Name: "[0]", Children: []*Node{
@@ -901,7 +901,7 @@ func TestAddMetadata(t *testing.T) {
 				}
 			}{},
 			expected: expected{node: &Node{
-				Name: "traefik",
+				Name: "ingress",
 				Kind: reflect.Struct,
 				Children: []*Node{
 					{Name: "Foo", FieldName: "Foo", Kind: reflect.Slice, Children: []*Node{
@@ -924,7 +924,7 @@ func TestAddMetadata(t *testing.T) {
 		{
 			desc: "invalid slice type",
 			tree: &Node{
-				Name: "traefik",
+				Name: "ingress",
 				Children: []*Node{
 					{Name: "Foo", Children: []*Node{
 						{Name: "[0]", Children: []*Node{
@@ -941,7 +941,7 @@ func TestAddMetadata(t *testing.T) {
 		{
 			desc: "embedded",
 			tree: &Node{
-				Name: "traefik",
+				Name: "ingress",
 				Children: []*Node{
 					{Name: "Foo", Children: []*Node{
 						{Name: "Fii", Value: "bir"},
@@ -955,7 +955,7 @@ func TestAddMetadata(t *testing.T) {
 				}
 			}{},
 			expected: expected{node: &Node{
-				Name: "traefik",
+				Name: "ingress",
 				Kind: reflect.Struct,
 				Children: []*Node{
 					{Name: "Foo", FieldName: "Foo", Kind: reflect.Struct, Children: []*Node{
@@ -968,7 +968,7 @@ func TestAddMetadata(t *testing.T) {
 		{
 			desc: "embedded slice",
 			tree: &Node{
-				Name: "traefik",
+				Name: "ingress",
 				Children: []*Node{
 					{Name: "MySliceType", Value: "foo,fii"},
 				},
@@ -977,7 +977,7 @@ func TestAddMetadata(t *testing.T) {
 				MySliceType
 			}{},
 			expected: expected{node: &Node{
-				Name: "traefik",
+				Name: "ingress",
 				Kind: reflect.Struct,
 				Children: []*Node{
 					{Name: "MySliceType", FieldName: "MySliceType", Value: "foo,fii", Kind: reflect.Slice},
@@ -987,7 +987,7 @@ func TestAddMetadata(t *testing.T) {
 		{
 			desc: "embedded slice 2",
 			tree: &Node{
-				Name: "traefik",
+				Name: "ingress",
 				Children: []*Node{
 					{Name: "Foo", Children: []*Node{
 						{Name: "MySliceType", Value: "foo,fii"},
@@ -1000,7 +1000,7 @@ func TestAddMetadata(t *testing.T) {
 				}
 			}{},
 			expected: expected{node: &Node{
-				Name: "traefik",
+				Name: "ingress",
 				Kind: reflect.Struct,
 				Children: []*Node{
 					{Name: "Foo", FieldName: "Foo", Kind: reflect.Struct, Children: []*Node{
@@ -1012,7 +1012,7 @@ func TestAddMetadata(t *testing.T) {
 		{
 			desc: "raw value",
 			tree: &Node{
-				Name: "traefik",
+				Name: "ingress",
 				Children: []*Node{
 					{Name: "Foo", FieldName: "Foo", Children: []*Node{
 						{Name: "Bar", FieldName: "Bar", Children: []*Node{
@@ -1037,7 +1037,7 @@ func TestAddMetadata(t *testing.T) {
 			},
 			expected: expected{
 				node: &Node{
-					Name: "traefik",
+					Name: "ingress",
 					Kind: reflect.Struct,
 					Children: []*Node{
 						{Name: "Foo", FieldName: "Foo", Kind: reflect.Pointer, Children: []*Node{
@@ -1086,7 +1086,7 @@ func Test_nodeToRawMap(t *testing.T) {
 		{
 			desc: "simple",
 			root: &Node{
-				Name: "traefik",
+				Name: "ingress",
 				Children: []*Node{
 					{Name: "meta", Children: []*Node{
 						{Name: "aaa", Value: "test1"},
@@ -1136,7 +1136,7 @@ func Test_nodeToRawMap(t *testing.T) {
 		{
 			desc: "slice of struct, level 2",
 			root: &Node{
-				Name: "traefik",
+				Name: "ingress",
 				Children: []*Node{
 					{Name: "meta", Children: []*Node{{
 						Name: "aaa", Children: []*Node{

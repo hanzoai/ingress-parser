@@ -3,7 +3,7 @@ package parser
 import "reflect"
 
 // DefaultRootName is the default name of the root node and the prefix of element name from the resources.
-const DefaultRootName = "traefik"
+const DefaultRootName = "ingress"
 
 // MapNamePlaceholder is the placeholder for the map name.
 const MapNamePlaceholder = "<name>"

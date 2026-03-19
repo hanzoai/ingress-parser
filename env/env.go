@@ -6,11 +6,11 @@ import (
 	"regexp"
 	"strings"
 
-	"github.com/traefik/paerser/parser"
+	"github.com/hanzoai/ingress-parser/parser"
 )
 
 // DefaultNamePrefix is the default prefix for environment variable names.
-const DefaultNamePrefix = "TRAEFIK_"
+const DefaultNamePrefix = "INGRESS_"
 
 // Decode decodes the given environment variables into the given element.
 // The operation goes through four stages roughly summarized as:
