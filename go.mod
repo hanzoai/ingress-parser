@@ -1,6 +1,6 @@
 module github.com/hanzoai/ingress-parser
 
-go 1.22.0
+go 1.26.1
 
 require (
 	github.com/BurntSushi/toml v1.4.0
