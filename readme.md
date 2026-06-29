@@ -1,3 +1,5 @@
+<p align="center"><img src=".github/hero.svg" alt="ingress-parser" width="880"></p>
+
 # Paerser
 
 [![Package documentation](https://img.shields.io/badge/go.dev-docs-007d9c?logo=go&logoColor=white&style=flat-square)](https://pkg.go.dev/github.com/traefik/paerser)
