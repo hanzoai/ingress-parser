@@ -20,7 +20,7 @@ func decodeFileToNode(filePath string, filters ...string) (*parser.Node, error) 
 		return nil, err
 	}
 
-	data := make(map[string]interface{})
+	data := make(map[string]any)
 
 	switch strings.ToLower(filepath.Ext(filePath)) {
 	case ".toml":
@@ -55,7 +55,7 @@ func decodeFileToNode(filePath string, filters ...string) (*parser.Node, error) 
 	return node, nil
 }
 
-func getRootFieldNames(element interface{}) []string {
+func getRootFieldNames(element any) []string {
 	if element == nil {
 		return nil
 	}
@@ -75,8 +75,7 @@ func getFieldNames(rootType reflect.Type) []string {
 	}
 
 	var names []string
-	for i := range rootType.NumField() {
-		field := rootType.Field(i)
+	for field := range rootType.Fields() {
 
 		if !parser.IsExported(field) {
 			continue

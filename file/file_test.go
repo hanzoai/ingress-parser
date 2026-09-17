@@ -93,14 +93,14 @@ buckets = [42.01, 42.02]
 	require.NoError(t, err)
 
 	expected := FooRaw{
-		TestData: map[string]interface{}{
-			"Headers": map[string]interface{}{"Foo": "Bar"},
-			"trustIP": []interface{}{"10.0.0.0/8", "172.0.0.0/8", "192.0.0.0/8"},
-			"koo":     []interface{}{int64(1), int64(2), int64(3)},
-			"soo":     []interface{}{"1", "a", "3"},
-			"boo":     []interface{}{float64(1), 2.6, float64(3)},
-			"hoo":     []interface{}{true, false, false, true},
-			"buckets": []interface{}{42.01, 42.02},
+		TestData: map[string]any{
+			"Headers": map[string]any{"Foo": "Bar"},
+			"trustIP": []any{"10.0.0.0/8", "172.0.0.0/8", "192.0.0.0/8"},
+			"koo":     []any{int64(1), int64(2), int64(3)},
+			"soo":     []any{"1", "a", "3"},
+			"boo":     []any{float64(1), 2.6, float64(3)},
+			"hoo":     []any{true, false, false, true},
+			"buckets": []any{42.01, 42.02},
 		},
 	}
 	assert.EqualValues(t, expected, element)
@@ -115,7 +115,7 @@ name = "test"
 
 	type Foo struct {
 		Name string
-		Meta map[string]interface{}
+		Meta map[string]any
 	}
 
 	element := &Foo{}
@@ -125,7 +125,7 @@ name = "test"
 
 	expected := &Foo{
 		Name: "test",
-		Meta: map[string]interface{}{"aaa": []interface{}{map[string]interface{}{"bbb": "1"}}},
+		Meta: map[string]any{"aaa": []any{map[string]any{"bbb": "1"}}},
 	}
 	assert.Equal(t, expected, element)
 }
@@ -231,17 +231,17 @@ testData:
 	require.NoError(t, err)
 
 	expected := FooRaw{
-		TestData: map[string]interface{}{
-			"Headers": map[string]interface{}{"Foo": "Bar"},
-			"trustIP": []interface{}{"10.0.0.0/8", "172.0.0.0/8", "192.0.0.0/8"},
-			"koo":     []interface{}{int64(1), int64(2), int64(3)},
-			"soo":     []interface{}{"1", "a", "3"},
-			"boo":     []interface{}{float64(1), 2.6, float64(3)},
-			"hoo":     []interface{}{true, false, false, true},
-			"buckets": []interface{}{42.01, 42.02},
-			"joo": []interface{}{
-				map[string]interface{}{"name": "a", "value": "1"},
-				map[string]interface{}{"name": "c", "value": "2"},
+		TestData: map[string]any{
+			"Headers": map[string]any{"Foo": "Bar"},
+			"trustIP": []any{"10.0.0.0/8", "172.0.0.0/8", "192.0.0.0/8"},
+			"koo":     []any{int64(1), int64(2), int64(3)},
+			"soo":     []any{"1", "a", "3"},
+			"boo":     []any{float64(1), 2.6, float64(3)},
+			"hoo":     []any{true, false, false, true},
+			"buckets": []any{42.01, 42.02},
+			"joo": []any{
+				map[string]any{"name": "a", "value": "1"},
+				map[string]any{"name": "c", "value": "2"},
 			},
 		},
 	}
@@ -251,13 +251,13 @@ testData:
 func TestDecodeContent_YAML_rawValue(t *testing.T) {
 	type Foo struct {
 		Name string
-		Meta map[string]interface{}
+		Meta map[string]any
 	}
 
 	testCases := []struct {
 		desc     string
 		content  string
-		expected interface{}
+		expected any
 	}{
 		{
 			desc: "simple",
@@ -269,7 +269,7 @@ meta:
 `,
 			expected: &Foo{
 				Name: "test",
-				Meta: map[string]interface{}{"aaa": []interface{}{map[string]interface{}{"bbb": "1"}}},
+				Meta: map[string]any{"aaa": []any{map[string]any{"bbb": "1"}}},
 			},
 		},
 		{
@@ -284,9 +284,9 @@ meta:
 `,
 			expected: &Foo{
 				Name: "test",
-				Meta: map[string]interface{}{
-					"aaa": []interface{}{map[string]interface{}{"bbb": "1"}},
-					"bbb": map[string]interface{}{"foo": "bar"},
+				Meta: map[string]any{
+					"aaa": []any{map[string]any{"bbb": "1"}},
+					"bbb": map[string]any{"foo": "bar"},
 				},
 			},
 		},
@@ -325,19 +325,19 @@ bar:
       - 42
 `
 
-	element := map[string]interface{}{}
+	element := map[string]any{}
 
 	err := DecodeContent(content, ".yaml", &element)
 	require.NoError(t, err)
 
-	expected := map[string]interface{}{
-		"foo": []interface{}{"foo", "bar"},
-		"bar": map[string]interface{}{
-			"foo": []interface{}{"foo", "bar"},
-			"baz": map[string]interface{}{
-				"foo": []interface{}{"foo", "bar"},
-				"boz": map[string]interface{}{
-					"foo": []interface{}{int64(42), int64(42)},
+	expected := map[string]any{
+		"foo": []any{"foo", "bar"},
+		"bar": map[string]any{
+			"foo": []any{"foo", "bar"},
+			"baz": map[string]any{
+				"foo": []any{"foo", "bar"},
+				"boz": map[string]any{
+					"foo": []any{int64(42), int64(42)},
 				},
 			},
 		},
@@ -389,7 +389,7 @@ func TestDecodeContent_JSON_rawValue(t *testing.T) {
 
 	type Foo struct {
 		Name string
-		Meta map[string]interface{}
+		Meta map[string]any
 	}
 
 	element := &Foo{}
@@ -399,7 +399,7 @@ func TestDecodeContent_JSON_rawValue(t *testing.T) {
 
 	expected := &Foo{
 		Name: "test",
-		Meta: map[string]interface{}{"aaa": []interface{}{map[string]interface{}{"bbb": "1"}}},
+		Meta: map[string]any{"aaa": []any{map[string]any{"bbb": "1"}}},
 	}
 	assert.Equal(t, expected, element)
 }

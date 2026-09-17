@@ -5,14 +5,14 @@ import (
 	"testing"
 	"time"
 
+	"github.com/hanzoai/ingress-parser/types"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
-	"github.com/hanzoai/ingress-parser/types"
 )
 
 func TestFill(t *testing.T) {
 	type expected struct {
-		element interface{}
+		element any
 		error   bool
 	}
 
@@ -20,7 +20,7 @@ func TestFill(t *testing.T) {
 		desc              string
 		rawSliceSeparator string
 		node              *Node
-		element           interface{}
+		element           any
 		expected          expected
 	}{
 		{
@@ -1494,25 +1494,25 @@ func TestFill(t *testing.T) {
 				Kind: reflect.Pointer,
 				Children: []*Node{
 					{Name: "Foo", FieldName: "Foo", Kind: reflect.Map, Children: []*Node{
-						{Name: "Field1", FieldName: "Field1", RawValue: map[string]interface{}{
-							"Field2": []interface{}{map[string]interface{}{"Values": "║24║foo║bar"}},
+						{Name: "Field1", FieldName: "Field1", RawValue: map[string]any{
+							"Field2": []any{map[string]any{"Values": "║24║foo║bar"}},
 						}},
-						{Name: "Field3", RawValue: map[string]interface{}{
+						{Name: "Field3", RawValue: map[string]any{
 							"Values": "║24║foo║bar",
 						}},
 					}},
 				},
 			},
 			element: &struct {
-				Foo map[string]interface{}
+				Foo map[string]any
 			}{},
 			expected: expected{element: &struct {
-				Foo map[string]interface{}
+				Foo map[string]any
 			}{
-				Foo: map[string]interface{}{
-					"Field1": map[string]interface{}{"Field2": []interface{}{map[string]interface{}{"Values": []interface{}{"foo", "bar"}}}},
-					"Field3": map[string]interface{}{
-						"Values": []interface{}{"foo", "bar"},
+				Foo: map[string]any{
+					"Field1": map[string]any{"Field2": []any{map[string]any{"Values": []any{"foo", "bar"}}}},
+					"Field3": map[string]any{
+						"Values": []any{"foo", "bar"},
 					},
 				},
 			}},
@@ -1567,11 +1567,11 @@ func TestFill(t *testing.T) {
 				Name: "ingress",
 				Kind: reflect.Pointer,
 				Children: []*Node{
-					{Name: "meta", FieldName: "Meta", Kind: reflect.Map, RawValue: map[string]interface{}{
+					{Name: "meta", FieldName: "Meta", Kind: reflect.Map, RawValue: map[string]any{
 						"aaa": "test",
-						"bbb": map[string]interface{}{
+						"bbb": map[string]any{
 							"ccc": "test",
-							"ddd": map[string]interface{}{
+							"ddd": map[string]any{
 								"eee": "test",
 							},
 						},
@@ -1581,18 +1581,18 @@ func TestFill(t *testing.T) {
 			},
 			element: &struct {
 				Name string
-				Meta map[string]interface{}
+				Meta map[string]any
 			}{},
 			expected: expected{element: &struct {
 				Name string
-				Meta map[string]interface{}
+				Meta map[string]any
 			}{
 				Name: "test",
-				Meta: map[string]interface{}{
+				Meta: map[string]any{
 					"aaa": "test",
-					"bbb": map[string]interface{}{
+					"bbb": map[string]any{
 						"ccc": "test",
-						"ddd": map[string]interface{}{
+						"ddd": map[string]any{
 							"eee": "test",
 						},
 					},
@@ -1607,11 +1607,11 @@ func TestFill(t *testing.T) {
 				Children: []*Node{
 					{Name: "meta", FieldName: "Meta", Kind: reflect.Map, Children: []*Node{
 						{Name: "aaa", Kind: reflect.Map, Children: []*Node{
-							{Name: "bbb", RawValue: map[string]interface{}{
+							{Name: "bbb", RawValue: map[string]any{
 								"ccc": "test1",
 								"ddd": "test2",
 							}},
-							{Name: "eee", Value: "test3", RawValue: map[string]interface{}{
+							{Name: "eee", Value: "test3", RawValue: map[string]any{
 								"eee": "test3",
 							}},
 						}},
@@ -1621,16 +1621,16 @@ func TestFill(t *testing.T) {
 			},
 			element: &struct {
 				Name string
-				Meta map[string]map[string]interface{}
+				Meta map[string]map[string]any
 			}{},
 			expected: expected{element: &struct {
 				Name string
-				Meta map[string]map[string]interface{}
+				Meta map[string]map[string]any
 			}{
 				Name: "test",
-				Meta: map[string]map[string]interface{}{
+				Meta: map[string]map[string]any{
 					"aaa": {
-						"bbb": map[string]interface{}{
+						"bbb": map[string]any{
 							"ccc": "test1",
 							"ddd": "test2",
 						},
@@ -1648,13 +1648,13 @@ func TestFill(t *testing.T) {
 				Children: []*Node{{
 					Name:      "meta",
 					FieldName: "Meta",
-					RawValue: map[string]interface{}{
-						"bar": []interface{}{
-							map[string]interface{}{
+					RawValue: map[string]any{
+						"bar": []any{
+							map[string]any{
 								"name":  "a",
 								"value": "1",
 							},
-							map[string]interface{}{
+							map[string]any{
 								"name":  "b",
 								"value": "2",
 							},
@@ -1665,15 +1665,15 @@ func TestFill(t *testing.T) {
 				}},
 			},
 			element: &struct {
-				Meta map[string]interface{}
+				Meta map[string]any
 			}{},
 			expected: expected{element: &struct {
-				Meta map[string]interface{}
+				Meta map[string]any
 			}{
-				Meta: map[string]interface{}{
-					"bar": []interface{}{
-						map[string]interface{}{"name": "a", "value": "1"},
-						map[string]interface{}{"name": "b", "value": "2"},
+				Meta: map[string]any{
+					"bar": []any{
+						map[string]any{"name": "a", "value": "1"},
+						map[string]any{"name": "b", "value": "2"},
 					},
 				},
 			}},
@@ -1687,9 +1687,9 @@ func TestFill(t *testing.T) {
 				Children: []*Node{
 					{
 						Name: "bar",
-						RawValue: map[string]interface{}{
-							"baz": map[string]interface{}{
-								"boz": map[string]interface{}{
+						RawValue: map[string]any{
+							"baz": map[string]any{
+								"boz": map[string]any{
 									"foo": "║2║42║42",
 								},
 								"foo": "║24║foo║bar",
@@ -1700,21 +1700,21 @@ func TestFill(t *testing.T) {
 					{
 						Name:  "foo",
 						Value: "║24║foo║bar",
-						RawValue: map[string]interface{}{
+						RawValue: map[string]any{
 							"foo": "║24║foo║bar",
 						},
 					},
 				},
 			},
-			element: &map[string]interface{}{},
-			expected: expected{element: &map[string]interface{}{
-				"foo": []interface{}{"foo", "bar"},
-				"bar": map[string]interface{}{
-					"foo": []interface{}{"foo", "bar"},
-					"baz": map[string]interface{}{
-						"foo": []interface{}{"foo", "bar"},
-						"boz": map[string]interface{}{
-							"foo": []interface{}{int64(42), int64(42)},
+			element: &map[string]any{},
+			expected: expected{element: &map[string]any{
+				"foo": []any{"foo", "bar"},
+				"bar": map[string]any{
+					"foo": []any{"foo", "bar"},
+					"baz": map[string]any{
+						"foo": []any{"foo", "bar"},
+						"boz": map[string]any{
+							"foo": []any{int64(42), int64(42)},
 						},
 					},
 				},

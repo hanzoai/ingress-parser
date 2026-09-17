@@ -16,7 +16,7 @@ const defaultRawSliceSeparator = "║"
 // - file contents -> tree of untyped nodes
 // - untyped nodes -> nodes augmented with metadata such as kind (inferred from element)
 // - "typed" nodes -> typed element.
-func Decode(filePath string, element interface{}) error {
+func Decode(filePath string, element any) error {
 	if element == nil {
 		return nil
 	}
@@ -42,8 +42,8 @@ func Decode(filePath string, element interface{}) error {
 // - file contents -> tree of untyped nodes
 // - untyped nodes -> nodes augmented with metadata such as kind (inferred from element)
 // - "typed" nodes -> typed element.
-func DecodeContent(content, extension string, element interface{}) error {
-	data := make(map[string]interface{})
+func DecodeContent(content, extension string, element any) error {
+	data := make(map[string]any)
 
 	switch extension {
 	case ".toml":

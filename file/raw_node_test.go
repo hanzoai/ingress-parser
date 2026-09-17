@@ -3,27 +3,27 @@ package file
 import (
 	"testing"
 
+	"github.com/hanzoai/ingress-parser/parser"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
-	"github.com/hanzoai/ingress-parser/parser"
 )
 
 func Test_decodeRawToNode(t *testing.T) {
 	testCases := []struct {
 		desc     string
-		data     map[string]interface{}
+		data     map[string]any
 		expected *parser.Node
 	}{
 		{
 			desc: "empty",
-			data: map[string]interface{}{},
+			data: map[string]any{},
 			expected: &parser.Node{
 				Name: "ingress",
 			},
 		},
 		{
 			desc: "string",
-			data: map[string]interface{}{
+			data: map[string]any{
 				"foo": "bar",
 			},
 			expected: &parser.Node{
@@ -35,7 +35,7 @@ func Test_decodeRawToNode(t *testing.T) {
 		},
 		{
 			desc: "string named type",
-			data: map[string]interface{}{
+			data: map[string]any{
 				"foo": bar("bar"),
 			},
 			expected: &parser.Node{
@@ -47,7 +47,7 @@ func Test_decodeRawToNode(t *testing.T) {
 		},
 		{
 			desc: "bool",
-			data: map[string]interface{}{
+			data: map[string]any{
 				"foo": true,
 			},
 			expected: &parser.Node{
@@ -59,7 +59,7 @@ func Test_decodeRawToNode(t *testing.T) {
 		},
 		{
 			desc: "int",
-			data: map[string]interface{}{
+			data: map[string]any{
 				"foo": 1,
 			},
 			expected: &parser.Node{
@@ -71,7 +71,7 @@ func Test_decodeRawToNode(t *testing.T) {
 		},
 		{
 			desc: "int8",
-			data: map[string]interface{}{
+			data: map[string]any{
 				"foo": int8(1),
 			},
 			expected: &parser.Node{
@@ -83,7 +83,7 @@ func Test_decodeRawToNode(t *testing.T) {
 		},
 		{
 			desc: "int16",
-			data: map[string]interface{}{
+			data: map[string]any{
 				"foo": int16(1),
 			},
 			expected: &parser.Node{
@@ -95,7 +95,7 @@ func Test_decodeRawToNode(t *testing.T) {
 		},
 		{
 			desc: "int32",
-			data: map[string]interface{}{
+			data: map[string]any{
 				"foo": int32(1),
 			},
 			expected: &parser.Node{
@@ -107,7 +107,7 @@ func Test_decodeRawToNode(t *testing.T) {
 		},
 		{
 			desc: "int64",
-			data: map[string]interface{}{
+			data: map[string]any{
 				"foo": int64(1),
 			},
 			expected: &parser.Node{
@@ -119,7 +119,7 @@ func Test_decodeRawToNode(t *testing.T) {
 		},
 		{
 			desc: "uint",
-			data: map[string]interface{}{
+			data: map[string]any{
 				"foo": uint(1),
 			},
 			expected: &parser.Node{
@@ -131,7 +131,7 @@ func Test_decodeRawToNode(t *testing.T) {
 		},
 		{
 			desc: "uint8",
-			data: map[string]interface{}{
+			data: map[string]any{
 				"foo": uint8(1),
 			},
 			expected: &parser.Node{
@@ -143,7 +143,7 @@ func Test_decodeRawToNode(t *testing.T) {
 		},
 		{
 			desc: "uint16",
-			data: map[string]interface{}{
+			data: map[string]any{
 				"foo": uint16(1),
 			},
 			expected: &parser.Node{
@@ -155,7 +155,7 @@ func Test_decodeRawToNode(t *testing.T) {
 		},
 		{
 			desc: "uint32",
-			data: map[string]interface{}{
+			data: map[string]any{
 				"foo": uint32(1),
 			},
 			expected: &parser.Node{
@@ -167,7 +167,7 @@ func Test_decodeRawToNode(t *testing.T) {
 		},
 		{
 			desc: "uint64",
-			data: map[string]interface{}{
+			data: map[string]any{
 				"foo": uint64(1),
 			},
 			expected: &parser.Node{
@@ -179,7 +179,7 @@ func Test_decodeRawToNode(t *testing.T) {
 		},
 		{
 			desc: "float32",
-			data: map[string]interface{}{
+			data: map[string]any{
 				"foo": float32(1),
 			},
 			expected: &parser.Node{
@@ -191,7 +191,7 @@ func Test_decodeRawToNode(t *testing.T) {
 		},
 		{
 			desc: "float64",
-			data: map[string]interface{}{
+			data: map[string]any{
 				"foo": float64(1),
 			},
 			expected: &parser.Node{
@@ -203,7 +203,7 @@ func Test_decodeRawToNode(t *testing.T) {
 		},
 		{
 			desc: "string slice",
-			data: map[string]interface{}{
+			data: map[string]any{
 				"foo": []string{"A", "B"},
 			},
 			expected: &parser.Node{
@@ -215,7 +215,7 @@ func Test_decodeRawToNode(t *testing.T) {
 		},
 		{
 			desc: "int slice",
-			data: map[string]interface{}{
+			data: map[string]any{
 				"foo": []int{1, 2},
 			},
 			expected: &parser.Node{
@@ -227,7 +227,7 @@ func Test_decodeRawToNode(t *testing.T) {
 		},
 		{
 			desc: "int8 slice",
-			data: map[string]interface{}{
+			data: map[string]any{
 				"foo": []int8{1, 2},
 			},
 			expected: &parser.Node{
@@ -239,7 +239,7 @@ func Test_decodeRawToNode(t *testing.T) {
 		},
 		{
 			desc: "int16 slice",
-			data: map[string]interface{}{
+			data: map[string]any{
 				"foo": []int16{1, 2},
 			},
 			expected: &parser.Node{
@@ -251,7 +251,7 @@ func Test_decodeRawToNode(t *testing.T) {
 		},
 		{
 			desc: "int32 slice",
-			data: map[string]interface{}{
+			data: map[string]any{
 				"foo": []int32{1, 2},
 			},
 			expected: &parser.Node{
@@ -263,7 +263,7 @@ func Test_decodeRawToNode(t *testing.T) {
 		},
 		{
 			desc: "int64 slice",
-			data: map[string]interface{}{
+			data: map[string]any{
 				"foo": []int64{1, 2},
 			},
 			expected: &parser.Node{
@@ -275,7 +275,7 @@ func Test_decodeRawToNode(t *testing.T) {
 		},
 		{
 			desc: "bool slice",
-			data: map[string]interface{}{
+			data: map[string]any{
 				"foo": []bool{true, false},
 			},
 			expected: &parser.Node{
@@ -287,8 +287,8 @@ func Test_decodeRawToNode(t *testing.T) {
 		},
 		{
 			desc: "interface (string) slice",
-			data: map[string]interface{}{
-				"foo": []interface{}{"A", "B"},
+			data: map[string]any{
+				"foo": []any{"A", "B"},
 			},
 			expected: &parser.Node{
 				Name: "ingress",
@@ -299,8 +299,8 @@ func Test_decodeRawToNode(t *testing.T) {
 		},
 		{
 			desc: "interface (int) slice",
-			data: map[string]interface{}{
-				"foo": []interface{}{1, 2},
+			data: map[string]any{
+				"foo": []any{1, 2},
 			},
 			expected: &parser.Node{
 				Name: "ingress",
@@ -311,7 +311,7 @@ func Test_decodeRawToNode(t *testing.T) {
 		},
 		{
 			desc: "2 strings",
-			data: map[string]interface{}{
+			data: map[string]any{
 				"foo": "bar",
 				"fii": "bir",
 			},
@@ -325,8 +325,8 @@ func Test_decodeRawToNode(t *testing.T) {
 		},
 		{
 			desc: "string, level 2",
-			data: map[string]interface{}{
-				"fii": map[interface{}]interface{}{
+			data: map[string]any{
+				"fii": map[any]any{
 					"fuu": "bur",
 				},
 			},
@@ -339,8 +339,8 @@ func Test_decodeRawToNode(t *testing.T) {
 		},
 		{
 			desc: "int, level 2",
-			data: map[string]interface{}{
-				"fii": map[interface{}]interface{}{
+			data: map[string]any{
+				"fii": map[any]any{
 					"fuu": 1,
 				},
 			},
@@ -353,8 +353,8 @@ func Test_decodeRawToNode(t *testing.T) {
 		},
 		{
 			desc: "uint, level 2",
-			data: map[string]interface{}{
-				"fii": map[interface{}]interface{}{
+			data: map[string]any{
+				"fii": map[any]any{
 					"fuu": uint(1),
 				},
 			},
@@ -367,8 +367,8 @@ func Test_decodeRawToNode(t *testing.T) {
 		},
 		{
 			desc: "bool, level 2",
-			data: map[string]interface{}{
-				"fii": map[interface{}]interface{}{
+			data: map[string]any{
+				"fii": map[any]any{
 					"fuu": true,
 				},
 			},
@@ -381,9 +381,9 @@ func Test_decodeRawToNode(t *testing.T) {
 		},
 		{
 			desc: "string, level 3",
-			data: map[string]interface{}{
-				"foo": map[interface{}]interface{}{
-					"fii": map[interface{}]interface{}{
+			data: map[string]any{
+				"foo": map[any]any{
+					"fii": map[any]any{
 						"fuu": "bur",
 					},
 				},
@@ -399,8 +399,8 @@ func Test_decodeRawToNode(t *testing.T) {
 		},
 		{
 			desc: "int, level 3",
-			data: map[string]interface{}{
-				"fii": map[interface{}]interface{}{
+			data: map[string]any{
+				"fii": map[any]any{
 					"fuu": 1,
 				},
 			},
@@ -413,8 +413,8 @@ func Test_decodeRawToNode(t *testing.T) {
 		},
 		{
 			desc: "uint, level 3",
-			data: map[string]interface{}{
-				"fii": map[interface{}]interface{}{
+			data: map[string]any{
+				"fii": map[any]any{
 					"fuu": uint(1),
 				},
 			},
@@ -427,8 +427,8 @@ func Test_decodeRawToNode(t *testing.T) {
 		},
 		{
 			desc: "bool, level 3",
-			data: map[string]interface{}{
-				"fii": map[interface{}]interface{}{
+			data: map[string]any{
+				"fii": map[any]any{
 					"fuu": true,
 				},
 			},
@@ -441,8 +441,8 @@ func Test_decodeRawToNode(t *testing.T) {
 		},
 		{
 			desc: "struct",
-			data: map[string]interface{}{
-				"foo": map[interface{}]interface{}{
+			data: map[string]any{
+				"foo": map[any]any{
 					"field1": "C",
 					"field2": "C",
 				},
@@ -459,8 +459,8 @@ func Test_decodeRawToNode(t *testing.T) {
 		},
 		{
 			desc: "slice struct 1",
-			data: map[string]interface{}{
-				"foo": []map[string]interface{}{
+			data: map[string]any{
+				"foo": []map[string]any{
 					{"field1": "A", "field2": "A"},
 					{"field1": "B", "field2": "B"},
 					{"field2": "C", "field1": "C"},
@@ -488,17 +488,17 @@ func Test_decodeRawToNode(t *testing.T) {
 		},
 		{
 			desc: "slice struct 2",
-			data: map[string]interface{}{
-				"foo": []interface{}{
-					map[interface{}]interface{}{
+			data: map[string]any{
+				"foo": []any{
+					map[any]any{
 						"field2": "A",
 						"field1": "A",
 					},
-					map[interface{}]interface{}{
+					map[any]any{
 						"field1": "B",
 						"field2": "B",
 					},
-					map[interface{}]interface{}{
+					map[any]any{
 						"field1": "C",
 						"field2": "C",
 					},
@@ -526,8 +526,8 @@ func Test_decodeRawToNode(t *testing.T) {
 		},
 		{
 			desc: "nil value",
-			data: map[string]interface{}{
-				"fii": map[interface{}]interface{}{
+			data: map[string]any{
+				"fii": map[any]any{
 					"fuu": nil,
 				},
 			},
@@ -555,11 +555,11 @@ func Test_decodeRawToNode(t *testing.T) {
 func Test_decodeRawToNode_errors(t *testing.T) {
 	testCases := []struct {
 		desc string
-		data map[string]interface{}
+		data map[string]any
 	}{
 		{
 			desc: "invalid type",
-			data: map[string]interface{}{
+			data: map[string]any{
 				"foo": struct{}{},
 			},
 		},

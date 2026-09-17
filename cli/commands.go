@@ -13,7 +13,7 @@ import (
 type Command struct {
 	Name           string
 	Description    string
-	Configuration  interface{}
+	Configuration  any
 	Resources      []ResourceLoader
 	Run            func([]string) error
 	CustomHelpFunc func(io.Writer, *Command) error

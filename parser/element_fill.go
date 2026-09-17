@@ -25,7 +25,7 @@ type FillerOpts struct {
 }
 
 // Fill populates the fields of the element using the information in node.
-func Fill(element interface{}, node *Node, opts FillerOpts) error {
+func Fill(element any, node *Node, opts FillerOpts) error {
 	return newFiller(opts).Fill(element, node)
 }
 
@@ -42,7 +42,7 @@ func newFiller(opts FillerOpts) filler {
 }
 
 // Fill populates the fields of the element using the information in node.
-func (f filler) Fill(element interface{}, node *Node) error {
+func (f filler) Fill(element any, node *Node) error {
 	if element == nil || node == nil {
 		return nil
 	}
@@ -113,7 +113,7 @@ func (f filler) setPtr(field reflect.Value, node *Node) error {
 	if field.IsNil() {
 		field.Set(reflect.New(field.Type().Elem()))
 
-		if field.Type().Implements(reflect.TypeOf((*initializer)(nil)).Elem()) {
+		if field.Type().Implements(reflect.TypeFor[initializer]()) {
 			method := field.MethodByName("SetDefaults")
 			if method.IsValid() {
 				method.Call([]reflect.Value{})
@@ -350,9 +350,9 @@ func (f filler) setMap(field reflect.Value, node *Node) error {
 
 func setInt(field reflect.Value, value string, bitSize int) error {
 	switch field.Type() {
-	case reflect.TypeOf(types.Duration(0)):
+	case reflect.TypeFor[types.Duration]():
 		return setDuration(field, value, bitSize, time.Second)
-	case reflect.TypeOf(time.Duration(0)):
+	case reflect.TypeFor[time.Duration]():
 		return setDuration(field, value, bitSize, time.Nanosecond)
 	default:
 		val, err := strconv.ParseInt(value, 10, bitSize)
@@ -402,7 +402,7 @@ func setFloat(field reflect.Value, value string, bitSize int) error {
 }
 
 func (f filler) fillRawValue(field reflect.Value, node *Node, subMap bool) error {
-	m, ok := node.RawValue.(map[string]interface{})
+	m, ok := node.RawValue.(map[string]any)
 	if !ok {
 		return nil
 	}
@@ -446,7 +446,7 @@ func (f filler) fillRawValue(field reflect.Value, node *Node, subMap bool) error
 		return err
 	}
 
-	p := map[string]interface{}{node.Name: m}
+	p := map[string]any{node.Name: m}
 	node.RawValue = p
 
 	field.SetMapIndex(reflect.ValueOf(node.Name), reflect.ValueOf(p[node.Name]))
@@ -454,7 +454,7 @@ func (f filler) fillRawValue(field reflect.Value, node *Node, subMap bool) error
 	return nil
 }
 
-func (f filler) fillRawMapWithTypedSlice(elt interface{}) (reflect.Value, error) {
+func (f filler) fillRawMapWithTypedSlice(elt any) (reflect.Value, error) {
 	eltValue := reflect.ValueOf(elt)
 
 	switch eltValue.Kind() {
@@ -469,7 +469,7 @@ func (f filler) fillRawMapWithTypedSlice(elt interface{}) (reflect.Value, error)
 		}
 
 	case reflect.Map:
-		for k, v := range elt.(map[string]interface{}) {
+		for k, v := range elt.(map[string]any) {
 			value, err := f.fillRawMapWithTypedSlice(v)
 			if err != nil {
 				return eltValue, err
@@ -479,7 +479,7 @@ func (f filler) fillRawMapWithTypedSlice(elt interface{}) (reflect.Value, error)
 		}
 
 	case reflect.Slice:
-		for i, v := range elt.([]interface{}) {
+		for i, v := range elt.([]any) {
 			value, err := f.fillRawMapWithTypedSlice(v)
 			if err != nil {
 				return eltValue, err
@@ -502,7 +502,7 @@ func (f filler) fillRawTypedSlice(s string) (reflect.Value, error) {
 
 	kind := reflect.Kind(rawType)
 
-	slice := reflect.MakeSlice(reflect.TypeOf([]interface{}{}), len(raw[2:]), len(raw[2:]))
+	slice := reflect.MakeSlice(reflect.TypeFor[[]any](), len(raw[2:]), len(raw[2:]))
 
 	for i := range len(raw[2:]) {
 		switch kind {

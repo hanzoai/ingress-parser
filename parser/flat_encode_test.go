@@ -5,15 +5,15 @@ import (
 	"testing"
 	"time"
 
+	"github.com/hanzoai/ingress-parser/types"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
-	"github.com/hanzoai/ingress-parser/types"
 )
 
 func TestEncodeToFlat(t *testing.T) {
 	testCases := []struct {
 		desc     string
-		element  interface{}
+		element  any
 		node     *Node
 		opts     *FlatOpts
 		expected []Flat

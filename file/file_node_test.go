@@ -3,15 +3,15 @@ package file
 import (
 	"testing"
 
+	"github.com/hanzoai/ingress-parser/parser"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
-	"github.com/hanzoai/ingress-parser/parser"
 )
 
 func Test_getRootFieldNames(t *testing.T) {
 	testCases := []struct {
 		desc     string
-		element  interface{}
+		element  any
 		expected []string
 	}{
 		{

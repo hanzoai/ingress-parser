@@ -4,19 +4,19 @@ import (
 	"testing"
 	"time"
 
-	"github.com/stretchr/testify/assert"
-	"github.com/stretchr/testify/require"
 	"github.com/hanzoai/ingress-parser/generator"
 	"github.com/hanzoai/ingress-parser/parser"
 	"github.com/hanzoai/ingress-parser/types"
+	"github.com/stretchr/testify/assert"
+	"github.com/stretchr/testify/require"
 )
 
 func TestDecode(t *testing.T) {
 	testCases := []struct {
 		desc     string
 		args     []string
-		element  interface{}
-		expected interface{}
+		element  any
+		expected any
 	}{
 		{
 			desc:     "no args",
@@ -437,7 +437,7 @@ func TestDecode(t *testing.T) {
 func TestEncode(t *testing.T) {
 	testCases := []struct {
 		desc     string
-		element  interface{}
+		element  any
 		expected []parser.Flat
 	}{
 		{

@@ -170,7 +170,7 @@ func TestEncodeNode(t *testing.T) {
 			node: &Node{
 				Name: "ingress",
 				Children: []*Node{
-					{Name: "aaa", RawValue: map[string]interface{}{
+					{Name: "aaa", RawValue: map[string]any{
 						"bbb": "test1",
 						"ccc": "test2",
 					}},
@@ -186,9 +186,9 @@ func TestEncodeNode(t *testing.T) {
 			node: &Node{
 				Name: "ingress",
 				Children: []*Node{
-					{Name: "aaa", RawValue: map[string]interface{}{
+					{Name: "aaa", RawValue: map[string]any{
 						"bbb": "test1",
-						"ccc": map[string]interface{}{
+						"ccc": map[string]any{
 							"ddd": "test2",
 						},
 					}},
@@ -204,9 +204,9 @@ func TestEncodeNode(t *testing.T) {
 			node: &Node{
 				Name: "ingress",
 				Children: []*Node{
-					{Name: "aaa", RawValue: map[string]interface{}{
-						"bbb": []interface{}{
-							map[string]interface{}{
+					{Name: "aaa", RawValue: map[string]any{
+						"bbb": []any{
+							map[string]any{
 								"ccc": "test1",
 								"ddd": "test2",
 							},

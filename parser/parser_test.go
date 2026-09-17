@@ -9,29 +9,29 @@ import (
 
 type Tomato struct {
 	Name string
-	Meta map[string]interface{}
+	Meta map[string]any
 }
 
 type Potato struct {
 	Name string
-	Meta map[string]map[string]interface{}
+	Meta map[string]map[string]any
 }
 
 type Ignored struct {
-	String  string                 `label:"-"`
-	StringP *string                `label:"-"`
-	Struct  Tomato                 `label:"-"`
-	StructP *Tomato                `label:"-"`
-	Slice   []string               `label:"-"`
-	Map     map[string]interface{} `label:"-"`
+	String  string         `label:"-"`
+	StringP *string        `label:"-"`
+	Struct  Tomato         `label:"-"`
+	StructP *Tomato        `label:"-"`
+	Slice   []string       `label:"-"`
+	Map     map[string]any `label:"-"`
 }
 
 func TestDecode_RawValue(t *testing.T) {
 	testCases := []struct {
 		desc     string
 		labels   map[string]string
-		elt      interface{}
-		expected interface{}
+		elt      any
+		expected any
 	}{
 		{
 			desc: "level 1",
@@ -42,7 +42,7 @@ func TestDecode_RawValue(t *testing.T) {
 			},
 			expected: &Tomato{
 				Name: "test",
-				Meta: map[string]interface{}{
+				Meta: map[string]any{
 					"aaa": "test",
 				},
 			},
@@ -57,9 +57,9 @@ func TestDecode_RawValue(t *testing.T) {
 			elt: &Tomato{},
 			expected: &Tomato{
 				Name: "test",
-				Meta: map[string]interface{}{
+				Meta: map[string]any{
 					"aaa": "test",
-					"bbb": map[string]interface{}{
+					"bbb": map[string]any{
 						"ccc": "test",
 					},
 				},
@@ -76,11 +76,11 @@ func TestDecode_RawValue(t *testing.T) {
 			elt: &Tomato{},
 			expected: &Tomato{
 				Name: "test",
-				Meta: map[string]interface{}{
+				Meta: map[string]any{
 					"aaa": "test",
-					"bbb": map[string]interface{}{
+					"bbb": map[string]any{
 						"ccc": "test",
-						"ddd": map[string]interface{}{
+						"ddd": map[string]any{
 							"eee": "test",
 						},
 					},
@@ -97,9 +97,9 @@ func TestDecode_RawValue(t *testing.T) {
 			},
 			expected: &Tomato{
 				Name: "test1",
-				Meta: map[string]interface{}{
-					"aaa": []interface{}{
-						map[string]interface{}{
+				Meta: map[string]any{
+					"aaa": []any{
+						map[string]any{
 							"bbb": "test2",
 							"ccc": "test3",
 						},
@@ -121,17 +121,17 @@ func TestDecode_RawValue(t *testing.T) {
 			},
 			expected: &Tomato{
 				Name: "test1",
-				Meta: map[string]interface{}{
-					"aaa": []interface{}{
-						map[string]interface{}{
+				Meta: map[string]any{
+					"aaa": []any{
+						map[string]any{
 							"bbb": "test2",
 							"ccc": "test3",
 						},
-						map[string]interface{}{
+						map[string]any{
 							"bbb": "test4",
 							"ccc": "test5",
 						},
-						map[string]interface{}{
+						map[string]any{
 							"bbb": "test6",
 							"ccc": "test7",
 						},
@@ -148,7 +148,7 @@ func TestDecode_RawValue(t *testing.T) {
 			},
 			expected: &Potato{
 				Name: "test",
-				Meta: map[string]map[string]interface{}{
+				Meta: map[string]map[string]any{
 					"aaa": {
 						"bbb": "test1",
 					},
@@ -165,7 +165,7 @@ func TestDecode_RawValue(t *testing.T) {
 			},
 			expected: &Potato{
 				Name: "test",
-				Meta: map[string]map[string]interface{}{
+				Meta: map[string]map[string]any{
 					"aaa": {
 						"bbb": "test1",
 						"ccc": "test2",
@@ -184,9 +184,9 @@ func TestDecode_RawValue(t *testing.T) {
 			},
 			expected: &Potato{
 				Name: "test",
-				Meta: map[string]map[string]interface{}{
+				Meta: map[string]map[string]any{
 					"aaa": {
-						"bbb": map[string]interface{}{
+						"bbb": map[string]any{
 							"ccc": "test1",
 							"ddd": "test2",
 						},
@@ -207,10 +207,10 @@ func TestDecode_RawValue(t *testing.T) {
 			},
 			expected: &Potato{
 				Name: "test",
-				Meta: map[string]map[string]interface{}{
+				Meta: map[string]map[string]any{
 					"aaa": {
-						"bbb": map[string]interface{}{
-							"ccc": map[string]interface{}{
+						"bbb": map[string]any{
+							"ccc": map[string]any{
 								"ddd": "test1",
 								"eee": "test2",
 							},
@@ -231,10 +231,10 @@ func TestDecode_RawValue(t *testing.T) {
 			},
 			expected: &Potato{
 				Name: "test1",
-				Meta: map[string]map[string]interface{}{
+				Meta: map[string]map[string]any{
 					"aaa": {
-						"bbb": []interface{}{
-							map[string]interface{}{
+						"bbb": []any{
+							map[string]any{
 								"ccc": "test2",
 								"ddd": "test3",
 							},
@@ -257,18 +257,18 @@ func TestDecode_RawValue(t *testing.T) {
 			},
 			expected: &Potato{
 				Name: "test1",
-				Meta: map[string]map[string]interface{}{
+				Meta: map[string]map[string]any{
 					"aaa": {
-						"bbb": []interface{}{
-							map[string]interface{}{
+						"bbb": []any{
+							map[string]any{
 								"ccc": "test2",
 								"ddd": "test3",
 							},
-							map[string]interface{}{
+							map[string]any{
 								"ccc": "test4",
 								"ddd": "test5",
 							},
-							map[string]interface{}{
+							map[string]any{
 								"ccc": "test6",
 								"ddd": "test7",
 							},
@@ -287,11 +287,11 @@ func TestDecode_RawValue(t *testing.T) {
 			},
 			expected: &Potato{
 				Name: "test1",
-				Meta: map[string]map[string]interface{}{
+				Meta: map[string]map[string]any{
 					"aaa": {
-						"bbb": map[string]interface{}{
-							"ccc": []interface{}{
-								map[string]interface{}{
+						"bbb": map[string]any{
+							"ccc": []any{
+								map[string]any{
 									"ddd": "test2",
 									"eee": "test3",
 								},
@@ -315,19 +315,19 @@ func TestDecode_RawValue(t *testing.T) {
 			},
 			expected: &Potato{
 				Name: "test1",
-				Meta: map[string]map[string]interface{}{
+				Meta: map[string]map[string]any{
 					"aaa": {
-						"bbb": map[string]interface{}{
-							"ccc": []interface{}{
-								map[string]interface{}{
+						"bbb": map[string]any{
+							"ccc": []any{
+								map[string]any{
 									"ddd": "test2",
 									"eee": "test3",
 								},
-								map[string]interface{}{
+								map[string]any{
 									"ddd": "test4",
 									"eee": "test5",
 								},
-								map[string]interface{}{
+								map[string]any{
 									"ddd": "test6",
 									"eee": "test7",
 								},

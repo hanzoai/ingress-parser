@@ -11,7 +11,7 @@ func TestParse(t *testing.T) {
 	testCases := []struct {
 		desc     string
 		args     []string
-		element  interface{}
+		element  any
 		expected map[string]string
 	}{
 		{
@@ -347,7 +347,7 @@ func TestParse_Errors(t *testing.T) {
 	testCases := []struct {
 		desc    string
 		args    []string
-		element interface{}
+		element any
 	}{
 		{
 			desc: "triple hyphen",

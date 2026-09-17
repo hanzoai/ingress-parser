@@ -4,14 +4,14 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/stretchr/testify/assert"
 	"github.com/hanzoai/ingress-parser/parser"
+	"github.com/stretchr/testify/assert"
 )
 
 func Test_getFlagTypes(t *testing.T) {
 	testCases := []struct {
 		desc     string
-		element  interface{}
+		element  any
 		expected map[string]reflect.Kind
 	}{
 		{

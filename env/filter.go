@@ -8,7 +8,7 @@ import (
 )
 
 // FindPrefixedEnvVars finds prefixed environment variables.
-func FindPrefixedEnvVars(environ []string, prefix string, element interface{}) []string {
+func FindPrefixedEnvVars(environ []string, prefix string, element any) []string {
 	prefixes := getRootPrefixes(element, prefix)
 
 	var values []string
@@ -23,7 +23,7 @@ func FindPrefixedEnvVars(environ []string, prefix string, element interface{}) [
 	return values
 }
 
-func getRootPrefixes(element interface{}, prefix string) []string {
+func getRootPrefixes(element any, prefix string) []string {
 	if element == nil {
 		return nil
 	}
@@ -43,8 +43,7 @@ func getPrefixes(prefix string, rootType reflect.Type) []string {
 	}
 
 	var names []string
-	for i := range rootType.NumField() {
-		field := rootType.Field(i)
+	for field := range rootType.Fields() {
 
 		if !parser.IsExported(field) {
 			continue

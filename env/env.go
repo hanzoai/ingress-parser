@@ -18,7 +18,7 @@ const DefaultNamePrefix = "INGRESS_"
 // - map -> tree of untyped nodes
 // - untyped nodes -> nodes augmented with metadata such as kind (inferred from element)
 // - "typed" nodes -> typed element.
-func Decode(environ []string, prefix string, element interface{}) error {
+func Decode(environ []string, prefix string, element any) error {
 	if err := checkPrefix(prefix); err != nil {
 		return err
 	}
@@ -41,7 +41,7 @@ func Decode(environ []string, prefix string, element interface{}) error {
 // - typed configuration in element -> tree of untyped nodes
 // - untyped nodes -> nodes augmented with metadata such as kind (inferred from element)
 // - "typed" nodes -> environment variables with default values (determined by type/kind).
-func Encode(prefix string, element interface{}) ([]parser.Flat, error) {
+func Encode(prefix string, element any) ([]parser.Flat, error) {
 	if err := checkPrefix(prefix); err != nil {
 		return nil, err
 	}

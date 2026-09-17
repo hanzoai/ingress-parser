@@ -11,7 +11,7 @@ import (
 // - map -> tree of untyped nodes
 // - untyped nodes -> nodes augmented with metadata such as kind (inferred from element)
 // - "typed" nodes -> typed element.
-func Decode(args []string, element interface{}) error {
+func Decode(args []string, element any) error {
 	ref, err := Parse(args, element)
 	if err != nil {
 		return err
@@ -25,7 +25,7 @@ func Decode(args []string, element interface{}) error {
 // - typed configuration in element -> tree of untyped nodes
 // - untyped nodes -> nodes augmented with metadata such as kind (inferred from element)
 // - "typed" nodes -> flags with default values (determined by type/kind).
-func Encode(element interface{}) ([]parser.Flat, error) {
+func Encode(element any) ([]parser.Flat, error) {
 	if element == nil {
 		return nil, nil
 	}

@@ -58,7 +58,7 @@ func PrintHelp(w io.Writer, cmd *Command) error {
 		}
 	}
 
-	model := map[string]interface{}{
+	model := map[string]any{
 		"Cmd":         cmd,
 		"Flags":       flags,
 		"SubCommands": cmd.subCommands,

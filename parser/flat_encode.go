@@ -32,7 +32,7 @@ type Flat struct {
 // EncodeToFlat encodes a node to a Flat representation.
 // Even though the given node argument should have already been augmented with metadata such as kind,
 // the element (and its type information) is still needed to treat remaining edge cases.
-func EncodeToFlat(element interface{}, node *Node, opts FlatOpts) ([]Flat, error) {
+func EncodeToFlat(element any, node *Node, opts FlatOpts) ([]Flat, error) {
 	if element == nil || node == nil {
 		return nil, nil
 	}

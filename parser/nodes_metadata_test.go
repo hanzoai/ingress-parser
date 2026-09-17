@@ -17,12 +17,12 @@ func TestAddMetadata(t *testing.T) {
 		error bool
 	}
 
-	type interf interface{}
+	type interf any
 
 	testCases := []struct {
 		desc      string
 		tree      *Node
-		structure interface{}
+		structure any
 		expected  expected
 	}{
 		{
@@ -1028,11 +1028,11 @@ func TestAddMetadata(t *testing.T) {
 			},
 			structure: struct {
 				Foo *struct {
-					Bar map[string]interface{}
+					Bar map[string]any
 				}
 			}{
 				Foo: &struct {
-					Bar map[string]interface{}
+					Bar map[string]any
 				}{},
 			},
 			expected: expected{
@@ -1041,10 +1041,10 @@ func TestAddMetadata(t *testing.T) {
 					Kind: reflect.Struct,
 					Children: []*Node{
 						{Name: "Foo", FieldName: "Foo", Kind: reflect.Pointer, Children: []*Node{
-							{Name: "Bar", FieldName: "Bar", Kind: reflect.Map, RawValue: map[string]interface{}{
+							{Name: "Bar", FieldName: "Bar", Kind: reflect.Map, RawValue: map[string]any{
 								"AAA": "valueA",
-								"BBB": map[string]interface{}{
-									"CCC": map[string]interface{}{
+								"BBB": map[string]any{
+									"CCC": map[string]any{
 										"DDD": "valueD",
 									},
 								},
@@ -1081,7 +1081,7 @@ func Test_nodeToRawMap(t *testing.T) {
 	testCases := []struct {
 		desc     string
 		root     *Node
-		expected map[string]interface{}
+		expected map[string]any
 	}{
 		{
 			desc: "simple",
@@ -1100,12 +1100,12 @@ func Test_nodeToRawMap(t *testing.T) {
 					{Name: "name", Value: "bla"},
 				},
 			},
-			expected: map[string]interface{}{
-				"meta": map[string]interface{}{
+			expected: map[string]any{
+				"meta": map[string]any{
 					"aaa": "test1",
-					"bbb": map[string]interface{}{
+					"bbb": map[string]any{
 						"ccc": "test2",
-						"ddd": map[string]interface{}{
+						"ddd": map[string]any{
 							"eee": "test3",
 						},
 					},
@@ -1124,9 +1124,9 @@ func Test_nodeToRawMap(t *testing.T) {
 					}},
 				},
 			},
-			expected: map[string]interface{}{
-				"aaa": []interface{}{
-					map[string]interface{}{
+			expected: map[string]any{
+				"aaa": []any{
+					map[string]any{
 						"bbb": "test1",
 						"ccc": "test2",
 					},
@@ -1153,14 +1153,14 @@ func Test_nodeToRawMap(t *testing.T) {
 					{Name: "name", Value: "test1"},
 				},
 			},
-			expected: map[string]interface{}{
-				"meta": map[string]interface{}{
-					"aaa": []interface{}{
-						map[string]interface{}{
+			expected: map[string]any{
+				"meta": map[string]any{
+					"aaa": []any{
+						map[string]any{
 							"bbb": "test2",
 							"ccc": "test3",
 						},
-						map[string]interface{}{
+						map[string]any{
 							"bbb": "test4",
 							"ccc": "test5",
 						},

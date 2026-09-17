@@ -14,7 +14,7 @@ type MetadataOpts struct {
 }
 
 // AddMetadata adds metadata such as type, inferred from element, to a node.
-func AddMetadata(element interface{}, node *Node, opts MetadataOpts) error {
+func AddMetadata(element any, node *Node, opts MetadataOpts) error {
 	return metadata{MetadataOpts: opts}.Add(element, node)
 }
 
@@ -23,7 +23,7 @@ type metadata struct {
 }
 
 // Add adds metadata such as type, inferred from element, to a node.
-func (m metadata) Add(element interface{}, node *Node) error {
+func (m metadata) Add(element any, node *Node) error {
 	if node == nil {
 		return nil
 	}
@@ -137,8 +137,7 @@ func (m metadata) findTypedField(rType reflect.Type, node *Node) (reflect.Struct
 		return reflect.StructField{}, fmt.Errorf("field not found, node: %s", node.Name)
 	}
 
-	for i := range rType.NumField() {
-		cField := rType.Field(i)
+	for cField := range rType.Fields() {
 
 		fieldName := cField.Tag.Get(TagLabelSliceAsStruct)
 		if !m.AllowSliceAsStruct || len(fieldName) == 0 {
@@ -223,15 +222,15 @@ func addRawValue(node *Node) {
 	node.Children = nil
 }
 
-func nodeToRawMap(node *Node) map[string]interface{} {
-	result := map[string]interface{}{}
+func nodeToRawMap(node *Node) map[string]any {
+	result := map[string]any{}
 
 	squashNode(node, result, true)
 
 	return result
 }
 
-func squashNode(node *Node, acc map[string]interface{}, root bool) {
+func squashNode(node *Node, acc map[string]any, root bool) {
 	if len(node.Children) == 0 {
 		acc[node.Name] = node.Value
 
@@ -240,10 +239,10 @@ func squashNode(node *Node, acc map[string]interface{}, root bool) {
 
 	// slice
 	if isArrayKey(node.Children[0].Name) {
-		var accChild []interface{}
+		var accChild []any
 
 		for _, child := range node.Children {
-			tmp := map[string]interface{}{}
+			tmp := map[string]any{}
 			squashNode(child, tmp, false)
 			accChild = append(accChild, tmp[child.Name])
 		}
@@ -254,7 +253,7 @@ func squashNode(node *Node, acc map[string]interface{}, root bool) {
 	}
 
 	// map
-	var accChild map[string]interface{}
+	var accChild map[string]any
 	if root {
 		accChild = acc
 	} else {
@@ -266,12 +265,12 @@ func squashNode(node *Node, acc map[string]interface{}, root bool) {
 	}
 }
 
-func typedRawMap(m map[string]interface{}, k string) map[string]interface{} {
+func typedRawMap(m map[string]any, k string) map[string]any {
 	if m[k] == nil {
-		m[k] = map[string]interface{}{}
+		m[k] = map[string]any{}
 	}
 
-	r, ok := m[k].(map[string]interface{})
+	r, ok := m[k].(map[string]any)
 	if !ok {
 		panic(fmt.Sprintf("unsupported value (key: %s): %T", k, m[k]))
 	}

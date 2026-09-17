@@ -10,7 +10,7 @@ import (
 	"github.com/hanzoai/ingress-parser/parser"
 )
 
-func decodeRawToNode(data map[string]interface{}, filters ...string) (*parser.Node, error) {
+func decodeRawToNode(data map[string]any, filters ...string) (*parser.Node, error) {
 	root := &parser.Node{
 		Name: parser.DefaultRootName,
 	}

@@ -3,15 +3,15 @@ package generator
 import (
 	"testing"
 
-	"github.com/stretchr/testify/assert"
 	"github.com/hanzoai/ingress-parser/parser"
+	"github.com/stretchr/testify/assert"
 )
 
 func TestGenerate(t *testing.T) {
 	testCases := []struct {
 		desc     string
-		element  interface{}
-		expected interface{}
+		element  any
+		expected any
 	}{
 		{
 			desc: "nil",
@@ -230,8 +230,8 @@ func TestGenerate(t *testing.T) {
 func Test_generate(t *testing.T) {
 	testCases := []struct {
 		desc     string
-		element  interface{}
-		expected interface{}
+		element  any
+		expected any
 	}{
 		{
 			desc: "struct pointer",

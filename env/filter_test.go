@@ -10,7 +10,7 @@ func TestFindPrefixedEnvVars(t *testing.T) {
 	testCases := []struct {
 		desc     string
 		environ  []string
-		element  interface{}
+		element  any
 		expected []string
 	}{
 		{
@@ -53,7 +53,7 @@ func TestFindPrefixedEnvVars(t *testing.T) {
 func Test_getRootFieldNames(t *testing.T) {
 	testCases := []struct {
 		desc     string
-		element  interface{}
+		element  any
 		expected []string
 	}{
 		{

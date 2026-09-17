@@ -7,7 +7,7 @@ import (
 	"github.com/hanzoai/ingress-parser/parser"
 )
 
-func getFlagTypes(element interface{}) map[string]reflect.Kind {
+func getFlagTypes(element any) map[string]reflect.Kind {
 	ref := map[string]reflect.Kind{}
 
 	if element == nil {
@@ -36,8 +36,7 @@ func addFlagType(ref map[string]reflect.Kind, name string, typ reflect.Type) {
 		addFlagType(ref, name, typ.Elem())
 
 	case reflect.Struct:
-		for j := range typ.NumField() {
-			subField := typ.Field(j)
+		for subField := range typ.Fields() {
 
 			if !parser.IsExported(subField) {
 				continue

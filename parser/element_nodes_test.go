@@ -15,7 +15,7 @@ func TestEncodeToNode(t *testing.T) {
 
 	testCases := []struct {
 		desc     string
-		element  interface{}
+		element  any
 		expected expected
 	}{
 		{
@@ -768,16 +768,16 @@ func TestEncodeToNode(t *testing.T) {
 			desc: "raw value",
 			element: struct {
 				Foo *struct {
-					Bar map[string]interface{}
+					Bar map[string]any
 				}
 			}{
 				Foo: &struct {
-					Bar map[string]interface{}
+					Bar map[string]any
 				}{
-					Bar: map[string]interface{}{
+					Bar: map[string]any{
 						"AAA": "valueA",
-						"BBB": map[string]interface{}{
-							"CCC": map[string]interface{}{
+						"BBB": map[string]any{
+							"CCC": map[string]any{
 								"DDD": "valueD",
 							},
 						},
@@ -788,10 +788,10 @@ func TestEncodeToNode(t *testing.T) {
 				Name: "ingress",
 				Children: []*Node{
 					{Name: "Foo", FieldName: "Foo", Children: []*Node{
-						{Name: "Bar", FieldName: "Bar", RawValue: map[string]interface{}{
+						{Name: "Bar", FieldName: "Bar", RawValue: map[string]any{
 							"AAA": "valueA",
-							"BBB": map[string]interface{}{
-								"CCC": map[string]interface{}{
+							"BBB": map[string]any{
+								"CCC": map[string]any{
 									"DDD": "valueD",
 								},
 							},

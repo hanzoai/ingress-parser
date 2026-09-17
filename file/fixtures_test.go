@@ -34,5 +34,5 @@ type Ye struct {
 }
 
 type FooRaw struct {
-	TestData map[string]interface{}
+	TestData map[string]any
 }

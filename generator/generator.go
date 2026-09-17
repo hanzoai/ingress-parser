@@ -12,7 +12,7 @@ type initializer interface {
 }
 
 // Generate recursively initializes an empty structure, calling SetDefaults on each field, when it applies.
-func Generate(element interface{}) {
+func Generate(element any) {
 	if element == nil {
 		return
 	}
@@ -20,7 +20,7 @@ func Generate(element interface{}) {
 	generate(element)
 }
 
-func generate(element interface{}) {
+func generate(element any) {
 	field := reflect.ValueOf(element)
 
 	fill(field)
@@ -58,7 +58,7 @@ func setPtr(field reflect.Value) {
 		field.Set(reflect.New(field.Type().Elem()))
 	}
 
-	if field.Type().Implements(reflect.TypeOf((*initializer)(nil)).Elem()) {
+	if field.Type().Implements(reflect.TypeFor[initializer]()) {
 		method := field.MethodByName("SetDefaults")
 		if method.IsValid() {
 			method.Call([]reflect.Value{})

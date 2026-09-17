@@ -57,7 +57,7 @@ func (f *FileLoader) Load(args []string, cmd *Command) (bool, error) {
 
 // loadConfigFiles tries to decode the given configuration file and all default locations for the configuration file.
 // It stops as soon as decoding one of them is successful.
-func (f *FileLoader) loadConfigFiles(configFile string, element interface{}) (string, error) {
+func (f *FileLoader) loadConfigFiles(configFile string, element any) (string, error) {
 	extensions := []string{"toml", "yaml", "yml"}
 	if len(f.Extensions) != 0 {
 		extensions = f.Extensions

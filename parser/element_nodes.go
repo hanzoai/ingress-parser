@@ -16,7 +16,7 @@ type EncoderToNodeOpts struct {
 
 // EncodeToNode converts an element to a node.
 // element -> nodes.
-func EncodeToNode(element interface{}, rootName string, opts EncoderToNodeOpts) (*Node, error) {
+func EncodeToNode(element any, rootName string, opts EncoderToNodeOpts) (*Node, error) {
 	rValue := reflect.ValueOf(element)
 	node := &Node{Name: rootName}
 
